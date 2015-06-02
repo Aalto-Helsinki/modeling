@@ -15,7 +15,6 @@ o2vec = [0.001,0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01];
 
 % it is easy to make these vectors too and loop over them too to have more
 % parameters to consider
-k1 = 1;
 k2 = 1;
 k3 = 1;
 k4 = 1;
@@ -46,6 +45,8 @@ for a=1:length(nadphvec)
                         vec = -[k2*nadph k3 k4*nadh k5*h2o k6*atp*h2o*nadph k7*nadph^2*h^2*o2];
                         A = A+diag([vec,0]);
                         A = A+diag(-vec,-1);
+                        % Possible problem: A seems to be singular. Bad or
+                        % not?
                         
                         % eigenvalues
                         E = eig(A);
