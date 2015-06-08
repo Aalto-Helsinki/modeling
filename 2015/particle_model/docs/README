@@ -1,0 +1,43 @@
+A simple tool to model movements in a particle
+-----------------------------------------------
+-----------------------------------------------
+DEPENDENCIES:
+This model needs python 3, matplotlib, numpy and scipy to function.
+-----------------------------------------------
+-----------------------------------------------
+USAGE:
+-----------------------------------------------
+currently there is no UI, so an user has to change the values presented in the source code.
+This is cumbersome and dangerous, and some changes are needed.
+Please do not edit vector2.py or objects.py, as these are needed for the correct function of
+this model.
+-----------------------------------------------
+-----------------------------------------------
+ALGORITHM:
+-----------------------------------------------
+1. Place enzymes and substrates in a container (circle with a radius)
+2. With every timestep, move the enzymes and substrates.
+Then, check if substrates are near enzymes. If they are, try to react them.
+That has a probability of happening. If it happens, change the substrate to 
+a different substrate.
+3. repeat
+4. After enough repetition, plot a curve from the amounts of the particles.
+-----------------------------------------------
+FEATURE REQUESTS:
+-----------------------------------------------
+This is a list of features that I (or you) want to get implemented in this
+model. These features may or may not be implemented, but every one of them 
+is checked for viability and relevance.
+-----------------------------------------------
+-Business indicator for enzymes and substrates alike, so that the model can
+account for enzymes and substrates being in an intermediate state,
+and this would also speed up the simulation.
+-Is it better to iterate the substrates and enzymes as enzyme->sub or sub->enz?
+If sub->enz, no substrate is bound twice. If enz->sub, might be easier to
+parallelize, but might also iterate more -> waste resources when compared
+to the other situation
+-3D space instead of 2D, since 2D may be too simplified. This is almost trivial.
+-Parallelization (create different threads for each enzyme?)
+-A text-based UI/ settings file (to give input to the program without
+having to edit the code)
+-A graphical UI (for ease of access, though may be a bit hard to implement)

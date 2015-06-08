@@ -1,0 +1,11 @@
+object
+	enzyme
+		object
+			vector:position
+			mass
+			business
+	substrate
+		object
+			vector: position
+			mass
+			business
