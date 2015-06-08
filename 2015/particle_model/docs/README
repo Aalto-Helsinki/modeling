@@ -9,7 +9,8 @@ This model needs python 3, matplotlib, numpy and scipy to function.
 USAGE:
 -----------------------------------------------
 currently there is no UI, so an user has to change the values presented in the source code.
-This is cumbersome and dangerous, and some changes are needed.
+This is cumbersome and dangerous, and some changes are needed. This is
+in the feature list/todo-list.
 Please do not edit vector2.py or objects.py, as these are needed for the correct function of
 this model.
 -----------------------------------------------
@@ -39,16 +40,21 @@ account for enzymes and substrates being in an intermediate state,
 and this would also speed up the simulation.
 
 2. Is it better to iterate the substrates and enzymes as enzyme->sub or sub->enz?
-If sub->enz, no substrate is bound twice. If enz->sub, might be easier to
+If sub->enz, no substrate is bonded twice. If enz->sub, might be easier to
 parallelize, but might also iterate more -> waste resources when compared
 to the other situation.
 
 3. A text-based UI/ settings file (to give input to the program without
 having to edit the code). This is easy but takes a long time, but is also needed
-for easy use of the model.
+for easy use of the model. Other thing that is perhaps more time-critical is a
+batch-running script, so that we can have some data to decide if we should have
+the micelles created.
 
 4. Parallelization (create different threads for each enzyme?). This needs more work, as
-currently I have no knowledge of how this can be implemented.
+currently I have no knowledge of how this can be implemented. One problem is the way
+problem of multibonding: if 2 threads are bonding to the same substrate, how do
+we settle this conflict? two substrates should NOT bond to same enzyme, that is
+not smart. 
 
 5. Find out the connection between particle mass, temperature, dt, and delta
 in brownian motion. currently I have no idea how these affect each other, only
@@ -65,3 +71,16 @@ This is relevant, since we can only get the data from a cluster in a file, I thi
 This should be one of the last things to implement, as it is not so relevant to
 our modeling (we should make batch runs on aalto's cluster + make the model itself
 better)
+-------------------------------------------------
+-------------------------------------------------
+FQA/Frequently Questioned Answers:
+-------------------------------------------------
+Q:What is the "profiling_data"-folder? can i delete it?
+A:profiling_data has information about the performance of the program.
+This includes a specific list of the function calls the program makes, 
+as well as the times this takes. Prifiling data is important when people
+are searching for bottlenecks in their code. To answer your questin, no, 
+it should not be deleted. Neither should anything else, unless you know that
+it is obsolete.
+Q: 
+A: NO.
