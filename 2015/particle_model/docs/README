@@ -30,7 +30,7 @@ FEATURE REQUESTS:
 This is a list of features that I (or you) want to get implemented in this
 model. These features may or may not be implemented, but every one of them 
 is checked for viability and relevance. If you have ideas about this model, then 
-let's discuss things and add your siggestion!
+let's discuss things and add your suggestion!
 Suggestions that have to do with pretty visualization/things "looking cool"
 are currently put to the end of the list.
 -----------------------------------------------
@@ -71,6 +71,7 @@ This is relevant, since we can only get the data from a cluster in a file, I thi
 This should be one of the last things to implement, as it is not so relevant to
 our modeling (we should make batch runs on aalto's cluster + make the model itself
 better)
+<<<<<<< HEAD
 -------------------------------------------------
 -------------------------------------------------
 FQA/Frequently Questioned Answers:
@@ -84,3 +85,5 @@ it should not be deleted. Neither should anything else, unless you know that
 it is obsolete.
 Q: 
 A: NO.
+=======
+>>>>>>> b04f413a868113a83a428ec8b37fdc946a3335d4
