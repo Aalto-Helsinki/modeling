@@ -37,8 +37,13 @@ and this would also speed up the simulation.
 If sub->enz, no substrate is bound twice. If enz->sub, might be easier to
 parallelize, but might also iterate more -> waste resources when compared
 to the other situation
--3D space instead of 2D, since 2D may be too simplified. This is almost trivial.
--Parallelization (create different threads for each enzyme?)
+-3D space instead of 2D, since 2D may be too simplified. This is almost trivial,
+and can be implemented in say, 3 hours.
+-Parallelization (create different threads for each enzyme?). This needs more work, as
+currently I have no knowledge of how this can be implemented.
 -A text-based UI/ settings file (to give input to the program without
-having to edit the code)
--A graphical UI (for ease of access, though may be a bit hard to implement)
+having to edit the code). This is easy but takes a long time
+-A graphical UI (for ease of access, though may be a bit hard to implement).
+This should be one of the last things to implement, as it is not so relevant to
+our modeling (we should make batch runs on aalto's cluster + make the model itself
+better)
