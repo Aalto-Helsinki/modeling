@@ -28,22 +28,40 @@ FEATURE REQUESTS:
 -----------------------------------------------
 This is a list of features that I (or you) want to get implemented in this
 model. These features may or may not be implemented, but every one of them 
-is checked for viability and relevance.
+is checked for viability and relevance. If you have ideas about this model, then 
+let's discuss things and add your siggestion!
+Suggestions that have to do with pretty visualization/things "looking cool"
+are currently put to the end of the list.
 -----------------------------------------------
--Business indicator for enzymes and substrates alike, so that the model can
+
+1. Business indicator for enzymes and substrates alike, so that the model can
 account for enzymes and substrates being in an intermediate state,
 and this would also speed up the simulation.
--Is it better to iterate the substrates and enzymes as enzyme->sub or sub->enz?
+
+2. Is it better to iterate the substrates and enzymes as enzyme->sub or sub->enz?
 If sub->enz, no substrate is bound twice. If enz->sub, might be easier to
 parallelize, but might also iterate more -> waste resources when compared
-to the other situation
--3D space instead of 2D, since 2D may be too simplified. This is almost trivial,
-and can be implemented in say, 3 hours.
--Parallelization (create different threads for each enzyme?). This needs more work, as
+to the other situation.
+
+3. A text-based UI/ settings file (to give input to the program without
+having to edit the code). This is easy but takes a long time, but is also needed
+for easy use of the model.
+
+4. Parallelization (create different threads for each enzyme?). This needs more work, as
 currently I have no knowledge of how this can be implemented.
--A text-based UI/ settings file (to give input to the program without
-having to edit the code). This is easy but takes a long time
--A graphical UI (for ease of access, though may be a bit hard to implement).
+
+5. Find out the connection between particle mass, temperature, dt, and delta
+in brownian motion. currently I have no idea how these affect each other, only
+that mass makes particles slower and temperature raises speed. Delta is the 
+speed modifier, so how ideally we should define delta from mass and temperature.
+
+6. 3D space instead of 2D, since 2D may be too simplified. This is almost trivial,
+and can be implemented in say, 3 hours.
+
+7. A way to load the simulation parameters from a file and to save simulation data in a file.
+This is relevant, since we can only get the data from a cluster in a file, I think.
+
+8. A graphical UI (for ease of access, though may be a bit hard to implement).
 This should be one of the last things to implement, as it is not so relevant to
 our modeling (we should make batch runs on aalto's cluster + make the model itself
 better)
