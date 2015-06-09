@@ -16,8 +16,8 @@ since it is only 2000 numbers wrapped in a list. Right?
 '''
 
 from vector2 import Vector2
-import objects
-from objects import Obj,Substrate,Enzyme
+#import objects
+from objects import *
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
@@ -27,6 +27,20 @@ import random
 from builtins import range
 
 ENZ_SUP = 999
+
+def initSub(cell_rad, SUB_TYPE, amount, mass):
+    subs = []
+    for i in amount:
+        subs.append()
+    pass
+    
+    return 1
+
+def initEnz():
+    pass
+
+def initMovement():
+    pass
 
 def updateobj(obj, delta, dt):
     x = obj.position.x
@@ -40,6 +54,7 @@ def updateobj(obj, delta, dt):
     obj.setPosition( obj.getPosition() + dpos)
     #calculate the movement
     #apply the movement
+
 
 def transformsub(sub,prob):
     '''
@@ -56,7 +71,7 @@ def transformsub(sub,prob):
 
 def createEnz(cell_rad, type, mass):
     '''
-    Creates an enzyme object that can then be appended to a list
+    Creates an enzyme object that can then be appended to a list.
     '''
     x = cell_rad +1
     y = cell_rad +1
@@ -71,7 +86,7 @@ def createEnz(cell_rad, type, mass):
 def createSub(cell_rad, type, mass):
     '''
     Creates a substrate object that can then be appended to a list.
-    Perhaps the option to choose type is too much...
+    The substrate is placed in a random location inside a circle (cell).
     '''
     x = cell_rad +1
     y = cell_rad +1
@@ -94,25 +109,28 @@ def main():
     #brownian motion
     dt = 1
     delta = 0.5
-    time_range = 3000
-    cell_rad = 10.0
-    sub_count = 700
-    enz_count = 10
+    #simulation-specific constants
+    time_range = 300
+    cell_rad = 5
+    sub_count = 750
+    enz_count = 5
     #enzyme propabilities of reaction
     
     #enz_a
-    for s in range(1,enz_count):
+    for s in range(0,enz_count):
         enz.append(createEnz(cell_rad, ENZ_SUP, 1))
         #enz.append(createEnz(10, objects.ENZ_B, 1))
     #try to make it a switch, whether a superenzyme or regular enzymes are used.
-    for s in range(1,sub_count):
-        subs.append(createSub(cell_rad, objects.SUB_A, 1))
+    for s in range(0,sub_count):
+        subs.append(createSub(cell_rad, SUB_A, 1))
     
-    i=0
+    i=0 #the timestep we are now
+    #lists for the amounts of different substrates. These will be plotted..
     sub_a_amount = []
     sub_b_amount = []
     sub_c_amount = []
     total = []
+    #lists of brownian motion for all of the particles.
     sub_movements_x = []
     sub_movements_y = []
     #create all of the brownian movements beforehand, so that we only call rvs one time/object.
@@ -121,17 +139,23 @@ def main():
         rands_y = norm.rvs(size = time_range,scale=delta**2*dt).tolist()
         sub_movements_x.append(rands_x)
         sub_movements_y.append(rands_y)
-    #brownian motion tables, so that if the indexed movement is not valid, a particle takes the values from here.
+    #extra brownian motion tables, so that if the indexed movement is not valid, a particle takes the values from here.
     #this lessens the amount of calling the norm function, which is costly
     add_table_x = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
     add_table_y = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
     add_index = 0
     while i < time_range:
-        #updateobj(ea.obj, delta, dt)
-        #updateobj(sub.obj, delta, dt)
-        #for sub in subs:
-            #updateobj(sub.obj, delta, dt)
-        #move all of subs
+        #update the "business index" of the particles
+        for sub in subs:
+            if sub.status > 0:
+                sub.updBusy()
+        
+        for en in enz:
+            if en.status > 0:
+                en.updBusy()
+        
+        #move all of subs, let's move this to a function. This might be hard though, as it needs many different variables.
+        
         for sub in subs:
             dx = sub_movements_x[subs.index(sub)][i%time_range]
             dy = sub_movements_y[subs.index(sub)][i%time_range]
@@ -141,36 +165,48 @@ def main():
             while ((x+dx)**2 + (y+dy)**2) > cell_rad*cell_rad:
                 dx = add_table_x[add_index%5000]
                 dy = add_table_y[add_index%5000]
-                add_index +=1
-                #print((x+dx)**2 + (y+dy)**2)   
+                add_index +=10
+                 
             if add_index == 5000:
                 add_table_x = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
                 add_table_y = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
                 add_index =0
             dpos = Vector2(dx,dy)
             sub.obj.setPosition( sub.obj.getPosition() + dpos)
+        #update enzyme positions
         for en in enz:
             updateobj(en.obj, delta, dt)
-        
         for en in enz:
-            for sub in subs:
-                #if sub.type == en.type or en.type == ENZ_SUP:
-                bonded=0
-                if en.obj.getDistance(sub.obj) < 0.10 and sub.type is not objects.SUB_C:
-                    bonded = transformsub(sub, 0.5)
-                if bonded>0:
-                    if sub.type == objects.SUB_C :
-                        product.append(sub)
-                        subs.remove(sub)
-                    break
-                        
+            if en.status == 0:
+                for sub in subs:
+                    #if sub.type == en.type or en.type == ENZ_SUP:
+                    
+                    #this need to be cleared up with a proper structure, this is just ugly.
+                    #One way is to use a separate function that evaluates the conditions, but this might hurt performance.
+                    #well, just have to profile this...
+                    if sub.status == 0:
+                        bonded=0
+                        if en.obj.getDistance(sub.obj) < 0.15 and sub.type is not SUB_C:
+                            
+                            bonded = transformsub(sub, 0.5)
+                        if bonded>0:
+                            
+                            if sub.type == SUB_C :
+                                product.append(sub)
+                                subs.remove(sub)
+                            else :
+                                sub.status = 2
+                                en.status = 2
+                            break
+                                
+        #the amounts of enzymes, for plots.
         a = 0
         b = 0
         c = 0
         for sub in subs:
-            if sub.type == objects.SUB_A:
+            if sub.type == SUB_A:
                 a += 1
-            if sub.type == objects.SUB_B:
+            if sub.type == SUB_B:
                 b += 1
         for sub in product:
             c += 1
@@ -179,7 +215,7 @@ def main():
         sub_c_amount.append(c)
         total.append(a+b+c)
         i += 1
-        if i % 10 == 0:
+        if i % 50 == 0:
             print(i)
     
     plot.plot(sub_a_amount,'g')

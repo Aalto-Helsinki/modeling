@@ -67,6 +67,8 @@ class Vector2(object):
         #returns a unit vector with length of 1.
         #useful when only a direction is needed, e.g. when calculating a force
         length = self.length()
+        if length <= 0:
+            return Vector2(0,0)
         unit_x = self.getComponent('x')/length
         unit_y = self.getComponent('y')/length
         return Vector2(unit_x,unit_y)

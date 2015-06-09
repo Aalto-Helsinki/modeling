@@ -12,8 +12,9 @@ as updating the placing. Nothing is dependent on others, really.
 '''
 
 from vector2 import Vector2
-import objects
+#import objects
 from objects import Obj,Substrate,Enzyme
+from objects import *
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
@@ -114,7 +115,7 @@ def main():
     #sub = Substrate(ob,1)
     #spawn substrates and enzymes, first 1 enzyme and 10 substrates
     for s in range(1,750):
-        subs.append(createSub(10, objects.SUB_A, 1))
+        subs.append(createSub(10, SUB_A, 1))
     
     i=0
     sub_a_amount = []
@@ -138,10 +139,10 @@ def main():
             for sub in subs:
                 #if sub.type == en.type or en.type == ENZ_SUP:
                 bonded=0
-                if en.obj.getDistance(sub.obj) < 0.15 and sub.type is not objects.SUB_C:
+                if en.obj.getDistance(sub.obj) < 0.15 and sub.type is not SUB_C:
                     bonded = transformsub(sub, 0.75)
                 if bonded>0:
-                    if sub.type == objects.SUB_C :
+                    if sub.type == SUB_C :
                         product.append(sub)
                         subs.remove(sub)
                     break
@@ -150,9 +151,9 @@ def main():
         b = 0
         c = 0
         for sub in subs:
-            if sub.type == objects.SUB_A:
+            if sub.type == SUB_A:
                 a += 1
-            if sub.type == objects.SUB_B:
+            if sub.type == SUB_B:
                 b += 1
         for sub in product:
             c += 1

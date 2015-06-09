@@ -19,8 +19,7 @@ substrate, which have the following properties:
 -random walking is the name of the game 
 -the physics are not considered here
 '''
-FREE = 1
-BUSY = 0
+
 ALIVE = 1
 DEAD = 0
 SUB_A = 1
@@ -28,7 +27,8 @@ SUB_B = 2
 SUB_C = 3
 ENZ_A = 1
 ENZ_B = 2
-
+BUSY_ENZ_A = 1
+BUSY_ENZ_B = 1
 class Obj(object):
     '''
     This class implements an object that resides in
@@ -95,13 +95,17 @@ class Enzyme(object):
     Has object for physics
     has type, to show which enzyme it is
     Methods that are needed:
-    -check if busy, if busy, wait 1, then not busy
+    -check if busy, if busy, wait, 
     -if not busy, check if possible to bind to substrates
     '''
     def __init__(self, obj, typ):
         self.obj = obj
         self.type = typ
-        self.status = FREE
+        self.status = 0
+        
+    def updBusy(self):
+        if self.status > 0:
+            self.status -= 1
 
 class Substrate(object):
     '''
@@ -109,13 +113,17 @@ class Substrate(object):
     Has object for physics
     has type, to show which substrate it is
     Methods that are needed:
-    -transforming method, which destroys this substrate and spawns another, and makes the 
+    -transforming method, which changes the type field of a substrate object 
     '''
     def __init__(self, obj, typ):
         self.obj = obj
         self.type = typ
+        self.status = 0
     
     def transform(self, typ):
         self.type = typ
-                
+    
+    def updBusy(self):
+        if self.status > 0:
+            self.status -= 1
     
