@@ -35,14 +35,18 @@ Suggestions that have to do with pretty visualization/things "looking cool"
 are currently put to the end of the list.
 -----------------------------------------------
 
-1. Business indicator for enzymes and substrates alike, so that the model can
-account for enzymes and substrates being in an intermediate state,
-and this would also speed up the simulation.
+1. Busyness indicator for enzymes and substrates alike, so that the model can
+account for enzymes and substrates being in an intermediate state.
+This would also speed up the simulation, as there is no need to loop through enzymes/substrates that are already bonded.
+|| DONE||
+This is now done, but it propably should be refactored, to make it easier and cleaner to implement
 
 2. Is it better to iterate the substrates and enzymes as enzyme->sub or sub->enz?
 If sub->enz, no substrate is bonded twice. If enz->sub, might be easier to
 parallelize, but might also iterate more -> waste resources when compared
 to the other situation.
+||I'd say that the way it is now is better. That way parallelisation may be easier. I'll see into parallelisation 
+and see if it can be done.   ||
 
 3. A text-based UI/ settings file (to give input to the program without
 having to edit the code). This is easy but takes a long time, but is also needed
@@ -50,11 +54,14 @@ for easy use of the model. Other thing that is perhaps more time-critical is a
 batch-running script, so that we can have some data to decide if we should have
 the micelles created.
 
+
 4. Parallelization (create different threads for each enzyme?). This needs more work, as
 currently I have no knowledge of how this can be implemented. One problem is the way
 problem of multibonding: if 2 threads are bonding to the same substrate, how do
 we settle this conflict? two substrates should NOT bond to same enzyme, that is
 not smart. 
+Perhaps map() could be used? it seems like a good candidate, along with the module multiprocessing.
+||Map does not take away the need for  ||
 
 5. Find out the connection between particle mass, temperature, dt, and delta
 in brownian motion. currently I have no idea how these affect each other, only
@@ -62,7 +69,8 @@ that mass makes particles slower and temperature raises speed. Delta is the
 speed modifier, so how ideally we should define delta from mass and temperature.
 
 6. 3D space instead of 2D, since 2D may be too simplified. This is almost trivial,
-and can be implemented in say, 3 hours.
+and can be implemented in say, 3 hours. Big changes only include the vector class,
+the way objects' places are updated.
 
 7. A way to load the simulation parameters from a file and to save simulation data in a file.
 This is relevant, since we can only get the data from a cluster in a file, I think.

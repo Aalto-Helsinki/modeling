@@ -27,8 +27,8 @@ SUB_B = 2
 SUB_C = 3
 ENZ_A = 1
 ENZ_B = 2
-BUSY_ENZ_A = 1
-BUSY_ENZ_B = 1
+BUSY_ENZ_A = 2
+BUSY_ENZ_B = 2
 class Obj(object):
     '''
     This class implements an object that resides in

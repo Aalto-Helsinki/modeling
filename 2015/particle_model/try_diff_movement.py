@@ -2,21 +2,23 @@
 A Quick-and-dirty test.
 What to implement next:
 -enzyme collision propability? is trivial, implemented
--enzyme business thingy, not implemented yet.
+-enzyme busyness thingy, not implemented yet.
 -no substrate can transform more than one time per timestep,
 I think this can't happen now.
 -more enzymes, adding them is quite easy now.
 -REFACTORING!!!!!! this shit is atrocious. Put blocks of code in separate functions.
--multithreading, at least the iteration through subs and enzymes is possible. Perhaps a thread per enzyme? Then I really need the substrate business 
+-multithreading, at least the iteration through subs and enzymes is possible. Perhaps a thread per enzyme? Then I really need the substrate busyness 
 thingy, though.
-as updating the placing. Nothing is dependent on others, really.
+as updating the placing. Nothing is dependent on others, really. Only problem is when making collisions, the
+different enzymes might bond to same substrates. 
 -Optimizing: vector calculations are better, don't know how to make them faster. Brownian movement is better now.
 Perhaps this list could be, say, 1000 big, and when it is used, it would be called again. That would be efficient with almost no memory usage,
 since it is only 2000 numbers wrapped in a list. Right?
 '''
-
-from vector2 import Vector2
 #import objects
+from vector2 import *
+#this is for the coming parallel computing
+import multiprocessing
 from objects import *
 import matplotlib.pyplot as plt
 import numpy as np
@@ -27,6 +29,7 @@ import random
 from builtins import range
 
 ENZ_SUP = 999
+BUSY_ENZ_SUP = 5
 
 def initSub(cell_rad, SUB_TYPE, amount, mass):
     subs = []
@@ -100,20 +103,28 @@ def createSub(cell_rad, type, mass):
 
 def main():
     '''
+    Entry point
     '''
+    #create dictionary containing enzyme-busyness pairs
+    #this is where all of the enzyme pairs are added, so this is the only point where that should be changed.
+    busy_pair = {}
+    busy_pair[ENZ_SUP] = BUSY_ENZ_SUP
+    busy_pair[ENZ_A] = BUSY_ENZ_A
+    busy_pair[ENZ_B] = BUSY_ENZ_B
+    
     #create lists for the enzymes to be
     enz = []
     subs = []
     product = []
     #constants
     #brownian motion
-    dt = 1
+    dt = 0.5
     delta = 0.5
     #simulation-specific constants
-    time_range = 300
+    time_range = 1000
     cell_rad = 5
-    sub_count = 750
-    enz_count = 5
+    sub_count = 600
+    enz_count = 20
     #enzyme propabilities of reaction
     
     #enz_a
@@ -145,17 +156,20 @@ def main():
     add_table_y = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
     add_index = 0
     while i < time_range:
-        #update the "business index" of the particles
+        #update the "busyness index" of the particles
+        #map is possible here
         for sub in subs:
             if sub.status > 0:
                 sub.updBusy()
-        
+                
+        #here too
         for en in enz:
             if en.status > 0:
                 en.updBusy()
+                
         
         #move all of subs, let's move this to a function. This might be hard though, as it needs many different variables.
-        
+        #map is also possible here
         for sub in subs:
             dx = sub_movements_x[subs.index(sub)][i%time_range]
             dy = sub_movements_y[subs.index(sub)][i%time_range]
@@ -165,7 +179,7 @@ def main():
             while ((x+dx)**2 + (y+dy)**2) > cell_rad*cell_rad:
                 dx = add_table_x[add_index%5000]
                 dy = add_table_y[add_index%5000]
-                add_index +=10
+                add_index +=1
                  
             if add_index == 5000:
                 add_table_x = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
@@ -176,6 +190,8 @@ def main():
         #update enzyme positions
         for en in enz:
             updateobj(en.obj, delta, dt)
+            
+        #check for substrate binding and bind substrates
         for en in enz:
             if en.status == 0:
                 for sub in subs:
@@ -190,13 +206,12 @@ def main():
                             
                             bonded = transformsub(sub, 0.5)
                         if bonded>0:
-                            
+                            #update the busyness.
+                            en.status =  busy_pair[en.type]
+                            sub.status =  busy_pair[en.type]
                             if sub.type == SUB_C :
                                 product.append(sub)
                                 subs.remove(sub)
-                            else :
-                                sub.status = 2
-                                en.status = 2
                             break
                                 
         #the amounts of enzymes, for plots.
@@ -215,9 +230,10 @@ def main():
         sub_c_amount.append(c)
         total.append(a+b+c)
         i += 1
-        if i % 50 == 0:
+        if i % 5 == 0:
             print(i)
     
+    #plot the amounts of particles
     plot.plot(sub_a_amount,'g')
     plot.plot(sub_b_amount,'r')
     plot.plot(sub_c_amount,'b')
