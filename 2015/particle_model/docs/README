@@ -71,7 +71,6 @@ This is relevant, since we can only get the data from a cluster in a file, I thi
 This should be one of the last things to implement, as it is not so relevant to
 our modeling (we should make batch runs on aalto's cluster + make the model itself
 better)
-<<<<<<< HEAD
 -------------------------------------------------
 -------------------------------------------------
 FQA/Frequently Questioned Answers:
