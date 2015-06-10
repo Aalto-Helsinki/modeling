@@ -29,21 +29,8 @@ import random
 from builtins import range
 
 ENZ_SUP = 999
-BUSY_ENZ_SUP = 5
+BUSY_ENZ_SUP = 2
 
-def initSub(cell_rad, SUB_TYPE, amount, mass):
-    subs = []
-    for i in amount:
-        subs.append()
-    pass
-    
-    return 1
-
-def initEnz():
-    pass
-
-def initMovement():
-    pass
 
 def updateobj(obj, delta, dt):
     x = obj.position.x
@@ -58,6 +45,10 @@ def updateobj(obj, delta, dt):
     #calculate the movement
     #apply the movement
 
+#def updBus(sub):
+    #if sub.status > 0:
+    #        sub.status -= 1
+    #return sub
 
 def transformsub(sub,prob):
     '''
@@ -71,6 +62,15 @@ def transformsub(sub,prob):
         return 1
     return 0
 
+def createPos(cell_rad, mass):
+    x = cell_rad*random.random()
+    y = cell_rad*random.random()
+    while (x*x + y*y) >= cell_rad*cell_rad:
+        x = cell_rad*random.random()
+        y = cell_rad*random.random()
+    vec = Vector2(x,y)
+    ob = Obj(mass,vec)
+    return ob
 
 def createEnz(cell_rad, type, mass):
     '''
@@ -84,6 +84,9 @@ def createEnz(cell_rad, type, mass):
     vec = Vector2(x,y)
     ob = Obj(mass,vec)
     return Enzyme(ob,type)
+
+def createSupEnz(ob,type):
+    return Enzyme(ob, type)
 
 
 def createSub(cell_rad, type, mass):
@@ -118,19 +121,30 @@ def main():
     product = []
     #constants
     #brownian motion
+    SUP_ENZ = 1
     dt = 0.5
-    delta = 0.5
+    delta = 0.2
     #simulation-specific constants
-    time_range = 1000
-    cell_rad = 5
-    sub_count = 600
-    enz_count = 20
+    time_range = 300 #number of steps
+    cell_rad = 2 #radius of cell, currently has no specified unit
+    sub_count = 200 #number of substrates
+    enz_count = 5 #number of enzymes (though could be many different enzyme types)
     #enzyme propabilities of reaction
     
     #enz_a
-    for s in range(0,enz_count):
-        enz.append(createEnz(cell_rad, ENZ_SUP, 1))
-        #enz.append(createEnz(10, objects.ENZ_B, 1))
+    #for s in range(0,enz_count):
+    #    enz.append(createEnz(cell_rad, ENZ_SUP, 1))
+        #enz.append(create)
+        #enz_sup_1 = 
+    if SUP_ENZ == 1:
+        for s in range(0,enz_count):
+            ob = createPos(cell_rad, 1)
+            enz.append(createSupEnz(ob, ENZ_A))
+            enz.append(createSupEnz(ob, ENZ_B))
+    else:
+        for s in range(0,enz_count):
+            enz.append(createEnz(cell_rad, ENZ_A, 1))
+            enz.append(createEnz(cell_rad, ENZ_B, 1))
     #try to make it a switch, whether a superenzyme or regular enzymes are used.
     for s in range(0,sub_count):
         subs.append(createSub(cell_rad, SUB_A, 1))
@@ -152,8 +166,8 @@ def main():
         sub_movements_y.append(rands_y)
     #extra brownian motion tables, so that if the indexed movement is not valid, a particle takes the values from here.
     #this lessens the amount of calling the norm function, which is costly
-    add_table_x = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
-    add_table_y = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
+    add_table_x = norm.rvs(size = 500,scale=delta**2*dt).tolist()
+    add_table_y = norm.rvs(size = 500,scale=delta**2*dt).tolist()
     add_index = 0
     while i < time_range:
         #update the "busyness index" of the particles
@@ -161,7 +175,7 @@ def main():
         for sub in subs:
             if sub.status > 0:
                 sub.updBusy()
-                
+        #ssubs = list(map(updBus,subs))
         #here too
         for en in enz:
             if en.status > 0:
@@ -177,13 +191,13 @@ def main():
             y = sub.obj.position.y
             
             while ((x+dx)**2 + (y+dy)**2) > cell_rad*cell_rad:
-                dx = add_table_x[add_index%5000]
-                dy = add_table_y[add_index%5000]
+                dx = add_table_x[add_index%500]
+                dy = add_table_y[add_index%500]
                 add_index +=1
                  
-            if add_index == 5000:
-                add_table_x = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
-                add_table_y = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
+            if add_index == 500:
+                add_table_x = norm.rvs(size = 500,scale=delta**2*dt).tolist()
+                add_table_y = norm.rvs(size = 500,scale=delta**2*dt).tolist()
                 add_index =0
             dpos = Vector2(dx,dy)
             sub.obj.setPosition( sub.obj.getPosition() + dpos)
@@ -230,13 +244,17 @@ def main():
         sub_c_amount.append(c)
         total.append(a+b+c)
         i += 1
-        if i % 5 == 0:
+        if i % 20 == 0:
             print(i)
     
     #plot the amounts of particles
+    col= 'k'
+    if SUP_ENZ == 1:
+        col = 'b'
+        
     plot.plot(sub_a_amount,'g')
     plot.plot(sub_b_amount,'r')
-    plot.plot(sub_c_amount,'b')
+    plot.plot(sub_c_amount,col)
     plot.plot(total,'k')
     plot.show()
     
