@@ -32,12 +32,12 @@ ENZ_SUP = 999
 BUSY_ENZ_SUP = 2
 
 
-def updateobj(obj, delta, dt):
+def updateobj(obj, delta, dt, cell_rad):
     x = obj.position.x
     y = obj.position.y
     dx = norm.rvs(scale=delta**2*dt)
     dy = norm.rvs(scale=delta**2*dt)
-    while (x+dx)*(x+dx) + (y+dy)*(y+dy) > 100:
+    while (x+dx)*(x+dx) + (y+dy)*(y+dy) > cell_rad*cell_rad:
         dx = norm.rvs(scale=delta**2*dt)
         dy = norm.rvs(scale=delta**2*dt)
     dpos = Vector2(dx,dy)
@@ -123,12 +123,12 @@ def main():
     #brownian motion
     SUP_ENZ = 1
     dt = 0.5
-    delta = 0.2
+    delta = 1
     #simulation-specific constants
     time_range = 300 #number of steps
     cell_rad = 2 #radius of cell, currently has no specified unit
-    sub_count = 200 #number of substrates
-    enz_count = 5 #number of enzymes (though could be many different enzyme types)
+    sub_count = 100 #number of substrates
+    enz_count = 1 #number of enzymes (though could be many different enzyme types)
     #enzyme propabilities of reaction
     
     #enz_a
@@ -159,6 +159,7 @@ def main():
     sub_movements_x = []
     sub_movements_y = []
     #create all of the brownian movements beforehand, so that we only call rvs one time/object.
+    #a faster way would be to create one table, and then 
     for sub in subs:
         rands_x = norm.rvs(size = time_range,scale=delta**2*dt).tolist()
         rands_y = norm.rvs(size = time_range,scale=delta**2*dt).tolist()
@@ -203,7 +204,7 @@ def main():
             sub.obj.setPosition( sub.obj.getPosition() + dpos)
         #update enzyme positions
         for en in enz:
-            updateobj(en.obj, delta, dt)
+            updateobj(en.obj, delta, dt,cell_rad)
             
         #check for substrate binding and bind substrates
         for en in enz:
@@ -254,7 +255,7 @@ def main():
         
     plot.plot(sub_a_amount,'g')
     plot.plot(sub_b_amount,'r')
-    plot.plot(sub_c_amount,col)
+    plot.plot(sub_c_amount,'b')
     plot.plot(total,'k')
     plot.show()
     
