@@ -8,7 +8,7 @@ This model needs python 3, matplotlib, numpy and scipy to function.
 -----------------------------------------------
 USAGE:
 -----------------------------------------------
-currently there is no UI, so an user has to change the values presented in the source code.
+currently there is no (t/g)UI, so an user has to change the values presented in the source code.
 This is cumbersome and dangerous, and some changes are needed. This is
 in the feature list/todo-list.
 Please do not edit vector2.py or objects.py, as these are needed for the correct function of
@@ -61,12 +61,15 @@ problem of multibonding: if 2 threads are bonding to the same substrate, how do
 we settle this conflict? two substrates should NOT bond to same enzyme, that is
 not smart. 
 Perhaps map() could be used? it seems like a good candidate, along with the module multiprocessing.
-||Map does not take away the need for  ||
+||Map does not take away the need for multiprocessing-module, or the fact that no two enzymes can
+touch the same substrates at the same time.||
 
 5. Find out the connection between particle mass, temperature, dt, and delta
 in brownian motion. currently I have no idea how these affect each other, only
 that mass makes particles slower and temperature raises speed. Delta is the 
 speed modifier, so how ideally we should define delta from mass and temperature.
+||Mass is a simple divisor in place displacement per step (x = F*t^2/t). Temperature probably makes the 
+  ||
 
 6. 3D space instead of 2D, since 2D may be too simplified. This is almost trivial,
 and can be implemented in say, 3 hours. Big changes only include the vector class,
