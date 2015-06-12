@@ -9,7 +9,7 @@ from vector2 import *
 #import multiprocessing
 from objects import *
 import math
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
 from scipy.stats import norm
