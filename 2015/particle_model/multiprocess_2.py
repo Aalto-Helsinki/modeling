@@ -78,8 +78,8 @@ def main():
     
     time_range = 5 #number of steps
     cell_rad = 1 #radius of cell, currently has no specified unit
-    sub_count = 4 #number of substrates
-    enz_count = 4
+    sub_count = 1600 #number of substrates
+    enz_count = 2 #number of enzymes, and the threads
     
     for s in range(0,enz_count):
             enz.append(fun.createEnz(cell_rad, ENZ_A, 1))
@@ -114,76 +114,89 @@ def main():
         for en in enz:
             en.status = 0
         #each sublist iteration
-        for i in range (0,1):
-            #with processes
-            #create threads
-            '''
-            proc = []
-            for j in range(0,len(enz)):
-                proc.append(Process(target = threadEnzSub, args =(enz[j], sublist[(j+i)%len(enz)]) ))
-            #start threads
-            print("Sublist index:",i)
-            for p in proc:
-                p.start()
-            for p in proc:
-                p.join()
-            '''    
-            #with map and pool:
-            #hash the sublist
-            sublist = hashList(sublist, 0)
-            pool = Pool(len(enz))
-            results = pool.starmap(threadEnzSub, zip(enz,sublist)) #WARNING! results contains 4
-            #sublists, and each of them contains an enzyme and a substrate sublist. Now
-            #we need to release them.
-            #why not do it... parallelly? :'D
-            print(results)
-            #print(results)
-            j=0
-            
-            for pack in results:
-                enz[j] = pack[0]
-                sublist[j] = pack[1]
-                j+=1
-            
-            sublist = hashList(sublist, 1)   
-            results = pool.starmap(threadEnzSub, zip(enz,sublist))
-            j=0
-            print(results)
-            for pack in results:
-                enz[j] = pack[0]
-                sublist[j] = pack[1]
-                j+=1 
-            
-            sublist = hashList(sublist, 2)   
-            results = pool.starmap(threadEnzSub, zip(enz,sublist))
-            print(results) 
-            j=0  
-            for pack in results:
-                enz[j] = pack[0]
-                sublist[j] = pack[1]
-                j+=1 
-            
-            sublist = hashList(sublist, 3)   
-            results = pool.starmap(threadEnzSub, zip(enz,sublist))
-            print(results)
-            j=0
-            for pack in results:
-                enz[j] = pack[0]
-                sublist[j] = pack[1]
-                j+=1     
-            
-            pool.close()
-            pool.join()
-            #print(results)
-            #print("-----ENZYME STATUSES-----")
-            #for en in enz:
-            #    print(en.status)
-            #for o in range(0, len(proc)):
-            #    proc[o].join()
-            #calculate them
-            #join them
-        print("time:",time)
+        #with processes
+        #create threads
+        '''
+        proc = []
+        for j in range(0,len(enz)):
+            proc.append(Process(target = threadEnzSub, args =(enz[j], sublist[(j+i)%len(enz)]) ))
+        #start threads
+        print("Sublist index:",i)
+        for p in proc:
+            p.start()
+        for p in proc:
+            p.join()
+        '''    
+        #with map and pool:
+        #hash the sublist
         
+        pool = Pool(len(enz))
+        for i in range(0,len(enz)):
+            pass
+            sublist = hashList(sublist, i)
+            results = pool.starmap(threadEnzSub, zip(enz,sublist))
+            j=0
+            for pack in results:
+                enz[j] = pack[0]
+                sublist[j] = pack[1]
+                j+=1   
+        pool.close()
+        pool.join()
+            
+        '''
+        sublist = hashList(sublist, 0)
+        results = pool.starmap(threadEnzSub, zip(enz,sublist)) #WARNING! results contains 4
+        #sublists, and each of them contains an enzyme and a substrate sublist. Now
+        #we need to release them.
+        #why not do it... parallelly? :'D
+        print(results)
+        #print(results)
+        j=0
+        
+        for pack in results:
+            enz[j] = pack[0]
+            sublist[j] = pack[1]
+            j+=1
+        
+        sublist = hashList(sublist, 1)   
+        results = pool.starmap(threadEnzSub, zip(enz,sublist))
+        j=0
+        print(results)
+        for pack in results:
+            enz[j] = pack[0]
+            sublist[j] = pack[1]
+            j+=1 
+        
+        sublist = hashList(sublist, 2)   
+        results = pool.starmap(threadEnzSub, zip(enz,sublist))
+        print(results) 
+        j=0  
+        for pack in results:
+            enz[j] = pack[0]
+            sublist[j] = pack[1]
+            j+=1 
+        
+        sublist = hashList(sublist, 3)   
+        results = pool.starmap(threadEnzSub, zip(enz,sublist))
+        print(results)
+        j=0
+        for pack in results:
+            enz[j] = pack[0]
+            sublist[j] = pack[1]
+            j+=1     
+        
+        pool.close()
+        pool.join()
+        #print(results)
+        #print("-----ENZYME STATUSES-----")
+        #for en in enz:
+        #    print(en.status)
+        #for o in range(0, len(proc)):
+        #    proc[o].join()
+        #calculate them
+        #join them
+        '''
+        print("time:",time)
         time += 1
     #for en in enz:
     #    print("----------------")
