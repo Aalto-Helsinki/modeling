@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
 from scipy.stats import norm
-import matplotlib.pyplot as plot
+#import matplotlib.pyplot as plot
 import random
 from builtins import range
 
@@ -278,13 +278,14 @@ def main():
         step += 1
         if step %20 == 0:
             print(step)
-    print(len(enzymes))
+    #print(len(enzymes))
     cols = ['r','g','b','c','m','k','r']
-    
+    '''
     for val in sub_plot_values:
         plot.plot(val,cols[sub_plot_values.index(val)])
     plot.show()
-    
+    '''
+    print("sim_over")
     #simulation over, start plotting
     
     #plotting over

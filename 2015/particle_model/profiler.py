@@ -8,7 +8,6 @@ import sys
 
 def main():
     name  = "main_profile_hrf"
-    print(sys.argv[1])
     try:
         name = sys.argv[1]
     except:
