@@ -8,6 +8,7 @@ from vector2 import *
 #this is for the coming parallel computing
 #import multiprocessing
 from objects import *
+import math
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
@@ -112,12 +113,12 @@ def main():
     #speed constants of enzymes
     #is this a super_enzyme or normal run
     #enzyme probabilities
-    cell_radius = 2
-    enz_types = 5
+    cell_radius = 10
+    enz_types = 2
     sub_types = enz_types +1
-    enz_amount_of_each_kind = 3
+    enz_amount_of_each_kind = 10
     enz_amount = enz_amount_of_each_kind*enz_types
-    sub_amount = 300
+    sub_amount = 1000
     step_amount = 300
     SUB_T_FINAL = sub_types -1
     
@@ -130,7 +131,7 @@ def main():
     enz_prob = [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
     enz_range=[0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15]
     sub_busy = enz_busy
-    if_sup_enz = 0
+    if_sup_enz = 1
     #determines the size of a spare movement table, bigger tables mean less function calls, smaller tables
     #mean less memory usage.
     spare_amount = 5000
@@ -164,7 +165,7 @@ def main():
     #dt is dt, sigma^2 is myy*kb*T*4. 
     #Since brownian motion follows time with a square-root dependency(?), dx = a*dt
     # = f*dt/m
-    #these movements are just f*dt, they need to be divided by mass, when we are actually moving
+    #these movements are just f*dt, they need to bevalue divided by mass, when we are actually moving
     #the particles
     enz_movements = []
     sub_movements = []
@@ -207,10 +208,10 @@ def main():
             #check if applicable, if not, take from spare table
             #make into a vector
             #add
-        
+        k=0
         for sub in substrates:
-            dx = sub_movements[substrates.index(sub)][0][step%step_amount]
-            dy = sub_movements[substrates.index(sub)][1][step%step_amount]
+            dx = sub_movements[k][0][step%step_amount]
+            dy = sub_movements[k][1][step%step_amount]
             x = sub.obj.position.x
             y = sub.obj.position.y
             
@@ -223,10 +224,12 @@ def main():
                 spare_index = 0
             dpos = Vector2(dx,dy)
             sub.obj.setPosition( sub.obj.getPosition() + dpos)
-                
+            k += 1
+        k=0
+        
         for enz in enzymes:
-            dx = enz_movements[enzymes.index(enz)][0][step%step_amount]
-            dy = enz_movements[enzymes.index(enz)][1][step%step_amount]
+            dx = enz_movements[k][0][step%step_amount]
+            dy = enz_movements[k][1][step%step_amount]
             x = enz.obj.position.x
             y = enz.obj.position.y
             while ((x+dx)**2 + (y+dy)**2) > cell_radius*cell_radius:
@@ -238,15 +241,19 @@ def main():
                 spare_index = 0
             dpos = Vector2(dx,dy)
             enz.obj.setPosition( enz.obj.getPosition() + dpos)
+            k +=1
         #check and update bonding
         for enz in enzymes:
             if enz.status == 0:
                 for sub in substrates:
+                    #print("sub:",substrates.index(sub))
                     if sub.status == 0:
                         bonded = 0
+                        #dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.-sub.obj.position.y)
                         if enz.obj.getDistance(sub.obj) < enz_range[enz.type] and enz.type == sub.type :
                             bonded = transformsub(sub, enz_prob[enz.type])
                         if bonded > 0:
+                            #print("final sub for this enz:",substrates.index(sub ))
                             enz.status = enz_busy[enz.type]
                             sub.status = sub_busy[enz.type]
                             if sub.type == SUB_T_FINAL:
@@ -268,11 +275,12 @@ def main():
         step += 1
         if step %20 == 0:
             print(step)
-    cols = ['r','g','b','c','m','k']
+    print(len(enzymes))
+    cols = ['r','g','b','c','m','k','r']
     
     for val in sub_plot_values:
         plot.plot(val,cols[sub_plot_values.index(val)])
-    plot.show()
+    #plot.show()
     
     #simulation over, start plotting
     

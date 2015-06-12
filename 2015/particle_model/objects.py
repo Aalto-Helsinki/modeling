@@ -4,6 +4,7 @@ Created on Mar 20, 2015
 @author: lipastomies
 '''
 import vector2
+import math
 
 '''
 This file implements the classes object, enzyme and
@@ -69,11 +70,12 @@ class Obj(object):
     #    return self.radius
     
     def getDistance(self, toinen):
-        yksi = self.getPosition()
-        kaksi = toinen.getPosition()
-        erotus = yksi - kaksi
-        etaisyys = erotus.length()
-        return etaisyys
+        #yksi = self.getPosition()
+        #kaksi = toinen.getPosition()
+        #erotus = self.position - toinen.position
+        #x = toinen.position.x-self.position.x
+        #y = toinen.position.y-self.position.y
+        return math.hypot(toinen.position.x-self.position.x,toinen.position.y-self.position.y)
     
     def __str__(self):
         string = "Mass: " + str(self.getMass()) + "\n"

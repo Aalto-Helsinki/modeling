@@ -127,8 +127,8 @@ def main():
     #simulation-specific constants
     time_range = 300 #number of steps
     cell_rad = 2 #radius of cell, currently has no specified unit
-    sub_count = 100 #number of substrates
-    enz_count = 1 #number of enzymes (though could be many different enzyme types)
+    sub_count = 300 #number of substrates 
+    enz_count = 3 #number of enzymes (though could be many different enzyme types)
     #enzyme propabilities of reaction
     
     #enz_a
@@ -167,8 +167,8 @@ def main():
         sub_movements_y.append(rands_y)
     #extra brownian motion tables, so that if the indexed movement is not valid, a particle takes the values from here.
     #this lessens the amount of calling the norm function, which is costly
-    add_table_x = norm.rvs(size = 500,scale=delta**2*dt).tolist()
-    add_table_y = norm.rvs(size = 500,scale=delta**2*dt).tolist()
+    add_table_x = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
+    add_table_y = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
     add_index = 0
     while i < time_range:
         #update the "busyness index" of the particles
@@ -192,13 +192,13 @@ def main():
             y = sub.obj.position.y
             
             while ((x+dx)**2 + (y+dy)**2) > cell_rad*cell_rad:
-                dx = add_table_x[add_index%500]
-                dy = add_table_y[add_index%500]
+                dx = add_table_x[add_index%5000]
+                dy = add_table_y[add_index%5000]
                 add_index +=1
                  
-            if add_index == 500:
-                add_table_x = norm.rvs(size = 500,scale=delta**2*dt).tolist()
-                add_table_y = norm.rvs(size = 500,scale=delta**2*dt).tolist()
+            if add_index == 5000:
+                add_table_x = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
+                add_table_y = norm.rvs(size = 5000,scale=delta**2*dt).tolist()
                 add_index =0
             dpos = Vector2(dx,dy)
             sub.obj.setPosition( sub.obj.getPosition() + dpos)
@@ -257,7 +257,7 @@ def main():
     plot.plot(sub_b_amount,'r')
     plot.plot(sub_c_amount,'b')
     plot.plot(total,'k')
-    plot.show()
+    #plot.show()
     
 
 

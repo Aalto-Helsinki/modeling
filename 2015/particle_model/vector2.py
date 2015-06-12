@@ -21,23 +21,18 @@ class Vector2(object):
         '''
         Constructor
         '''
-        try:
-            self.x=float(x)
-            self.y=float(y)
-        except ValueError:
-            raise Vector2Exception("Could not initialize vector: One or more of initial values not of type float.",ValueError.__cause__)
+        self.x=float(x)
+        self.y=float(y)
+        
+    def __add__(self, right):   
+        x = self.x + right.x
+        y = self.y + right.y
+        return Vector2(x,y)
     
-    def __add__(self, right):
-        v=Vector2(0,0)    
-        v.x = self.x + right.x
-        v.y = self.y + right.y
-        return v
-    
-    def __sub__(self, right):
-        v=Vector2(0,0)    
-        v.x = self.x - right.x
-        v.y = self.y - right.y
-        return v
+    def __sub__(self, right):    
+        x = self.x - right.x
+        y = self.y - right.y
+        return Vector2(x,y)
     
 
     
@@ -59,8 +54,10 @@ class Vector2(object):
             
     def length(self):
         length = 0.0
-        length += self.x*self.x
-        length += self.y*self.y
+        x = self.x
+        y = self.y
+        length += x*x
+        length += y*y
         return math.sqrt(length)
     
     def unitVector(self):
