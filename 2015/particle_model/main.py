@@ -249,8 +249,9 @@ def main():
                     #print("sub:",substrates.index(sub))
                     if sub.status == 0:
                         bonded = 0
-                        #dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.-sub.obj.position.y)
-                        if enz.obj.getDistance(sub.obj) < enz_range[enz.type] and enz.type == sub.type :
+                        dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.y-sub.obj.position.y)
+                        #if enz.obj.getDistance(sub.obj) < enz_range[enz.type] and enz.type == sub.type :
+                        if dist < enz_range[enz.type] and enz.type == sub.type :
                             bonded = transformsub(sub, enz_prob[enz.type])
                         if bonded > 0:
                             #print("final sub for this enz:",substrates.index(sub ))
