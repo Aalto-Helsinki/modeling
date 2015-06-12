@@ -1,3 +1,5 @@
+% Aalto-Helsinki 2015
+% Riikka and Tuukka
 % Simple stability analysis by analyzing eigenvalues of matrix A. Here we
 % think the differential equations as x'(t) = A* x(t) +b(t), where x',x and
 % b are vectors. This system is linear, so the method can be used.
@@ -15,15 +17,16 @@ o2vec = [0.001,0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01];
 
 % it is easy to make these vectors too and loop over them too to have more
 % parameters to consider
-k2 = 1;
-k3 = 1;
-k4 = 1;
-k5 = 1;
-k6 = 1;
-k7 = 1;
+k2 = 0.05;
+k3 = 0.03;
+k4 = 0.0052;
+k5 = 6.7;
+k6 = 3.62;
+k7 = 0.03;
 
 % here are saved the parameters that give stable critical point
 paramvec = [];
+
 count = 1;
 
 % calculations. 
