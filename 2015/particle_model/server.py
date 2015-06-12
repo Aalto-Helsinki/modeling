@@ -9,6 +9,7 @@ from vector2 import *
 #import multiprocessing
 from objects import *
 import math
+import time as tm
 #import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
@@ -39,6 +40,7 @@ def transformsub(sub,prob):
     '''
     Transforms a substrate to another.
     '''
+    
     a = prob
     if a > 1:
         a = 0.5
@@ -113,13 +115,14 @@ def main():
     #speed constants of enzymes
     #is this a super_enzyme or normal run
     #enzyme probabilities
+    time1 = tm.time()
     cell_radius = 10
     enz_types = 2
     sub_types = enz_types +1
     enz_amount_of_each_kind = 20
     enz_amount = enz_amount_of_each_kind*enz_types
     sub_amount = 1000
-    step_amount = 600
+    step_amount = 200
     SUB_T_FINAL = sub_types -1
     
     dt = 0.2
@@ -276,8 +279,9 @@ def main():
             sub_plot_values[i].append(amounts[i])
             
         step += 1
-        if step %20 == 0:
+        if step %50 == 0:
             print(step)
+        
     #print(len(enzymes))
     cols = ['r','g','b','c','m','k','r']
     '''
@@ -285,7 +289,9 @@ def main():
         plot.plot(val,cols[sub_plot_values.index(val)])
     plot.show()
     '''
-    print("sim_over")
+    time2 = tm.localtime()
+    print("simulation took", tm.time()-time1,"seconds")
+    #print("sim over")
     #simulation over, start plotting
     
     #plotting over
