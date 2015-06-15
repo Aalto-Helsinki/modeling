@@ -297,7 +297,7 @@ def main():
     #write simulation results to a file
     strfile = fio.writeOutput(sub_plot_values)
     strfile.seek(0,0)
-    dat =  datetime.datetime.now().strftime("%d-%m-%y_%H-%M-%S")
+    dat =  datetime.datetime.now().strftime("%d-%m-%y_%H-%M-%S-%f")
     outputfile = open("data/"+dat+"_datafile.txt",'w')
     for line in strfile:
         outputfile.write(line)
