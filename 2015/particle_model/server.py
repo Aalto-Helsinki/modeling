@@ -9,11 +9,10 @@ from fileio import *
 from objects import *
 import math
 import time as tm
-#import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
 from scipy.stats import norm
-#import matplotlib.pyplot as plot
+import matplotlib.pyplot as plot
 import random
 from builtins import range
 import sys
@@ -305,11 +304,11 @@ def main():
     outputfile.close
     #print("sim over")
     #simulation over, start plotting
-    '''
+    
     for val in sub_plot_values:
         plot.plot(val,cols[sub_plot_values.index(val)])
     plot.show()
-    '''
+    
     #plotting over
 
 if __name__ == '__main__':
