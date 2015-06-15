@@ -5,8 +5,7 @@ This simulation does not as of yet have any UIs, work is being done to get those
 
 #import objects
 from vector2 import *
-#this is for the coming parallel computing
-#import multiprocessing
+from fileio import *
 from objects import *
 import math
 import time as tm
@@ -115,6 +114,8 @@ def main():
     #speed constants of enzymes
     #is this a super_enzyme or normal run
     #enzyme probabilities
+    fio = 
+    constants = FileIO.loadSettings()
     time1 = tm.time()
     cell_radius = 10
     enz_types = 2
