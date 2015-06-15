@@ -16,6 +16,8 @@ from scipy.stats import norm
 #import matplotlib.pyplot as plot
 import random
 from builtins import range
+import sys
+import datetime
 
 def updateobj(obj, delta, dt):
     x = obj.position.x
@@ -114,31 +116,36 @@ def main():
     #speed constants of enzymes
     #is this a super_enzyme or normal run
     #enzyme probabilities
-    fio = 
-    constants = FileIO.loadSettings()
+    fio = fileIO()
+    try:
+        const_filename = sys.argv[1]
+    except:
+        print("The filename for constants was not specified! Shutting down...")
+        return -1
+    constants = fio.loadSettings(const_filename)
     time1 = tm.time()
-    cell_radius = 10
-    enz_types = 2
+    cell_radius = constants['radius']
+    enz_types = constants['enz_types']
     sub_types = enz_types +1
-    enz_amount_of_each_kind = 20
+    enz_amount_of_each_kind = constants['enz_amount_per_type']
     enz_amount = enz_amount_of_each_kind*enz_types
-    sub_amount = 1000
-    step_amount = 200
+    sub_amount = constants['sub_amount']
+    step_amount = constants['steps']
     SUB_T_FINAL = sub_types -1
     
-    dt = 0.2
+    dt = constants['dt']
     time = step_amount*dt
-    delta = 0.5
-    enz_mass = [1,1,1,1,1,1]
-    sub_mass = [1,1,1,1,1,1,1]
-    enz_busy = [5,40,1,1,1,1]
-    enz_prob = [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
-    enz_range=[0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15]
+    delta = constants['delta']
+    enz_mass = constants['enz_mass']
+    sub_mass = constants['sub_mass']
+    enz_busy = constants['enz_busy']
+    enz_prob = constants['enz_prob']
+    enz_range= constants['enz_range']
     sub_busy = enz_busy
-    if_sup_enz = 1
+    if_sup_enz = constants['if_sup_enz']
     #determines the size of a spare movement table, bigger tables mean less function calls, smaller tables
     #mean less memory usage.
-    spare_amount = 5000
+    spare_amount = constants['spare_table']
     spare_index = 0
     #lists that we need
     enzymes = []
@@ -282,19 +289,27 @@ def main():
         step += 1
         if step %50 == 0:
             print(step)
-        
     #print(len(enzymes))
     cols = ['r','g','b','c','m','k','r']
+    
+    time2 = tm.localtime()
+    print("simulation took", tm.time()-time1,"seconds")
+    #write simulation results to a file
+    strfile = fio.writeOutput(sub_plot_values)
+    strfile.seek(0,0)
+    dat =  datetime.datetime.now().strftime("%d-%m-%y_%H-%M-%S")
+    outputfile = open("data/"+dat+"_datafile.txt",'w')
+    for line in strfile:
+        outputfile.write(line)
+    strfile.close()
+    outputfile.close
+    #print("sim over")
+    #simulation over, start plotting
     '''
     for val in sub_plot_values:
         plot.plot(val,cols[sub_plot_values.index(val)])
     plot.show()
     '''
-    time2 = tm.localtime()
-    print("simulation took", tm.time()-time1,"seconds")
-    #print("sim over")
-    #simulation over, start plotting
-    
     #plotting over
 
 if __name__ == '__main__':

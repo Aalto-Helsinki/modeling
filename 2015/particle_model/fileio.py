@@ -5,7 +5,7 @@ Created on Apr 14, 2015
 '''
 from io import StringIO
 #all of this is shiiitt
-class FileIO(object):
+class fileIO(object):
     '''
     This class has the necessary functions that are needed for loading simulation data from files,
     as well as loading initial data that the program uses for initialization.
@@ -35,28 +35,23 @@ class FileIO(object):
         steps = int(readnewline(file))
         dt = float(readnewline(file))
         delta = float(readnewline(file))
-        enzyme_masses = readnewline(file).split(",")
-        for e in enzyme_masses:
-            e = float(e)
-        sub_masses = readnewline(file).split(",")
-        for s in sub_masses:
-            s = float(s)
-        enz_busyness = readnewline(file).split(",")
-        for e in enz_busyness:
-            e = int(e)
-        enz_prob = readnewline(file).split(",")
-        for e in enz_prob:
-            e = float(e)
-        enz_range = readnewline(file).split(",")
-        for e in enz_range:
-            e = float(e)
+        enz_masses = readnewline(file).strip().split(",")
+        enz_masses = list(map(float,enz_masses))
+        sub_masses = readnewline(file).strip().split(",")
+        sub_masses = list(map(float,sub_masses))
+        enz_busyness = readnewline(file).strip().split(",")
+        enz_busyness = list(map(int,enz_busyness))
+        enz_prob = readnewline(file).strip().split(",")
+        enz_prob = list(map(float,enz_prob))
+        enz_range = readnewline(file).strip().split(",")
+        enz_range = list(map(float,enz_range))
         sup_enz = int(readnewline(file))
         spare_table = int(readnewline(file))
         
         file.close()
         return {'radius':cell_rad,'enz_types':enz_types,'enz_amount_per_type':enz_am_per_type,'sub_amount':sub_amount,'steps':steps,
-                'dt':dt,'delta':delta,'enz_mass':enzyme_masses,'sub_mass':sub_masses,'enz_busyness':enz_busyness,'enz_prob':enz_prob,
-                'enz_range':enz_range,'if_sup_enz':sup_enz,'spare table':spare_table}
+                'dt':dt,'delta':delta,'enz_mass':enz_masses,'sub_mass':sub_masses,'enz_busy':enz_busyness,'enz_prob':enz_prob,
+                'enz_range':enz_range,'if_sup_enz':sup_enz,'spare_table':spare_table}
 
     
     def writeOutput(self,results):
@@ -71,8 +66,8 @@ class FileIO(object):
         '''
         file = StringIO()
         for sub in results:
-            for value in subs:
-                file.write(string(value)+',')
+            for value in sub:
+                file.write(str(value)+',')
             file.write('\n')
         return file
     
@@ -89,7 +84,7 @@ def readnewline(file):
         current_line = file.readline().strip(" ")
     return current_line
 
-class FileIOException(Exception):
+class fileIOException(Exception):
     def __init__(self, description, data):
         self.description = description
         self.data = data

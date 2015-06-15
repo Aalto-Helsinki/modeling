@@ -10,7 +10,7 @@
 #enz_amount per type
 20
 #substrate amount
-1000
+500
 #timeframe, as simulation steps
 200
 #dt
