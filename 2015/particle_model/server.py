@@ -12,7 +12,7 @@ import time as tm
 import numpy as np
 import scipy as sp
 from scipy.stats import norm
-import matplotlib.pyplot as plot
+#import matplotlib.pyplot as plot
 import random
 from builtins import range
 import sys
@@ -297,18 +297,18 @@ def main():
     strfile = fio.writeOutput(sub_plot_values)
     strfile.seek(0,0)
     dat =  datetime.datetime.now().strftime("%d-%m-%y_%H-%M-%S-%f")
-    outputfile = open("data/"+dat+"_datafile.txt",'w')
+    outputfile = open("data/"+dat+const_filename+".txt",'w')
     for line in strfile:
         outputfile.write(line)
     strfile.close()
     outputfile.close
     #print("sim over")
     #simulation over, start plotting
-    
+    '''
     for val in sub_plot_values:
         plot.plot(val,cols[sub_plot_values.index(val)])
     plot.show()
-    
+    '''
     #plotting over
 
 if __name__ == '__main__':
