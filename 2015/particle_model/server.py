@@ -297,7 +297,7 @@ def main():
     strfile = fio.writeOutput(sub_plot_values)
     strfile.seek(0,0)
     filenlist = const_filename.split("/")
-    filename = filenlist[1] + '-' +filenlist[2]
+    filename = filenlist[2] + '-' +filenlist[3]
     dat =  datetime.datetime.now().strftime("%d-%m-%y_%H-%M-%S-%f")
     outputfile = open("data/"+filename+dat+".txt",'w')
     for line in strfile:
