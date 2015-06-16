@@ -9,7 +9,8 @@ def main():
 	
 	'''
 	print(len(sys.argv))
-	filenames = sys.argv[1:]
+	int colours = int(sys.argv[1])
+	filenames = sys.argv[2:]
 	print(filenames)
 	#filename =  sys.argv[1]
 	#file = open(filename, 'r')
@@ -21,12 +22,12 @@ def main():
 		f.close()
 	#for line in file:
 		#substrate.append(line.strip().split(",")) 	
-	colmap = ['g','b','r','y','k','m','c']	
+	colmap = ['g','b','r','y','c','m','k']	
 	for i in range(0, len(substrate)):
 		substrate[i] = list(filter(None, substrate[i]))
 		substrate[i] = list(map(int, substrate[i]))
 		col = colmap[0]		
-		col = colmap[int(i/10)%len(colmap)]
+		col = colmap[int(i/colours)%len(colmap)]
 		plot.plot(substrate[i],col)	
 	plot.show()
 

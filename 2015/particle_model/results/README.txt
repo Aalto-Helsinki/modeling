@@ -14,7 +14,9 @@ About plot.py
 ----------------------
 plot.py needs matplotlib for it to function.
 It works on linux and perhaps on windows.
-It takes as its arguments the names of the files
+It takes as its arguments:
+1) the number of lines per colour
+2) the names of the files
 you want to visualize, and draws plots of the propane
 concentrations. It also colors the lines (it colors 10 lines
 with the same color, and then changes the color).
