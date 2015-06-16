@@ -163,7 +163,10 @@ def main():
                 enzymes.append(createEnz(cell_radius,j , enz_mass[j]))
     else:
         for i in range(0, enz_amount_of_each_kind):
-            ob = createPos(cell_radius, enz_mass[0])
+			m = 0
+			for mass in enz_mass:
+				m += mass
+            ob = createPos(cell_radius, m)
             for j in range(0, enz_types):
                 enzymes.append(createSupEnz(ob, j))
     #create substrates, only create the first type, since it's the only one in the simulation first

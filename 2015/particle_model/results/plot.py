@@ -8,17 +8,18 @@ def main():
 	chooses all of the files beginning with "no_", so all of the files with enzymes as separate.
 	
 	'''
-	print(len(sys.argv))
+	print("number of files to plot:",len(sys.argv))
 	colours = int(sys.argv[1])
 	filenames = sys.argv[2:]
-	print(filenames)
+	#print(filenames)
 	#filename =  sys.argv[1]
 	#file = open(filename, 'r')
 	substrate = []	
 	for fname in filenames:
 		f = open(fname, 'r')
 		lines = f.readlines()
-		substrate.append(lines[2].strip().strip(",").split(","))	
+		for line in lines:
+			substrate.append(line.strip().strip(",").split(","))	
 		f.close()
 	#for line in file:
 		#substrate.append(line.strip().split(",")) 	
@@ -27,7 +28,7 @@ def main():
 		substrate[i] = list(filter(None, substrate[i]))
 		substrate[i] = list(map(int, substrate[i]))
 		col = colmap[0]		
-		col = colmap[int(i/colours)%len(colmap)]
+		col = colmap[int(i%3)%len(colmap)]
 		plot.plot(substrate[i],col)	
 	plot.show()
 
