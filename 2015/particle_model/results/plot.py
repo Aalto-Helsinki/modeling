@@ -9,7 +9,7 @@ def main():
 	
 	'''
 	print(len(sys.argv))
-	int colours = int(sys.argv[1])
+	colours = int(sys.argv[1])
 	filenames = sys.argv[2:]
 	print(filenames)
 	#filename =  sys.argv[1]
