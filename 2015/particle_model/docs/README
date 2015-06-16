@@ -39,21 +39,19 @@ are currently put to the end of the list.
 account for enzymes and substrates being in an intermediate state.
 This would also speed up the simulation, as there is no need to loop through enzymes/substrates that are already bonded.
 || DONE||
-This is now done, but it propably should be refactored, to make it easier and cleaner to implement
 
 2. Is it better to iterate the substrates and enzymes as enzyme->sub or sub->enz?
 If sub->enz, no substrate is bonded twice. If enz->sub, might be easier to
 parallelize, but might also iterate more -> waste resources when compared
 to the other situation.
-||I'd say that the way it is now is better. That way parallelisation may be easier. I'll see into parallelisation 
-and see if it can be done.   ||
+||I'd say that the way it is now is better.||
 
 3. A text-based UI/ settings file (to give input to the program without
 having to edit the code). This is easy but takes a long time, but is also needed
 for easy use of the model. Other thing that is perhaps more time-critical is a
 batch-running script, so that we can have some data to decide if we should have
 the micelles created.
-
+||Settings file functionality created in server.py ||
 
 4. Parallelization (create different threads for each enzyme?). This needs more work, as
 currently I have no knowledge of how this can be implemented. One problem is the way
@@ -61,27 +59,31 @@ problem of multibonding: if 2 threads are bonding to the same substrate, how do
 we settle this conflict? two substrates should NOT bond to same enzyme, that is
 not smart. 
 Perhaps map() could be used? it seems like a good candidate, along with the module multiprocessing.
-||Map does not take away the need for multiprocessing-module, or the fact that no two enzymes can
-touch the same substrates at the same time.||
+||Multiprocessing was a mistake. The correct way of utilising a fast machine is to spawn multiple processes
+of the simulation, thus utilising all of the processing power.||
 
 5. Find out the connection between particle mass, temperature, dt, and delta
 in brownian motion. currently I have no idea how these affect each other, only
 that mass makes particles slower and temperature raises speed. Delta is the 
 speed modifier, so how ideally we should define delta from mass and temperature.
-||Mass is a simple divisor in place displacement per step (x = F*t^2/t). Temperature probably makes the 
-  ||
+||Mass is a simple divisor in place displacement per step (x = F*t^2/t). Temperature has to do with variance||
 
 6. 3D space instead of 2D, since 2D may be too simplified. This is almost trivial,
 and can be implemented in say, 3 hours. Big changes only include the vector class,
 the way objects' places are updated.
+||This does not seem relevant ||
 
 7. A way to load the simulation parameters from a file and to save simulation data in a file.
 This is relevant, since we can only get the data from a cluster in a file, I think.
+||Done, this is default behaviour in server.py||
+
 
 8. A graphical UI (for ease of access, though may be a bit hard to implement).
 This should be one of the last things to implement, as it is not so relevant to
 our modeling (we should make batch runs on aalto's cluster + make the model itself
 better)
+||This is not a priority. It will be tacked if/when I feel like it||
+
 -------------------------------------------------
 -------------------------------------------------
 FQA/Frequently Questioned Answers:
@@ -93,5 +95,9 @@ as well as the times this takes. Prifiling data is important when people
 are searching for bottlenecks in their code. To answer your questin, no, 
 it should not be deleted. Neither should anything else, unless you know that
 it is obsolete.
-Q: 
-A: NO.
+Q:How do you use this thing? It has no input whatsoever and screams errors when I try to use it? 
+A:The most recent version is the server.py file. You use it by giving it a settings file as an argument,
+for example "python3 server.py example_settings" simulates according to example settings. See the example settings
+file for more information about the settings, or ask Arto.
+Q:This is slow.
+A:Your computer is slow.

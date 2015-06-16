@@ -35,7 +35,7 @@ def updateobj(obj, delta, dt):
     #        sub.status -= 1
     #return sub
 
-def transformsub(sub,prob):
+def transformsub(sub,prob,new_mass):
     '''
     Transforms a substrate to another.
     '''
@@ -43,7 +43,7 @@ def transformsub(sub,prob):
     if a > 1:
         a = 0.5
     if random.random() < a:
-        sub.transform(sub.type +1)
+        sub.transform(sub.type +1,new_mass)
         return 1
     return 0
 
@@ -254,7 +254,7 @@ def main():
                         dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.y-sub.obj.position.y)
                         #if enz.obj.getDistance(sub.obj) < enz_range[enz.type] and enz.type == sub.type :
                         if dist < enz_range[enz.type] and enz.type == sub.type :
-                            bonded = transformsub(sub, enz_prob[enz.type])
+                            bonded = transformsub(sub, enz_prob[enz.type],sub_mass[sub.type+1])
                         if bonded > 0:
                             #print("final sub for this enz:",substrates.index(sub ))
                             enz.status = enz_busy[enz.type]

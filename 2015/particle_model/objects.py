@@ -122,8 +122,9 @@ class Substrate(object):
         self.type = typ
         self.status = 0
     
-    def transform(self, typ):
+    def transform(self, typ, new_mass):
         self.type = typ
+        self.obj.mass = new_mass
     
     def updBusy(self):
         if self.status > 0:

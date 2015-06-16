@@ -3,9 +3,9 @@ object
 		object
 			vector:position
 			mass
-			business
+		business
 	substrate
 		object
 			vector: position
 			mass
-			business
+		business
