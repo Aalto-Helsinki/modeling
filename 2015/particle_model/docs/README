@@ -91,7 +91,7 @@ FQA/Frequently Questioned Answers:
 Q:What is the "profiling_data"-folder? can i delete it?
 A:profiling_data has information about the performance of the program.
 This includes a specific list of the function calls the program makes, 
-as well as the times this takes. Prifiling data is important when people
+as well as the times this takes. Profiling data is important when people
 are searching for bottlenecks in their code. To answer your questin, no, 
 it should not be deleted. Neither should anything else, unless you know that
 it is obsolete.
