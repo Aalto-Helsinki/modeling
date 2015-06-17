@@ -2,6 +2,7 @@
 The main simulation file.
 This simulation does not as of yet have any UIs, work is being done to get those.
 '''
+will_plot = 0
 
 #import objects
 from vector2 import *
@@ -12,7 +13,12 @@ import time as tm
 import numpy as np
 import scipy as sp
 from scipy.stats import norm
-#import matplotlib.pyplot as plot
+try:
+    import matplotlib.pyplot as plot
+    will_plot = 1
+except:
+    print("No matplotlib detected, will not plot")
+    will_plot = 0
 import random
 from builtins import range
 import sys
@@ -253,13 +259,13 @@ def main():
     #
     #debugging, let's check out the movements of a few particles
     #
-    '''
-    sub_x_mov = []
-    sub_y_mov = []
+    if will_plot:
+        sub_x_mov = []
+        sub_y_mov = []
+        
+        enz_x_mov = []
+        enz_y_mov = []
     
-    enz_x_mov = []
-    enz_y_mov = []
-    '''
     #begin main loop
     while step < step_amount:
         #main loop goes here
@@ -312,12 +318,12 @@ def main():
             enz.obj.setPosition( enz.obj.getPosition() + dpos)
             k +=1
         
-        '''
-        sub_x_mov.append(substrates[0].obj.position.x)
-        sub_y_mov.append(substrates[0].obj.position.y)
-        enz_x_mov.append(enzymes[0].obj.position.x)
-        enz_y_mov.append(enzymes[0].obj.position.y)
-        '''
+        if plot:
+            sub_x_mov.append(substrates[0].obj.position.x)
+            sub_y_mov.append(substrates[0].obj.position.y)
+            enz_x_mov.append(enzymes[0].obj.position.x)
+            enz_y_mov.append(enzymes[0].obj.position.y)
+            
         
         #check and update bonding
         for enz in enzymes:
@@ -369,16 +375,17 @@ def main():
         outputfile.write(line)
     strfile.close()
     outputfile.close
-    '''
+    
     #print("sim over")
     #simulation over, start plotting
-    cir = np.linspace(0, 2*3.1415, 100)
-    plot.plot(cell_radius*np.cos(cir),cell_radius*np.sin(cir))
-    plot.plot(enz_range[0]*np.cos(cir),enz_range[0]*np.sin(cir))
-    plot.plot(sub_x_mov,sub_y_mov,'g')
-    plot.plot(enz_x_mov,enz_y_mov,'r')
-    plot.show()
-    
+    if will_plot:
+        cir = np.linspace(0, 2*3.1415, 100)
+        plot.plot(cell_radius*np.cos(cir),cell_radius*np.sin(cir))
+        plot.plot(enz_range[0]*np.cos(cir),enz_range[0]*np.sin(cir))
+        plot.plot(sub_x_mov,sub_y_mov,'g')
+        plot.plot(enz_x_mov,enz_y_mov,'r')
+        plot.show()
+    '''   
     for val in sub_plot_values:
         plot.plot(val,cols[sub_plot_values.index(val)])
     plot.show()
