@@ -318,7 +318,7 @@ def main():
             enz.obj.setPosition( enz.obj.getPosition() + dpos)
             k +=1
         
-        if plot:
+        if will_plot:
             sub_x_mov.append(substrates[0].obj.position.x)
             sub_y_mov.append(substrates[0].obj.position.y)
             enz_x_mov.append(enzymes[0].obj.position.x)
