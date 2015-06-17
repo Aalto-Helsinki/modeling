@@ -17,6 +17,7 @@ import random
 from builtins import range
 import sys
 import datetime
+from numpy import linspace
 
 def updateobj(obj, delta, dt):
     x = obj.position.x
@@ -93,10 +94,10 @@ def createSub(cell_rad, type, mass):
 def updatePos(part, ):
     pass
 
-def updateSpare(spare_list, spare_amount,delta,dt):
+def updateSpare(spare_list, spare_amount):
     del spare_list
-    mov_spare_x = norm.rvs(size = spare_amount,scale=delta**2*dt).tolist()
-    mov_spare_y = norm.rvs(size = spare_amount,scale=delta**2*dt).tolist()
+    mov_spare_x = norm.rvs(size = spare_amount).tolist()
+    mov_spare_y = norm.rvs(size = spare_amount).tolist()
     spare_list = [mov_spare_x,mov_spare_y]
     return spare_list
     
@@ -166,37 +167,79 @@ def main():
             m = 0
             for mass in enz_mass:
                 m += mass
+            for en in enz_mass:
+                en = m
             ob = createPos(cell_radius, m)
             for j in range(0, enz_types):
                 enzymes.append(createSupEnz(ob, j))
     #create substrates, only create the first type, since it's the only one in the simulation first
     for i in range(0,sub_amount):
         substrates.append(createSub(cell_radius, 0, sub_mass[0]))
-        
+     
     #create movement tables for each particle
-    #the force obeys a normal distribution, with a mean of 0 and a variance of sigma^2.
-    #dt is dt, sigma^2 is myy*kb*T*4. 
-    #Since brownian motion follows time with a square-root dependency(?), dx = a*dt
-    # = f*dt/m
-    #these movements are just f*dt, they need to bevalue divided by mass, when we are actually moving
-    #the particles
+    #a way to calculate the displacement is to scale the standard normal distribution with the constant k, that is
+    # k = sqrt(dim*D*dt),
+    #where dim is the number of dimensions, D is the diffusion constant and dt is the time between each displacement
+    #D = K_b*T/(3*eta*pi*d), where
+    #K_b = botzmann constant, 1.38e-23
+    #T = temperature in kelvin, this is 37 C, or 310 K
+    #eta = viscosity of water in SI units, this is approx. 0.7*10^-3
+    #d = radius of the particles, this is (3/4pi*mass)^1/3*0.43nm
+    #we can calculate the radius from mass, if we assume every particle is approximately the same density (they are comprised from
+    #the same elements, so why not
+    #this means that we don't actually need a variable for delta 
+    #so:
+    #K_b = 
+    #dim = 2
+    #dt = dt
+    #d ~= (relativemasstopropane/(4/3*pi))^(1/3)*0.43 nm
+    #create radius, dalton, other shit here, and multiply the movement in the movement loop with it.
+    #create a list of k-values for both enzymes and substrates, so that we can just scale the movement based on
+    #the type of the enz/sub.
+    sub_k_list = []
+    for m in sub_mass:
+        rad = 0.43e-9*((m*(3/4*3.1415))**(1/3))
+        D = 310*1.38e-23/(3*0.7e-3*3.1415*rad)
+        sub_k_list.append(math.sqrt(2*D*dt))
+    #print(sub_k_list)
+    
+    enz_k_list = []
+    if if_sup_enz == 1:
+        enz_mass_duplicate = []
+        mass = 0
+        for m in enz_mass:
+            mass += m
+        for m in enz_mass:
+            enz_mass_duplicate.append(mass)
+        for m in enz_mass_duplicate:
+            rad = 0.43e-9*((m*(3/4*3.1415))**(1/3))
+            D = 310*1.38e-23/(3*0.7e-3*3.1415*rad)
+            enz_k_list.append(math.sqrt(2*D*dt))
+    else:    
+        for m in enz_mass:
+            rad = 0.43e-9*((m*(3/4*3.1415))**(1/3))
+            D = 310*1.38e-23/(3*0.7e-3*3.1415*rad)
+            enz_k_list.append(math.sqrt(2*D*dt))
+    #print(enz_k_list)
+    
+    
     enz_movements = []
     sub_movements = []
     for i in range(0,enz_amount):
-        movements_x = norm.rvs(size = step_amount,scale=delta**2*dt).tolist()
-        movements_y = norm.rvs(size = step_amount,scale=delta**2*dt).tolist()
+        movements_x = norm.rvs(size = step_amount).tolist()
+        movements_y = norm.rvs(size = step_amount).tolist()
         mov = [movements_x,movements_y]
         enz_movements.append(mov)
             
     
     for i in range(0,sub_amount):
-        movements_x = norm.rvs(size = step_amount,scale=delta**2*dt).tolist()
-        movements_y = norm.rvs(size = step_amount,scale=delta**2*dt).tolist()
+        movements_x = norm.rvs(size = step_amount).tolist()
+        movements_y = norm.rvs(size = step_amount).tolist()
         mov = [movements_x,movements_y]
         sub_movements.append(mov)
 
-    mov_spare_x = norm.rvs(size = spare_amount,scale=delta**2*dt).tolist()
-    mov_spare_y = norm.rvs(size = spare_amount,scale=delta**2*dt).tolist()
+    mov_spare_x = norm.rvs(size = spare_amount).tolist()
+    mov_spare_y = norm.rvs(size = spare_amount).tolist()
     spare_movements = [mov_spare_x,mov_spare_y]
     #variance of the force is D = myy*kb*T*4?.
     #the movement is force*t/m
@@ -207,6 +250,16 @@ def main():
         sub_plot_values.append([])
         pass
     step = 0
+    #
+    #debugging, let's check out the movements of a few particles
+    #
+    '''
+    sub_x_mov = []
+    sub_y_mov = []
+    
+    enz_x_mov = []
+    enz_y_mov = []
+    '''
     #begin main loop
     while step < step_amount:
         #main loop goes here
@@ -224,17 +277,17 @@ def main():
         k=0
         for sub in substrates:
             mass = sub.obj.mass
-            dx = sub_movements[k][0][step%step_amount]/mass
-            dy = sub_movements[k][1][step%step_amount]/mass
+            dx = sub_movements[k][0][step%step_amount]*sub_k_list[sub.type]
+            dy = sub_movements[k][1][step%step_amount]*sub_k_list[sub.type]
             x = sub.obj.position.x
             y = sub.obj.position.y
             
             while ((x+dx)**2 + (y+dy)**2) > cell_radius*cell_radius:
-                dx = spare_movements[0][spare_index%spare_amount]/mass
-                dy = spare_movements[1][spare_index%spare_amount]/mass
+                dx = spare_movements[0][spare_index%spare_amount]*sub_k_list[sub.type]
+                dy = spare_movements[1][spare_index%spare_amount]*sub_k_list[sub.type]
                 spare_index +=1
             if spare_index == spare_amount:
-                spare_movements = updateSpare(spare_movements, spare_amount, delta, dt)
+                spare_movements = updateSpare(spare_movements, spare_amount)
                 spare_index = 0
             dpos = Vector2(dx,dy)
             sub.obj.setPosition( sub.obj.getPosition() + dpos)
@@ -243,20 +296,29 @@ def main():
         
         for enz in enzymes:
             mass = enz.obj.mass
-            dx = enz_movements[k][0][step%step_amount]/mass
-            dy = enz_movements[k][1][step%step_amount]/mass
+            dx = enz_movements[k][0][step%step_amount]*enz_k_list[enz.type]
+            dy = enz_movements[k][1][step%step_amount]*enz_k_list[enz.type]
             x = enz.obj.position.x
             y = enz.obj.position.y
             while ((x+dx)**2 + (y+dy)**2) > cell_radius*cell_radius:
-                dx = spare_movements[0][spare_index%spare_amount]/mass
-                dy = spare_movements[1][spare_index%spare_amount]/mass
+                dx = spare_movements[0][spare_index%spare_amount]*enz_k_list[enz.type]
+                dy = spare_movements[1][spare_index%spare_amount]*enz_k_list[enz.type]
                 spare_index +=1
             if spare_index == spare_amount:
-                spare_movements = updateSpare(spare_movements, spare_amount, delta, dt)
+                spare_movements = updateSpare(spare_movements, spare_amount)
                 spare_index = 0
             dpos = Vector2(dx,dy)
+            
             enz.obj.setPosition( enz.obj.getPosition() + dpos)
             k +=1
+        
+        '''
+        sub_x_mov.append(substrates[0].obj.position.x)
+        sub_y_mov.append(substrates[0].obj.position.y)
+        enz_x_mov.append(enzymes[0].obj.position.x)
+        enz_y_mov.append(enzymes[0].obj.position.y)
+        '''
+        
         #check and update bonding
         for enz in enzymes:
             if enz.status == 0:
@@ -307,9 +369,16 @@ def main():
         outputfile.write(line)
     strfile.close()
     outputfile.close
+    '''
     #print("sim over")
     #simulation over, start plotting
-    '''
+    cir = np.linspace(0, 2*3.1415, 100)
+    plot.plot(cell_radius*np.cos(cir),cell_radius*np.sin(cir))
+    plot.plot(enz_range[0]*np.cos(cir),enz_range[0]*np.sin(cir))
+    plot.plot(sub_x_mov,sub_y_mov,'g')
+    plot.plot(enz_x_mov,enz_y_mov,'r')
+    plot.show()
+    
     for val in sub_plot_values:
         plot.plot(val,cols[sub_plot_values.index(val)])
     plot.show()
