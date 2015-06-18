@@ -335,7 +335,7 @@ def main():
                         dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.y-sub.obj.position.y)
                         #if enz.obj.getDistance(sub.obj) < enz_range[enz.type] and enz.type == sub.type :
                         if dist < enz_range[enz.type] and enz.type == sub.type :
-							react_ams +=1
+                            react_ams +=1
                             bonded = transformsub(sub, enz_prob[enz.type],sub_mass[sub.type +1])
                         if bonded > 0:
                             #print("final sub for this enz:",substrates.index(sub ))
@@ -360,7 +360,7 @@ def main():
         step += 1
         if step %500 == 0:
             print(step)
-			print("amount of reactions in a step:",react_ams)
+            print("amount of reactions in a step:",react_ams)
     #print(len(enzymes))
     cols = ['r','g','b','c','m','k','r']
     
