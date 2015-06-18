@@ -8,7 +8,7 @@ def main():
 	chooses all of the files beginning with "no_", so all of the files with enzymes as separate.
 	
 	'''
-	print("number of files to plot:",len(sys.argv))
+	print("number of files to plot:",len(sys.argv[2:]))
 	colours = int(sys.argv[1])
 	filenames = sys.argv[2:]
 	#print(filenames)
