@@ -12,7 +12,7 @@
 #substrate amount
 800
 #timeframe, as simulation steps
-2000
+5000
 #dt
 0.05e-3
 #delta, determined from mass and temperature
@@ -24,14 +24,12 @@
 #enzyme busyness times, as simulation steps, integers. has to be as many as 
 #enzymes. separated by semicolon
 5,5,1,1,1,1
-#enz_probatilities, or kinetic efficiencies, CAR has a Km 0.362, Ado has (maybe) a Km of 0.036, let's put the probabilities as 0.36 and 0.362.
-#If we assume Kcat to be the same for both (not true but these are found nowhere),
-#we get that ADO is more efficient than CAR (?)
-#these are not real values, but (hopefully) give some sort of guidance.
-0.1,0.3,0.1,0.1,0.1,0.1,0.1,0.1,0.1
+#enz_probatilities, or kinetic efficiencies, CAR has 0.362, Ado has (maybe) 0.036, let's put the probabilities as 0.362 and 0.36.
+#these are not real values, but give some sort of guidance.
+0.362,0.036,0.1,0.1,0.1,0.1,0.1,0.1,0.1
 #enz_range
 1e-7,1e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7
 #is this a super enzyme setting or not, 1 is yes, 0 is no
-0
+1
 #spare table amount, do not change if you don't know what it is
 5000

@@ -8,11 +8,11 @@
 #no. of enz_types, this time CAR and ADO
 2
 #enz_amount per type
-20
+10
 #substrate amount
 800
 #timeframe, as simulation steps
-2000
+20000
 #dt
 0.05e-3
 #delta, determined from mass and temperature
