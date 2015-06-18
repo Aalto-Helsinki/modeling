@@ -267,6 +267,7 @@ def main():
         enz_y_mov = []
     
     #begin main loop
+    react_ams = 0
     while step < step_amount:
         #main loop goes here
         #update particle busynesses
@@ -324,7 +325,6 @@ def main():
             enz_x_mov.append(enzymes[0].obj.position.x)
             enz_y_mov.append(enzymes[0].obj.position.y)
             
-        react_ams = 0
         #check and update bonding
         for enz in enzymes:
             if enz.status == 0:
@@ -360,7 +360,8 @@ def main():
         step += 1
         if step %500 == 0:
             print(step)
-            print("amount of reactions in a step:",react_ams)
+            print("amount of reactions in 500 steps:",react_ams)
+            react_ams=0
     #print(len(enzymes))
     cols = ['r','g','b','c','m','k','r']
     
