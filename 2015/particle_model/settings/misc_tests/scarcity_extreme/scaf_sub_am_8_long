@@ -4,7 +4,7 @@
 #If you don't know what you are doing, consult your seniors.
 #You have been warned.
 #cell radius
-5e-5
+3e-5
 #no. of enz_types, this time CAR and ADO
 2
 #enz_amount per type
