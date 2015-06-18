@@ -227,6 +227,7 @@ def main():
             D = 310*1.38e-23/(3*0.7e-3*3.1415*rad)
             enz_k_list.append(math.sqrt(2*D*dt))
     #print(enz_k_list)
+    print (sub_k_list[0], enz_k_list[0])
     
     
     enz_movements = []
@@ -350,9 +351,9 @@ def main():
                         dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.y-sub.obj.position.y)
                         #if enz.obj.getDistance(sub.obj) < enz_range[enz.type] and enz.type == sub.type :
                         if dist < enz_range[enz.type] and enz.type == sub.type :
-                            react_ams +=1
                             bonded = transformsub(sub, enz_prob[enz.type],sub_mass[sub.type +1])
                         if bonded > 0:
+                            react_ams +=1
                             #print("final sub for this enz:",substrates.index(sub ))
                             enz.status = enz_busy[enz.type]
                             sub.status = sub_busy[enz.type]
