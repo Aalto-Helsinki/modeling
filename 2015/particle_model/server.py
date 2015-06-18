@@ -232,15 +232,15 @@ def main():
     enz_movements = []
     sub_movements = []
     for i in range(0,enz_amount):
-        movements_x = norm.rvs(size = step_amount).tolist()
-        movements_y = norm.rvs(size = step_amount).tolist()
+        movements_x = norm.rvs(size = spare_amount).tolist()
+        movements_y = norm.rvs(size = spare_amount).tolist()
         mov = [movements_x,movements_y]
         enz_movements.append(mov)
             
     
     for i in range(0,sub_amount):
-        movements_x = norm.rvs(size = step_amount).tolist()
-        movements_y = norm.rvs(size = step_amount).tolist()
+        movements_x = norm.rvs(size = spare_amount).tolist()
+        movements_y = norm.rvs(size = spare_amount).tolist()
         mov = [movements_x,movements_y]
         sub_movements.append(mov)
 
@@ -284,11 +284,18 @@ def main():
         k=0
         for sub in substrates:
             mass = sub.obj.mass
-            dx = sub_movements[k][0][step%step_amount]*sub_k_list[sub.type]
-            dy = sub_movements[k][1][step%step_amount]*sub_k_list[sub.type]
+            dx = sub_movements[k][0][step%spare_amount]*sub_k_list[sub.type]
+            dy = sub_movements[k][1][step%spare_amount]*sub_k_list[sub.type]
             x = sub.obj.position.x
             y = sub.obj.position.y
-            
+            if step_amount == spare_amount:
+                del sub_movements
+                sub_movements = []
+                for i in range(0,sub_amount):
+                    movements_x = norm.rvs(size = spare_amount).tolist()
+                    movements_y = norm.rvs(size = spare_amount).tolist()
+                    mov = [movements_x,movements_y]
+                    sub_movements.append(mov)
             while ((x+dx)**2 + (y+dy)**2) > cell_radius*cell_radius:
                 dx = spare_movements[0][spare_index%spare_amount]*sub_k_list[sub.type]
                 dy = spare_movements[1][spare_index%spare_amount]*sub_k_list[sub.type]
@@ -303,10 +310,18 @@ def main():
         
         for enz in enzymes:
             mass = enz.obj.mass
-            dx = enz_movements[k][0][step%step_amount]*enz_k_list[enz.type]
-            dy = enz_movements[k][1][step%step_amount]*enz_k_list[enz.type]
+            dx = enz_movements[k][0][step%spare_amount]*enz_k_list[enz.type]
+            dy = enz_movements[k][1][step%spare_amount]*enz_k_list[enz.type]
             x = enz.obj.position.x
             y = enz.obj.position.y
+            if step_amount == spare_amount:
+                del enz_movements
+                enz_movements = []
+                for i in range(0,sub_amount):
+                    movements_x = norm.rvs(size = spare_amount).tolist()
+                    movements_y = norm.rvs(size = spare_amount).tolist()
+                    mov = [movements_x,movements_y]
+                    enz_movements.append(mov)
             while ((x+dx)**2 + (y+dy)**2) > cell_radius*cell_radius:
                 dx = spare_movements[0][spare_index%spare_amount]*enz_k_list[enz.type]
                 dy = spare_movements[1][spare_index%spare_amount]*enz_k_list[enz.type]
