@@ -227,7 +227,6 @@ def main():
             D = 310*1.38e-23/(3*0.7e-3*3.1415*rad)
             enz_k_list.append(math.sqrt(2*D*dt))
     #print(enz_k_list)
-    print (sub_k_list[0], enz_k_list[0])
     
     
     enz_movements = []
