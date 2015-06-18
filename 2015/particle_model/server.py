@@ -375,8 +375,10 @@ def main():
         step += 1
         if step %500 == 0:
             print(step)
-            print("amount of reactions in 500 steps:",react_ams)
-            react_ams=0
+            if step %1000 == 0:
+                print("amount of reactions in 1000 steps:",react_ams)
+                react_ams=0
+                print("number of simulated particles:", len(substrates) + len(enzymes))
     #print(len(enzymes))
     cols = ['r','g','b','c','m','k','r']
     

@@ -8,11 +8,11 @@
 #no. of enz_types, this time CAR and ADO
 2
 #enz_amount per type
-20
+40
 #substrate amount
 800
 #timeframe, as simulation steps
-10000
+20000
 #dt
 0.05e-3
 #delta, determined from mass and temperature
@@ -32,6 +32,6 @@
 #enz_range
 1e-7,1e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7
 #is this a super enzyme setting or not, 1 is yes, 0 is no
-0
+1
 #spare table amount, do not change if you don't know what it is
 5000

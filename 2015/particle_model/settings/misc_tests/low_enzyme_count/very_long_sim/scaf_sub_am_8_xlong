@@ -8,7 +8,7 @@
 #no. of enz_types, this time CAR and ADO
 2
 #enz_amount per type
-40
+20
 #substrate amount
 800
 #timeframe, as simulation steps
