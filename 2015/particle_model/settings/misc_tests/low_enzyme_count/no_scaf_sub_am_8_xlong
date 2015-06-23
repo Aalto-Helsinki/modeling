@@ -4,15 +4,15 @@
 #If you don't know what you are doing, consult your seniors.
 #You have been warned.
 #cell radius
-3e-5
+4e-5
 #no. of enz_types, this time CAR and ADO
 2
 #enz_amount per type
 10
 #substrate amount
-800
+1500
 #timeframe, as simulation steps
-20000
+180000
 #dt
 0.05e-3
 #delta, determined from mass and temperature
