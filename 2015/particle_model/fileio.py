@@ -34,7 +34,11 @@ class fileIO(object):
         sub_amount = int(readnewline(file))
         steps = int(readnewline(file))
         dt = float(readnewline(file))
-        delta = float(readnewline(file))
+        replenish = float(readnewline(file))
+        if replenish < 1:
+            replenish = 0
+        else:
+            replenish = 1
         enz_masses = readnewline(file).strip().split(",")
         enz_masses = list(map(float,enz_masses))
         sub_masses = readnewline(file).strip().split(",")
@@ -50,7 +54,7 @@ class fileIO(object):
         
         file.close()
         return {'radius':cell_rad,'enz_types':enz_types,'enz_amount_per_type':enz_am_per_type,'sub_amount':sub_amount,'steps':steps,
-                'dt':dt,'delta':delta,'enz_mass':enz_masses,'sub_mass':sub_masses,'enz_busy':enz_busyness,'enz_prob':enz_prob,
+                'dt':dt,'replenish':replenish,'enz_mass':enz_masses,'sub_mass':sub_masses,'enz_busy':enz_busyness,'enz_prob':enz_prob,
                 'enz_range':enz_range,'if_sup_enz':sup_enz,'spare_table':spare_table}
 
     

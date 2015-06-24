@@ -58,9 +58,9 @@ def main():
 			averages[2][i] += subs[i]
 		averages[2][i] = averages[2][i]/len(product)
 	print("last subs made")
-	plot.plot(averages[0],'g')
+	#plot.plot(averages[0],'g')
 	
-	plot.plot(averages[1],'r')
+	#plot.plot(averages[1],'r')
 	
 	plot.plot(averages[2],'b')
 	'''

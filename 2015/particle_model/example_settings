@@ -16,7 +16,7 @@
 #dt
 0.2
 #delta, determined from mass and temperature
-0.5
+1
 #enzyme masses, separated by a semicolon
 1,1,1,1,1,1
 #substrate masses, there HAS TO BE one more than enzyme masses

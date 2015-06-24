@@ -9,6 +9,7 @@ from vector2 import *
 from fileio import *
 from objects import *
 import math
+import copy
 import time as tm
 import numpy as np
 import scipy as sp
@@ -141,7 +142,7 @@ def main():
     
     dt = constants['dt']
     time = step_amount*dt
-    delta = constants['delta']
+    replenish = constants['replenish']
     enz_mass = constants['enz_mass']
     sub_mass = constants['sub_mass']
     enz_busy = constants['enz_busy']
@@ -291,7 +292,7 @@ def main():
             if step_amount == spare_amount:
                 del sub_movements
                 sub_movements = []
-                for i in range(0,sub_amount):
+                for i in range(0,sub_amount): 
                     movements_x = norm.rvs(size = spare_amount).tolist()
                     movements_y = norm.rvs(size = spare_amount).tolist()
                     mov = [movements_x,movements_y]
@@ -357,8 +358,12 @@ def main():
                             enz.status = enz_busy[enz.type]
                             sub.status = sub_busy[enz.type]
                             if sub.type == SUB_T_FINAL:
-                                products.append(sub)
-                                substrates.remove(sub)
+                                if replenish == 1:
+                                    products.append(copy.deepcopy(sub))
+                                    sub.transform(0,sub_mass[0])
+                                else:
+                                    products.append(sub)
+                                    substrates.remove(sub)
                             break
         #add values for graphs
         amounts = []
