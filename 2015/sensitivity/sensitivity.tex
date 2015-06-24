@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{amscd,amssymb,amsfonts}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{hyperref}
+
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\C}{{\mathbb C}}
+
+\begin{document}
+
+\section*{About sensitivity analysis }
+
+\bigskip
+\bigskip
+
+Relative sensitivity of concentration in steady state, $s^{ss}$, with respect to variable $p$, is defined as \[\frac{p}{s^{ss}}\frac{ds^{ss}}{dp}.\] It relates the size of a relative perturbation in $p$ to a relative change in $s^{ss}$. If system shows a small sensitivity coefficient with respect to a parameter, then behaviour is robust with respect to perturbations of that parameter. Large value suggest 'control points' at which interventions will have significant effects. 
+
+The steady state concentrations can be calculated from the basic differential equations. I have used notation where $a$ is Acetyl-CoA, $b(t)$ is Acetoacetyl-CoA, and so on until $g(t)$ is Butyraldehyde and $p(t)$ is propane. I assume that propane leaves the cell with speed constant $k_8$.
+
+\begin{align*}
+b(t) &= \frac{k_1a^2}{k_2[NADPH]} \\
+c(t) &= \frac{k_1a^2}{k_3} \\
+d(t) &= \frac{k_1a^2}{k_4[NADH]} \\
+e(t) &= \frac{k_1a^2}{k_5[H_2O]} \\
+f(t) &= \frac{k_1a^2}{k_6[ATP][H_2O][NADPH]}\\
+g(t) &= \frac{k_1a^2}{k_7[NADPH]^2[H]^2[O_2]}\\
+p(t) &= \frac{k_1a^2}{k_8}
+\end{align*}
+
+Now the relative sensitivities are as follows: 
+
+\begin{tabular} {|c | c|c|c|c|c|c|c|}
+\hline
+& b(t) & c(t) & d(t) & e(t) & f(t) & g(t) & p(t) \\
+\hline
+$k_1$ & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+$k_2$ & -1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\hline
+$k_3$ & 0 & -1 & 0 & 0 & 0 & 0 & 0 \\
+\hline
+$k_4$ & 0 & 0 & -1 & 0 & 0 & 0 & 0 \\
+\hline
+$k_5$ & 0 & 0 & 0 & -1 & 0 & 0 & 0 \\
+\hline
+$k_6$ & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
+\hline
+$k_7$ & 0 & 0 & 0 & 0 & 0 & -1 & 0 \\
+\hline
+$k_8$ & 0 & -1 & 0 & 0 & 0 & 0 & -1 \\
+\hline
+$a$ & 2 & 2 & 2 & 2 & 2 & 2 & 2 \\
+\hline
+$[NADPH]$ & -1 & 0 & 0 & 0 & -1 & -2 & 0\\
+\hline
+$[NADH]$ & 0 & 0 & -1 & 0 & 0 & 0 & 0\\
+\hline
+$[H_2O]$ & 0 & 0 & 0 & -1 & -1 & 0 & 0\\
+\hline
+$[ATP]$ & 0 & 0 & 0 & 0 & -1 & 0 & 0\\
+\hline
+$[H]$ & 0 & 0 & 0 & 0 & 0 & -2 & 0\\
+\hline
+$[O_2]$ & 0 & 0 & 0 & 0 & 0 & -1 & 0\\
+\hline
+\end{tabular}
+
+\bigskip
+
+The table tells us which concentrations or speed constants affect the most to the reaction. It seems that the system has is robust with respect to many perturbations of the parameters. It seems that the propane production could be controlled mainly trough Acetyl-CoA (and the speed of the first reaction).
+
+\begin{thebibliography}{99}
+\bibitem{notes}
+{\href{http://www.math.uwaterloo.ca/~bingalls/MMSB/Notes.pdf}{{\sc E. L. ~Cussler} {\em Mathematical Modelling in Systems Biology:  An Introduction},2012}}
+
+\bibitem{heavy}
+{\href{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.224.7813&rep=rep1&type=pdf}{{\sc D. M. ~Hamby}, {\em A Review of Techniques for Parameter Sensitivity Analysis of Environmental Models}}}
+
+\end{thebibliography}
+
+\end{document}
