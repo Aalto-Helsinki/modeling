@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-07-06 10:24:48 UTC -->
+<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-07-06 12:27:41 UTC -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
 <COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="15" versionDevel="95" copasiSourcesModified="0">
   <ListOfFunctions>
@@ -427,7 +427,7 @@
           <Modifier metabolite="Metabolite_41" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4395" name="Km" value="0.0001"/>
+          <Constant key="Parameter_4395" name="Km" value="7.5e-05"/>
           <Constant key="Parameter_4396" name="Kcat" value="1168.85"/>
         </ListOfConstants>
         <KineticLaw function="Function_43">
@@ -474,7 +474,7 @@
           <Modifier metabolite="Metabolite_43" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4403" name="Kmb" value="0.0001"/>
+          <Constant key="Parameter_4403" name="Kmb" value="5.2e-06"/>
           <Constant key="Parameter_4401" name="Kma" value="2.7e-06"/>
           <Constant key="Parameter_4405" name="Kcat" value="1881.62"/>
           <Constant key="Parameter_4404" name="Kia" value="1.98e-07"/>
@@ -581,10 +581,10 @@
           <Modifier metabolite="Metabolite_39" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4407" name="Kia" value="0.0001"/>
+          <Constant key="Parameter_4407" name="Kia" value="1.3e-05"/>
           <Constant key="Parameter_4408" name="Kmb" value="4.8e-05"/>
           <Constant key="Parameter_4409" name="Kmc" value="0.000115"/>
-          <Constant key="Parameter_4410" name="Kma" value="0.0001"/>
+          <Constant key="Parameter_4410" name="Kma" value="0.00013"/>
           <Constant key="Parameter_4411" name="Kcat" value="296.488"/>
         </ListOfConstants>
         <KineticLaw function="Function_41">
@@ -631,10 +631,10 @@
         <ModelParameterGroup cn="String=Initial Species Values" type="Group">
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Acetoacetyl-CoA]" value="13248.711938" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Acetyl-CoA]" value="367350.6491900001" type="Species" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[CoA]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[CoA]" value="84309.98505999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[3-hydroxybutyryl-CoA]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[NADP+]" value="1264.6497759" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[NADPH]" value="72265.70147999997" type="Species" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[NADPH]" value="72265.70147999996" type="Species" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Crotonyl-CoA]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[H2O]" value="23396020854.15" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyryl-CoA]" value="0" type="Species" simulationType="reactions"/>
@@ -643,7 +643,7 @@
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyrate]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[2Pi]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[AMP]" value="168619.97012" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[ATP]" value="5781256.118399997" type="Species" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[ATP]" value="5781256.118399996" type="Species" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyraldehyde]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:AtoB]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Hdb]" value="602.2141789999999" type="Species" simulationType="reactions"/>
@@ -667,11 +667,11 @@
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Hdb],ParameterGroup=Parameters,Parameter=Kia" value="5e-05" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
           <ModelParameterGroup cn="CN=Root,Model=Propane pathway,Vector=Reactions[Crt]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Crt],ParameterGroup=Parameters,Parameter=Km" value="0.0001" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Crt],ParameterGroup=Parameters,Parameter=Km" value="7.499999999999999e-05" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Crt],ParameterGroup=Parameters,Parameter=Kcat" value="1168.850158" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
           <ModelParameterGroup cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kmb" value="0.0001" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kmb" value="5.2e-06" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kma" value="2.7e-06" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kcat" value="1881.62" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kia" value="1.98e-07" type="ReactionParameter" simulationType="fixed"/>
@@ -681,10 +681,10 @@
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[YciA],ParameterGroup=Parameters,Parameter=Km" value="3.5e-06" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
           <ModelParameterGroup cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kia" value="0.0001" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kia" value="1.3e-05" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kmb" value="4.8e-05" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kmc" value="0.000115" type="ReactionParameter" simulationType="fixed"/>
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kma" value="0.0001" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kma" value="0.00013" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kcat" value="296.4876988" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
         </ModelParameterGroup>
@@ -717,7 +717,7 @@
       <StateTemplateVariable objectReference="Compartment_1"/>
     </StateTemplate>
     <InitialState type="initialState">
-      0 13248.711938 0 0 0 0 0 1264.6497759 1565756.8654 23396020854.15 0 168619.97012 0 367350.6491900001 72265.70147999997 49983.776857 5781256.118399997 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 1e-12 
+      0 13248.711938 0 0 84309.98505999999 0 0 1264.6497759 1565756.8654 23396020854.15 0 168619.97012 0 367350.6491900001 72265.70147999996 49983.776857 5781256.118399996 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 1e-12 
     </InitialState>
   </Model>
   <ListOfTasks>
