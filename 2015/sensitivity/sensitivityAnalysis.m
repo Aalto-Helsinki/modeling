@@ -23,7 +23,7 @@ k2 = 0.05;
 k3 = 0.03;
 k4 = 0.0052;
 k5 = 6.7;
-k6 = 3.62;
+k6 = 0.048;
 k7 = 0.03;
 
 % loading and selecting data
