@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-07-09 07:08:01 UTC -->
+<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-07-14 13:42:51 UTC -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
 <COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="15" versionDevel="95" copasiSourcesModified="0">
   <ListOfFunctions>
@@ -101,6 +101,34 @@
         <ParameterDescription key="FunctionParameter_291" name="Kia" order="6" role="constant"/>
       </ListOfParameterDescriptions>
     </Function>
+    <Function key="Function_44" name="Reversible Michaelis-Menten with Kcat" type="UserDefined" reversible="unspecified">
+      <MiriamAnnotation>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="#Function_44">
+    <dcterms:created>
+      <rdf:Description>
+        <dcterms:W3CDTF>2015-07-14T16:38:47Z</dcterms:W3CDTF>
+      </rdf:Description>
+    </dcterms:created>
+  </rdf:Description>
+</rdf:RDF>
+
+      </MiriamAnnotation>
+      <Expression>
+        (Kcats*enzyme*substrate/Kms-Kcatp*enzyme*product/Kmp)/(1+substrate/Kms+product/Kmp)
+      </Expression>
+      <ListOfParameterDescriptions>
+        <ParameterDescription key="FunctionParameter_351" name="Kcats" order="0" role="constant"/>
+        <ParameterDescription key="FunctionParameter_347" name="enzyme" order="1" role="modifier"/>
+        <ParameterDescription key="FunctionParameter_330" name="substrate" order="2" role="substrate"/>
+        <ParameterDescription key="FunctionParameter_342" name="Kms" order="3" role="constant"/>
+        <ParameterDescription key="FunctionParameter_353" name="Kcatp" order="4" role="constant"/>
+        <ParameterDescription key="FunctionParameter_355" name="product" order="5" role="product"/>
+        <ParameterDescription key="FunctionParameter_357" name="Kmp" order="6" role="constant"/>
+      </ListOfParameterDescriptions>
+    </Function>
   </ListOfFunctions>
   <Model key="Model_4" name="Propane pathway" simulationType="time" timeUnit="min" volumeUnit="ml" areaUnit="m²" lengthUnit="m" quantityUnit="mmol" type="deterministic" avogadroConstant="6.02214179e+23">
     <MiriamAnnotation>
@@ -150,7 +178,9 @@
       </Metabolite>
       <Metabolite key="Metabolite_5" name="CoA" simulationType="reactions" compartment="Compartment_1">
         <MiriamAnnotation>
-<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Metabolite_5">
     <dcterms:created>
       <rdf:Description>
@@ -159,6 +189,7 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
       </Metabolite>
       <Metabolite key="Metabolite_7" name="3-hydroxybutyryl-CoA" simulationType="reactions" compartment="Compartment_1">
@@ -286,6 +317,24 @@
       <Metabolite key="Metabolite_41" name="Enzyme:Ter" simulationType="reactions" compartment="Compartment_1">
       </Metabolite>
       <Metabolite key="Metabolite_43" name="Enzyme:YciA" simulationType="reactions" compartment="Compartment_1">
+      </Metabolite>
+      <Metabolite key="Metabolite_45" name="Car_apo" simulationType="reactions" compartment="Compartment_1">
+        <MiriamAnnotation>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="#Metabolite_45">
+    <dcterms:created>
+      <rdf:Description>
+        <dcterms:W3CDTF>2015-07-14T16:38:13Z</dcterms:W3CDTF>
+      </rdf:Description>
+    </dcterms:created>
+  </rdf:Description>
+</rdf:RDF>
+
+        </MiriamAnnotation>
+      </Metabolite>
+      <Metabolite key="Metabolite_49" name="Sfp_enzyme" simulationType="reactions" compartment="Compartment_1">
       </Metabolite>
     </ListOfMetabolites>
     <ListOfReactions>
@@ -494,7 +543,9 @@
       </Reaction>
       <Reaction key="Reaction_4" name="YciA" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_4">
     <dcterms:created>
       <rdf:Description>
@@ -503,6 +554,7 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_17" stoichiometry="1"/>
@@ -600,6 +652,62 @@
           </ListOfCallParameters>
         </KineticLaw>
       </Reaction>
+      <Reaction key="Reaction_6" name="Car-activation" reversible="true" fast="false">
+        <MiriamAnnotation>
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about="#Reaction_6">
+    <dcterms:created>
+      <rdf:Description>
+        <dcterms:W3CDTF>2015-07-14T16:37:11Z</dcterms:W3CDTF>
+      </rdf:Description>
+    </dcterms:created>
+  </rdf:Description>
+</rdf:RDF>
+
+        </MiriamAnnotation>
+        <ListOfSubstrates>
+          <Substrate metabolite="Metabolite_45" stoichiometry="1"/>
+        </ListOfSubstrates>
+        <ListOfProducts>
+          <Product metabolite="Metabolite_37" stoichiometry="1"/>
+        </ListOfProducts>
+        <ListOfModifiers>
+          <Modifier metabolite="Metabolite_49" stoichiometry="1"/>
+        </ListOfModifiers>
+        <ListOfConstants>
+          <Constant key="Parameter_4445" name="Kcats" value="96"/>
+          <Constant key="Parameter_4444" name="Kms" value="4.45e-06"/>
+          <Constant key="Parameter_4441" name="Kcatp" value="96"/>
+          <Constant key="Parameter_4442" name="Kmp" value="2.6e-05"/>
+        </ListOfConstants>
+        <KineticLaw function="Function_44">
+          <ListOfCallParameters>
+            <CallParameter functionParameter="FunctionParameter_351">
+              <SourceParameter reference="Parameter_4445"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_347">
+              <SourceParameter reference="Metabolite_49"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_330">
+              <SourceParameter reference="Metabolite_45"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_342">
+              <SourceParameter reference="Parameter_4444"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_353">
+              <SourceParameter reference="Parameter_4441"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_355">
+              <SourceParameter reference="Metabolite_37"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_357">
+              <SourceParameter reference="Parameter_4442"/>
+            </CallParameter>
+          </ListOfCallParameters>
+        </KineticLaw>
+      </Reaction>
     </ListOfReactions>
     <ListOfModelParameterSets activeSet="ModelParameterSet_0">
       <ModelParameterSet key="ModelParameterSet_0" name="Initial State">
@@ -628,10 +736,12 @@
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyraldehyde]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:AtoB]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Hbd]" value="602.2141789999999" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Car]" value="602.2141789999999" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Car]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Crt]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ter]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:YciA]" value="602.2141789999999" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Car_apo]" value="602.2141789999999" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Sfp_enzyme]" value="602.2141789999999" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
         </ModelParameterGroup>
@@ -668,6 +778,12 @@
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kma" value="1.3e-05" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kcat" value="150" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kcats" value="96" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kms" value="4.45e-06" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kcatp" value="96" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kmp" value="2.6e-05" type="ReactionParameter" simulationType="fixed"/>
+          </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
     </ListOfModelParameterSets>
@@ -677,28 +793,30 @@
       <StateTemplateVariable objectReference="Metabolite_13"/>
       <StateTemplateVariable objectReference="Metabolite_23"/>
       <StateTemplateVariable objectReference="Metabolite_5"/>
+      <StateTemplateVariable objectReference="Metabolite_37"/>
       <StateTemplateVariable objectReference="Metabolite_17"/>
       <StateTemplateVariable objectReference="Metabolite_7"/>
-      <StateTemplateVariable objectReference="Metabolite_9"/>
       <StateTemplateVariable objectReference="Metabolite_19"/>
       <StateTemplateVariable objectReference="Metabolite_15"/>
       <StateTemplateVariable objectReference="Metabolite_25"/>
       <StateTemplateVariable objectReference="Metabolite_27"/>
       <StateTemplateVariable objectReference="Metabolite_31"/>
+      <StateTemplateVariable objectReference="Metabolite_9"/>
+      <StateTemplateVariable objectReference="Metabolite_45"/>
       <StateTemplateVariable objectReference="Metabolite_3"/>
       <StateTemplateVariable objectReference="Metabolite_11"/>
       <StateTemplateVariable objectReference="Metabolite_21"/>
       <StateTemplateVariable objectReference="Metabolite_29"/>
       <StateTemplateVariable objectReference="Metabolite_33"/>
       <StateTemplateVariable objectReference="Metabolite_35"/>
-      <StateTemplateVariable objectReference="Metabolite_37"/>
       <StateTemplateVariable objectReference="Metabolite_39"/>
       <StateTemplateVariable objectReference="Metabolite_41"/>
       <StateTemplateVariable objectReference="Metabolite_43"/>
+      <StateTemplateVariable objectReference="Metabolite_49"/>
       <StateTemplateVariable objectReference="Compartment_1"/>
     </StateTemplate>
     <InitialState type="initialState">
-      0 13248.711938 0 0 84309.98505999999 0 0 1264.6497759 1565756.8654 23396020854.15 0 168619.97012 0 367350.6491900001 72265.70147999996 49983.776857 5781256.118399996 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 1e-12 
+      0 13248.711938 0 0 84309.98505999999 0 0 0 1565756.8654 23396020854.15 0 168619.97012 0 1264.6497759 602.2141789999999 367350.6491900001 72265.70147999996 49983.776857 5781256.118399996 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 1e-12 
     </InitialState>
   </Model>
   <ListOfTasks>
@@ -742,22 +860,6 @@
       <Problem>
         <Parameter name="Subtask" type="unsignedInteger" value="1"/>
         <ParameterGroup name="ScanItems">
-          <ParameterGroup name="ScanItem">
-            <Parameter name="Maximum" type="float" value="2e-06"/>
-            <Parameter name="Minimum" type="float" value="5e-07"/>
-            <Parameter name="Number of steps" type="unsignedInteger" value="10"/>
-            <Parameter name="Object" type="cn" value="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Car],Reference=InitialConcentration"/>
-            <Parameter name="Type" type="unsignedInteger" value="1"/>
-            <Parameter name="log" type="bool" value="0"/>
-          </ParameterGroup>
-          <ParameterGroup name="ScanItem">
-            <Parameter name="Maximum" type="float" value="2e-06"/>
-            <Parameter name="Minimum" type="float" value="5e-07"/>
-            <Parameter name="Number of steps" type="unsignedInteger" value="10"/>
-            <Parameter name="Object" type="cn" value="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Hbd],Reference=InitialConcentration"/>
-            <Parameter name="Type" type="unsignedInteger" value="1"/>
-            <Parameter name="log" type="bool" value="0"/>
-          </ParameterGroup>
         </ParameterGroup>
         <Parameter name="Output in subtask" type="bool" value="1"/>
         <Parameter name="Adjust initial conditions" type="bool" value="0"/>
