@@ -2,23 +2,40 @@
 
 function bottleneck_plots()
 
+concentrations = [0:0.000001:0.002];
+
 % Comparison of enzymes
 figure
 % hdb
-plot([0:0.000001:0.002],hdp([0:0.000001:0.002],336.408402,5e-05,7e-05),'b')%201.8450412
+hdbvals = hdp(concentrations,336.408402,5e-05,7e-05);
+plot(concentrations,hdbvals,'b')%201.8450412
 hold on
 % Car
-plot([0:0.000001:0.002],car([0:0.000001:0.002],150,1.3e-05,4.8e-05,0.000115,1.3e-05),'r')
+carvals = car(concentrations,150,1.3e-05,4.8e-05,0.000115,1.3e-05);
+plot(concentrations,carvals,'r')
 % Ter
-plot([0:0.000001:0.002],ter([0:0.000001:0.002],1881.62,2.7e-06,5.2e-06,1.98e-07),'m')
+tervals = ter(concentrations,1881.62,2.7e-06,5.2e-06,1.98e-07);
+plot(concentrations,tervals,'m')
 hold on
 % crt
-plot([0:0.000001:0.002],crt_ycia([0:0.000001:0.002],1168.85,7.5e-05),'y')
+crtvals = crt_ycia(concentrations,1168.85,7.5e-05);
+plot(concentrations,crtvals,'y')
 % ycia
-plot([0:0.000001:0.002],crt_ycia([0:0.000001:0.002],1320,3.5e-06),'g')
+yciavals = crt_ycia(concentrations,1320,3.5e-06);
+plot(concentrations,yciavals,'g')
 % AtoB
-plot([0:0.000001:0.002],crt_ycia([0:0.000001:0.002],20418.3,0.00047),'k')
+atobvals = atob(concentrations,20418.3,0.00047);
+plot(concentrations,atobvals,'k')
+
+title('Michaelis-Menten plots of propane pathway')
+
+xlabel('Concentration of substrates, [mol/l] ([mmol/ml])') % x-axis label
+ylabel('Speed of the reaction, [1/min] ') % y-axis label
+
 legend('Hbd','Car','Ter','Crt','YciA','AtoB')
+
+
+save bottleneck concentrations hdbvals carvals tervals crtvals yciavals atobvals
 
 end
 
