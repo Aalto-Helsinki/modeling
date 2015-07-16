@@ -1,6 +1,6 @@
 '''
 The main simulation file.
-This simulation does not as of yet have any UIs, work is being done to get those.
+Trying to implement comtetition..
 '''
 will_plot = 0
 
