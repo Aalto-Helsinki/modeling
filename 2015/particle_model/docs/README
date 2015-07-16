@@ -8,9 +8,8 @@ This model needs python 3, matplotlib, numpy and scipy to function.
 -----------------------------------------------
 USAGE:
 -----------------------------------------------
-currently there is no (t/g)UI, so an user has to change the values presented in the source code.
-This is cumbersome and dangerous, and some changes are needed. This is
-in the feature list/todo-list.
+Currently this software is controlled through a settings file, where the user can define
+the values needed for vis simulation.
 Please do not edit vector2.py or objects.py, as these are needed for the correct function of
 this model.
 -----------------------------------------------
@@ -71,7 +70,7 @@ speed modifier, so how ideally we should define delta from mass and temperature.
 6. 3D space instead of 2D, since 2D may be too simplified. This is almost trivial,
 and can be implemented in say, 3 hours. Big changes only include the vector class,
 the way objects' places are updated.
-||This does not seem relevant ||
+||This does not seem relevant, perhaps some more research about the variance and stuff could be found. ||
 
 7. A way to load the simulation parameters from a file and to save simulation data in a file.
 This is relevant, since we can only get the data from a cluster in a file, I think.
@@ -82,8 +81,13 @@ This is relevant, since we can only get the data from a cluster in a file, I thi
 This should be one of the last things to implement, as it is not so relevant to
 our modeling (we should make batch runs on aalto's cluster + make the model itself
 better)
-||This is not a priority. It will be tacked if/when I feel like it||
+||This is not a priority. It will be tackled if/when I feel like it||
 
+9. Other enzymes for the first reaction to indicate that the cell has other enzymes
+consuming butyraldehyde, and scans to see if this changes the situation dramatically.
+||With ugly hacking, this is easy to do, but expanding on this would need a major overhaul
+of the way the simulation currently handles reaction pathways.
+Perhaps a chain or "pathlike" approach would be better?||
 -------------------------------------------------
 -------------------------------------------------
 FQA/Frequently Questioned Answers:
@@ -95,9 +99,11 @@ as well as the times this takes. Profiling data is important when people
 are searching for bottlenecks in their code. To answer your question, no, 
 it should not be deleted. Neither should anything else, unless you know that
 it is obsolete.
+
 Q:How do you use this thing? It has no input whatsoever and screams errors when I try to use it? 
 A:The most recent version is the server.py file. You use it by giving it a settings file as an argument,
 for example "python3 server.py example_settings" simulates according to file example_settings. See the example settings
 file for more information about the settings, or ask Arto.
+
 Q:This is slow.
 A:Your computer is slow.

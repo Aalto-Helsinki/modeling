@@ -8,9 +8,9 @@ def main():
 	chooses all of the files beginning with "no_", so all of the files with enzymes as separate.
 	
 	'''
-	print("number of files to plot:",len(sys.argv[1:]))
+	print("number of files to plot:",len(sys.argv[2:]))
 	#colours = int(sys.argv[1])
-	filenames = sys.argv[1:]
+	filenames = sys.argv[2:]
 	#print(filenames)
 	#filename =  sys.argv[1]
 	#file = open(filename, 'r')
@@ -31,11 +31,11 @@ def main():
 	colmap = ['g','b','r','y','c','m','k']
 	#plot the averages
 	for i in range(0,len(substrate_1)):
-		substrate_1[i] = list(map(int,substrate_1[i]))
+		substrate_1[i] = list(map(float,substrate_1[i]))
 	for i in range(0,len(substrate_2)):
-		substrate_2[i] = list(map(int,substrate_2[i]))
+		substrate_2[i] = list(map(float,substrate_2[i]))
 	for i in range(0,len(product)):
-		product[i] = list(map(int,product[i]))
+		product[i] = list(map(float,product[i]))
 	
 	averages = [[0]*len(substrate_1[0]),[0]*len(substrate_2[0]),[0]*len(product[0]) ]
 	for i in range(0,len(substrate_1[0])):
@@ -77,7 +77,13 @@ def main():
 	y_2 = averages[2][x_2]
 	k = (y_2-y_1)/(x_2-x_1)
 	print("the slope during the last 40% (60-100%) of the product curve:", k)
-	plot.show()
+	fil = open(str(sys.argv[1]),"w")
+	for i in range(0,3):
+		for j in range(0, len(averages[1])):
+			if j % 10 == 0:
+				fil.write(str(averages[i][j])+", ")
+		fil.write("\n")
+	fil.close()
 
 if __name__ == "__main__":
 	main()

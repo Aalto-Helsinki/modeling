@@ -26,7 +26,7 @@ def main():
 	colmap = ['g','b','r','y','c','m','k']	
 	for i in range(0, len(substrate)):
 		substrate[i] = list(filter(None, substrate[i]))
-		substrate[i] = list(map(int, substrate[i]))
+		substrate[i] = list(map(float, substrate[i]))
 		col = colmap[0]		
 		col = colmap[(i%3)%len(colmap)]
 		plot.plot(substrate[i],col)	
