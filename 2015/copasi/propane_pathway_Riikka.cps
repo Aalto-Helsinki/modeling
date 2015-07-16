@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-07-14 13:42:51 UTC -->
+<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-07-16 05:52:47 UTC -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
 <COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="15" versionDevel="95" copasiSourcesModified="0">
   <ListOfFunctions>
@@ -99,34 +99,6 @@
         <ParameterDescription key="FunctionParameter_282" name="Kcat" order="4" role="constant"/>
         <ParameterDescription key="FunctionParameter_267" name="enzyme" order="5" role="modifier"/>
         <ParameterDescription key="FunctionParameter_291" name="Kia" order="6" role="constant"/>
-      </ListOfParameterDescriptions>
-    </Function>
-    <Function key="Function_44" name="Reversible Michaelis-Menten with Kcat" type="UserDefined" reversible="unspecified">
-      <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <rdf:Description rdf:about="#Function_44">
-    <dcterms:created>
-      <rdf:Description>
-        <dcterms:W3CDTF>2015-07-14T16:38:47Z</dcterms:W3CDTF>
-      </rdf:Description>
-    </dcterms:created>
-  </rdf:Description>
-</rdf:RDF>
-
-      </MiriamAnnotation>
-      <Expression>
-        (Kcats*enzyme*substrate/Kms-Kcatp*enzyme*product/Kmp)/(1+substrate/Kms+product/Kmp)
-      </Expression>
-      <ListOfParameterDescriptions>
-        <ParameterDescription key="FunctionParameter_351" name="Kcats" order="0" role="constant"/>
-        <ParameterDescription key="FunctionParameter_347" name="enzyme" order="1" role="modifier"/>
-        <ParameterDescription key="FunctionParameter_330" name="substrate" order="2" role="substrate"/>
-        <ParameterDescription key="FunctionParameter_342" name="Kms" order="3" role="constant"/>
-        <ParameterDescription key="FunctionParameter_353" name="Kcatp" order="4" role="constant"/>
-        <ParameterDescription key="FunctionParameter_355" name="product" order="5" role="product"/>
-        <ParameterDescription key="FunctionParameter_357" name="Kmp" order="6" role="constant"/>
       </ListOfParameterDescriptions>
     </Function>
   </ListOfFunctions>
@@ -318,23 +290,7 @@
       </Metabolite>
       <Metabolite key="Metabolite_43" name="Enzyme:YciA" simulationType="reactions" compartment="Compartment_1">
       </Metabolite>
-      <Metabolite key="Metabolite_45" name="Car_apo" simulationType="reactions" compartment="Compartment_1">
-        <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <rdf:Description rdf:about="#Metabolite_45">
-    <dcterms:created>
-      <rdf:Description>
-        <dcterms:W3CDTF>2015-07-14T16:38:13Z</dcterms:W3CDTF>
-      </rdf:Description>
-    </dcterms:created>
-  </rdf:Description>
-</rdf:RDF>
-
-        </MiriamAnnotation>
-      </Metabolite>
-      <Metabolite key="Metabolite_49" name="Sfp_enzyme" simulationType="reactions" compartment="Compartment_1">
+      <Metabolite key="Metabolite_47" name="Sfp_enzyme" simulationType="reactions" compartment="Compartment_1">
       </Metabolite>
     </ListOfMetabolites>
     <ListOfReactions>
@@ -361,9 +317,9 @@
           <Modifier metabolite="Metabolite_33" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4385" name="Kmb" value="0.00047"/>
-          <Constant key="Parameter_4386" name="Kma" value="0.00047"/>
-          <Constant key="Parameter_4387" name="Kcat" value="20418.3"/>
+          <Constant key="Parameter_4388" name="Kmb" value="0.00047"/>
+          <Constant key="Parameter_4389" name="Kma" value="0.00047"/>
+          <Constant key="Parameter_4390" name="Kcat" value="20418.3"/>
         </ListOfConstants>
         <KineticLaw function="Function_41">
           <ListOfCallParameters>
@@ -374,13 +330,13 @@
               <SourceParameter reference="Metabolite_3"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_262">
-              <SourceParameter reference="Parameter_4385"/>
+              <SourceParameter reference="Parameter_4388"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_279">
-              <SourceParameter reference="Parameter_4386"/>
+              <SourceParameter reference="Parameter_4389"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_277">
-              <SourceParameter reference="Parameter_4387"/>
+              <SourceParameter reference="Parameter_4390"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_273">
               <SourceParameter reference="Metabolite_33"/>
@@ -412,10 +368,10 @@
           <Modifier metabolite="Metabolite_35" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4388" name="Kmb" value="7e-05"/>
-          <Constant key="Parameter_4389" name="Kma" value="5e-05"/>
-          <Constant key="Parameter_4390" name="Kcat" value="336.408"/>
-          <Constant key="Parameter_4391" name="Kia" value="5e-05"/>
+          <Constant key="Parameter_4391" name="Kmb" value="7e-05"/>
+          <Constant key="Parameter_4392" name="Kma" value="5e-05"/>
+          <Constant key="Parameter_4393" name="Kcat" value="336.408"/>
+          <Constant key="Parameter_4394" name="Kia" value="5e-05"/>
         </ListOfConstants>
         <KineticLaw function="Function_43">
           <ListOfCallParameters>
@@ -426,26 +382,28 @@
               <SourceParameter reference="Metabolite_11"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_287">
-              <SourceParameter reference="Parameter_4388"/>
+              <SourceParameter reference="Parameter_4391"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_289">
-              <SourceParameter reference="Parameter_4389"/>
+              <SourceParameter reference="Parameter_4392"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_282">
-              <SourceParameter reference="Parameter_4390"/>
+              <SourceParameter reference="Parameter_4393"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_267">
               <SourceParameter reference="Metabolite_35"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_291">
-              <SourceParameter reference="Parameter_4391"/>
+              <SourceParameter reference="Parameter_4394"/>
             </CallParameter>
           </ListOfCallParameters>
         </KineticLaw>
       </Reaction>
       <Reaction key="Reaction_2" name="Crt" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_2">
     <dcterms:created>
       <rdf:Description>
@@ -454,6 +412,7 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
+
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_7" stoichiometry="1"/>
@@ -466,8 +425,8 @@
           <Modifier metabolite="Metabolite_39" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4392" name="Km" value="7.5e-05"/>
-          <Constant key="Parameter_4393" name="Kcat" value="1168.85"/>
+          <Constant key="Parameter_4395" name="Km" value="7.5e-05"/>
+          <Constant key="Parameter_4396" name="Kcat" value="1168.85"/>
         </ListOfConstants>
         <KineticLaw function="Function_42">
           <ListOfCallParameters>
@@ -475,10 +434,10 @@
               <SourceParameter reference="Metabolite_7"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_281">
-              <SourceParameter reference="Parameter_4392"/>
+              <SourceParameter reference="Parameter_4395"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_280">
-              <SourceParameter reference="Parameter_4393"/>
+              <SourceParameter reference="Parameter_4396"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_246">
               <SourceParameter reference="Metabolite_39"/>
@@ -510,10 +469,10 @@
           <Modifier metabolite="Metabolite_41" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4394" name="Kmb" value="5.2e-06"/>
-          <Constant key="Parameter_4395" name="Kma" value="2.7e-06"/>
-          <Constant key="Parameter_4396" name="Kcat" value="1881.62"/>
-          <Constant key="Parameter_4397" name="Kia" value="1.98e-07"/>
+          <Constant key="Parameter_4397" name="Kmb" value="5.2e-06"/>
+          <Constant key="Parameter_4398" name="Kma" value="2.7e-06"/>
+          <Constant key="Parameter_4399" name="Kcat" value="1881.62"/>
+          <Constant key="Parameter_4400" name="Kia" value="1.98e-07"/>
         </ListOfConstants>
         <KineticLaw function="Function_43">
           <ListOfCallParameters>
@@ -524,28 +483,26 @@
               <SourceParameter reference="Metabolite_21"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_287">
-              <SourceParameter reference="Parameter_4394"/>
+              <SourceParameter reference="Parameter_4397"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_289">
-              <SourceParameter reference="Parameter_4395"/>
+              <SourceParameter reference="Parameter_4398"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_282">
-              <SourceParameter reference="Parameter_4396"/>
+              <SourceParameter reference="Parameter_4399"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_267">
               <SourceParameter reference="Metabolite_41"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_291">
-              <SourceParameter reference="Parameter_4397"/>
+              <SourceParameter reference="Parameter_4400"/>
             </CallParameter>
           </ListOfCallParameters>
         </KineticLaw>
       </Reaction>
       <Reaction key="Reaction_4" name="YciA" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_4">
     <dcterms:created>
       <rdf:Description>
@@ -554,7 +511,6 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_17" stoichiometry="1"/>
@@ -567,8 +523,8 @@
           <Modifier metabolite="Metabolite_43" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4398" name="Kcat" value="1320"/>
-          <Constant key="Parameter_4399" name="Km" value="3.5e-06"/>
+          <Constant key="Parameter_4401" name="Kcat" value="1320"/>
+          <Constant key="Parameter_4402" name="Km" value="3.5e-06"/>
         </ListOfConstants>
         <KineticLaw function="Function_42">
           <ListOfCallParameters>
@@ -576,10 +532,10 @@
               <SourceParameter reference="Metabolite_17"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_281">
-              <SourceParameter reference="Parameter_4399"/>
+              <SourceParameter reference="Parameter_4402"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_280">
-              <SourceParameter reference="Parameter_4398"/>
+              <SourceParameter reference="Parameter_4401"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_246">
               <SourceParameter reference="Metabolite_43"/>
@@ -614,11 +570,11 @@
           <Modifier metabolite="Metabolite_37" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4400" name="Kia" value="1.3e-05"/>
-          <Constant key="Parameter_4401" name="Kmb" value="4.8e-05"/>
-          <Constant key="Parameter_4402" name="Kmc" value="0.000115"/>
-          <Constant key="Parameter_4403" name="Kma" value="1.3e-05"/>
-          <Constant key="Parameter_4404" name="Kcat" value="150"/>
+          <Constant key="Parameter_4403" name="Kia" value="0.013"/>
+          <Constant key="Parameter_4404" name="Kmb" value="4.8e-05"/>
+          <Constant key="Parameter_4405" name="Kmc" value="0.000115"/>
+          <Constant key="Parameter_4406" name="Kma" value="0.013"/>
+          <Constant key="Parameter_4407" name="Kcat" value="150"/>
         </ListOfConstants>
         <KineticLaw function="Function_40">
           <ListOfCallParameters>
@@ -632,78 +588,22 @@
               <SourceParameter reference="Metabolite_29"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_270">
-              <SourceParameter reference="Parameter_4400"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_272">
-              <SourceParameter reference="Parameter_4401"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_274">
-              <SourceParameter reference="Parameter_4402"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_276">
               <SourceParameter reference="Parameter_4403"/>
             </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_264">
+            <CallParameter functionParameter="FunctionParameter_272">
               <SourceParameter reference="Parameter_4404"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_274">
+              <SourceParameter reference="Parameter_4405"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_276">
+              <SourceParameter reference="Parameter_4406"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_264">
+              <SourceParameter reference="Parameter_4407"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_254">
               <SourceParameter reference="Metabolite_37"/>
-            </CallParameter>
-          </ListOfCallParameters>
-        </KineticLaw>
-      </Reaction>
-      <Reaction key="Reaction_6" name="Car-activation" reversible="true" fast="false">
-        <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <rdf:Description rdf:about="#Reaction_6">
-    <dcterms:created>
-      <rdf:Description>
-        <dcterms:W3CDTF>2015-07-14T16:37:11Z</dcterms:W3CDTF>
-      </rdf:Description>
-    </dcterms:created>
-  </rdf:Description>
-</rdf:RDF>
-
-        </MiriamAnnotation>
-        <ListOfSubstrates>
-          <Substrate metabolite="Metabolite_45" stoichiometry="1"/>
-        </ListOfSubstrates>
-        <ListOfProducts>
-          <Product metabolite="Metabolite_37" stoichiometry="1"/>
-        </ListOfProducts>
-        <ListOfModifiers>
-          <Modifier metabolite="Metabolite_49" stoichiometry="1"/>
-        </ListOfModifiers>
-        <ListOfConstants>
-          <Constant key="Parameter_4445" name="Kcats" value="96"/>
-          <Constant key="Parameter_4444" name="Kms" value="4.45e-06"/>
-          <Constant key="Parameter_4441" name="Kcatp" value="96"/>
-          <Constant key="Parameter_4442" name="Kmp" value="2.6e-05"/>
-        </ListOfConstants>
-        <KineticLaw function="Function_44">
-          <ListOfCallParameters>
-            <CallParameter functionParameter="FunctionParameter_351">
-              <SourceParameter reference="Parameter_4445"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_347">
-              <SourceParameter reference="Metabolite_49"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_330">
-              <SourceParameter reference="Metabolite_45"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_342">
-              <SourceParameter reference="Parameter_4444"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_353">
-              <SourceParameter reference="Parameter_4441"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_355">
-              <SourceParameter reference="Metabolite_37"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_357">
-              <SourceParameter reference="Parameter_4442"/>
             </CallParameter>
           </ListOfCallParameters>
         </KineticLaw>
@@ -736,11 +636,10 @@
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyraldehyde]" value="0" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:AtoB]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Hbd]" value="602.2141789999999" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Car]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Car]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Crt]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ter]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:YciA]" value="602.2141789999999" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Car_apo]" value="602.2141789999999" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Sfp_enzyme]" value="602.2141789999999" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
@@ -772,17 +671,11 @@
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[YciA],ParameterGroup=Parameters,Parameter=Km" value="3.5e-06" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
           <ModelParameterGroup cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kia" value="1.3e-05" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kia" value="0.013" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kmb" value="4.8e-05" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kmc" value="0.000115" type="ReactionParameter" simulationType="fixed"/>
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kma" value="1.3e-05" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kma" value="0.013" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car],ParameterGroup=Parameters,Parameter=Kcat" value="150" type="ReactionParameter" simulationType="fixed"/>
-          </ModelParameterGroup>
-          <ModelParameterGroup cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kcats" value="96" type="ReactionParameter" simulationType="fixed"/>
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kms" value="4.45e-06" type="ReactionParameter" simulationType="fixed"/>
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kcatp" value="96" type="ReactionParameter" simulationType="fixed"/>
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Car-activation],ParameterGroup=Parameters,Parameter=Kmp" value="2.6e-05" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
@@ -793,30 +686,29 @@
       <StateTemplateVariable objectReference="Metabolite_13"/>
       <StateTemplateVariable objectReference="Metabolite_23"/>
       <StateTemplateVariable objectReference="Metabolite_5"/>
-      <StateTemplateVariable objectReference="Metabolite_37"/>
       <StateTemplateVariable objectReference="Metabolite_17"/>
       <StateTemplateVariable objectReference="Metabolite_7"/>
+      <StateTemplateVariable objectReference="Metabolite_9"/>
       <StateTemplateVariable objectReference="Metabolite_19"/>
       <StateTemplateVariable objectReference="Metabolite_15"/>
       <StateTemplateVariable objectReference="Metabolite_25"/>
       <StateTemplateVariable objectReference="Metabolite_27"/>
       <StateTemplateVariable objectReference="Metabolite_31"/>
-      <StateTemplateVariable objectReference="Metabolite_9"/>
-      <StateTemplateVariable objectReference="Metabolite_45"/>
       <StateTemplateVariable objectReference="Metabolite_3"/>
       <StateTemplateVariable objectReference="Metabolite_11"/>
       <StateTemplateVariable objectReference="Metabolite_21"/>
       <StateTemplateVariable objectReference="Metabolite_29"/>
       <StateTemplateVariable objectReference="Metabolite_33"/>
       <StateTemplateVariable objectReference="Metabolite_35"/>
+      <StateTemplateVariable objectReference="Metabolite_37"/>
       <StateTemplateVariable objectReference="Metabolite_39"/>
       <StateTemplateVariable objectReference="Metabolite_41"/>
       <StateTemplateVariable objectReference="Metabolite_43"/>
-      <StateTemplateVariable objectReference="Metabolite_49"/>
+      <StateTemplateVariable objectReference="Metabolite_47"/>
       <StateTemplateVariable objectReference="Compartment_1"/>
     </StateTemplate>
     <InitialState type="initialState">
-      0 13248.711938 0 0 84309.98505999999 0 0 0 1565756.8654 23396020854.15 0 168619.97012 0 1264.6497759 602.2141789999999 367350.6491900001 72265.70147999996 49983.776857 5781256.118399996 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 1e-12 
+      0 13248.711938 0 0 84309.98505999999 0 0 1264.6497759 1565756.8654 23396020854.15 0 168619.97012 0 367350.6491900001 72265.70147999996 49983.776857 5781256.118399996 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 1e-12 
     </InitialState>
   </Model>
   <ListOfTasks>
@@ -962,7 +854,7 @@
     <Task key="Task_3" name="Sensitivities" type="sensitivities" scheduled="false" updateModel="false">
       <Report reference="Report_1" target="" append="1" confirmOverwrite="1"/>
       <Problem>
-        <Parameter name="SubtaskType" type="unsignedInteger" value="1"/>
+        <Parameter name="SubtaskType" type="unsignedInteger" value="2"/>
         <ParameterGroup name="TargetFunctions">
           <Parameter name="SingleObject" type="cn" value=""/>
           <Parameter name="ObjectListType" type="unsignedInteger" value="7"/>
@@ -970,7 +862,7 @@
         <ParameterGroup name="ListOfVariables">
           <ParameterGroup name="Variables">
             <Parameter name="SingleObject" type="cn" value=""/>
-            <Parameter name="ObjectListType" type="unsignedInteger" value="41"/>
+            <Parameter name="ObjectListType" type="unsignedInteger" value="40"/>
           </ParameterGroup>
         </ParameterGroup>
       </Problem>
