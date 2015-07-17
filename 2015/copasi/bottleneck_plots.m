@@ -7,25 +7,25 @@ concentrations = [0:0.000001:0.002];
 % Comparison of enzymes
 figure
 % hdb
-hdbvals = hdp(concentrations,336.408402,5e-05,7e-05);
-plot(concentrations,hdbvals,'b')%201.8450412
+hdbvals = hdp(concentrations,0.677,0.0656,7e-05); %336.408402, 5e-5
+semilogy(concentrations,hdbvals,'b')%201.8450412
 hold on
 % Car
-carvals = car(concentrations,150,1.3e-05,4.8e-05,0.000115,1.3e-05);
-plot(concentrations,carvals,'r')
+carvals = car(concentrations,150,1.3e-02,4.8e-05,0.000115,1.3e-05);
+semilogy(concentrations,carvals,'r')
 % Ter
 tervals = ter(concentrations,1881.62,2.7e-06,5.2e-06,1.98e-07);
-plot(concentrations,tervals,'m')
+semilogy(concentrations,tervals,'m')
 hold on
 % crt
 crtvals = crt_ycia(concentrations,1168.85,7.5e-05);
-plot(concentrations,crtvals,'y')
+semilogy(concentrations,crtvals,'y')
 % ycia
 yciavals = crt_ycia(concentrations,1320,3.5e-06);
-plot(concentrations,yciavals,'g')
+semilogy(concentrations,yciavals,'g')
 % AtoB
 atobvals = atob(concentrations,20418.3,0.00047);
-plot(concentrations,atobvals,'k')
+semilogy(concentrations,atobvals,'k')
 
 title('Michaelis-Menten plots of propane pathway')
 
