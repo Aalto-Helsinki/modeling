@@ -285,7 +285,7 @@ def main():
             if step_amount == spare_amount:
                 del sub_movements
                 sub_movements = []
-                for i in range(0,sub_amount): 
+                for i in range(0,len(substrates)): 
                     movements_x = norm.rvs(size = spare_amount).tolist()
                     movements_y = norm.rvs(size = spare_amount).tolist()
                     mov = [movements_x,movements_y]
