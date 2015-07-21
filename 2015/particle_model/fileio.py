@@ -56,6 +56,19 @@ class fileIO(object):
         return {'radius':cell_rad,'enz_types':enz_types,'enz_amount_per_type':enz_am_per_type,'sub_amount':sub_amount,'steps':steps,
                 'dt':dt,'replenish':replenish,'enz_mass':enz_masses,'sub_mass':sub_masses,'enz_busy':enz_busyness,'enz_prob':enz_prob,
                 'enz_range':enz_range,'if_sup_enz':sup_enz,'spare_table':spare_table}
+    
+    def loadEnzyme(self,listoflines):
+        pass
+    
+    def loadSubstrate(self,listoflines):
+        pass
+    
+    def altLoadSettings(self, listoflines):
+        pass
+    
+    def loadFile(self,filename):
+        pass
+    
 
     
     def writeOutput(self,results):

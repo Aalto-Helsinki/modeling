@@ -102,12 +102,17 @@ class Enzyme(object):
     -if not busy, check if possible to bind to substrates
     Transform a substrate to the new type (the product type)
     '''
-    def __init__(self, obj, sub_type, prod_type):
+    def __init__(self,name, obj, sub_type, prod_type,group_id,r_chance,r_range,busy):
         self.obj = obj
         self.sub_type = sub_type
         self.prod_type = prod_type
+        self.group_id = group_id
+        self.react_chance = r_chance
+        self.react_range = r_range
+        self.name = name
+        self.busy = busy
         self.status = 0
-        
+
     def updBusy(self):
         if self.status > 0:
             self.status -= 1
