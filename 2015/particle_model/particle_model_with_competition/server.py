@@ -380,10 +380,12 @@ def main():
                 react_ams=0
                 print("number of simulated particles:", len(substrates) + len(enzymes))
         '''
-        if step % 100 == 0:
-            print("reactions/500 steps:",react_ams)
-            print("different enzyme types:")
-            print(sub_amounts[0][step-1],sub_amounts[1][step-1],sub_amounts[2][step-1],sub_amounts[3][step-1])
+        if step % 500 == 0:
+            print(step)
+            if step % 1000 == 0:
+                print("Step",step,",reactions/1000 steps:",react_ams)
+                print("Different enzyme types:")
+                print(sub_amounts[0][step-1],sub_amounts[1][step-1],sub_amounts[2][step-1],sub_amounts[3][step-1])
     cols = ['r','g','b','c','m','k','r']
     
     time2 = tm.localtime()
