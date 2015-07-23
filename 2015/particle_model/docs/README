@@ -1,4 +1,4 @@
-A simple tool to model movements in a particle
+A simple tool to model movements in a particle-like fashion
 -----------------------------------------------
 -----------------------------------------------
 DEPENDENCIES:
@@ -85,9 +85,7 @@ better)
 
 9. Other enzymes for the first reaction to indicate that the cell has other enzymes
 consuming butyraldehyde, and scans to see if this changes the situation dramatically.
-||With ugly hacking, this is easy to do, but expanding on this would need a major overhaul
-of the way the simulation currently handles reaction pathways.
-Perhaps a chain or "pathlike" approach would be better?||
+||DONE||
 -------------------------------------------------
 -------------------------------------------------
 FQA/Frequently Questioned Answers:
