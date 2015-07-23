@@ -134,14 +134,16 @@ class Substrate(object):
     Methods that are needed:
     -transforming method, which changes the type field of a substrate object 
     '''
-    def __init__(self, obj, typ):
+    def __init__(self, obj, typ, rep):
         self.obj = obj
         self.type = typ
+        self.replenish = rep
         self.status = 0
     
-    def transform(self, typ, new_mass):
+    def transform(self, typ, new_mass,new_replenish):
         self.type = typ
         self.obj.mass = new_mass
+        self.replenish = new_replenish
     
     def updBusy(self):
         if self.status > 0:

@@ -39,21 +39,15 @@ def updateobj(obj, delta, dt):
     #calculate the movement
     #apply the movement
 
-#def updBus(sub):
-    #if sub.status > 0:
-    #        sub.status -= 1
-    #return sub
-
-def transformsub(sub,enz,prob,new_mass):
+def transformsub(sub,enz,prob,new_mass,prod_rep):
     '''
     Transforms a substrate to another.
     '''
-    
     a = prob
     if a > 1:
         a = 0.5
     if random.random() < a:
-        sub.transform(sub.type +1,new_mass)
+        sub.transform(enz.prod_type,new_mass,prod_rep)
         return 1
     return 0
 
@@ -84,8 +78,7 @@ def createEnz(cell_rad,dct):
 def createSupEnz(ob,dct):
     return Enzyme(dct['name'],ob,dct['sub_type'],dct['prod_type'],dct['group_id'],dct['reaction_chance'],dct['reaction_range'],dct['busy'])
 
-
-def createSub(cell_rad, type, mass):
+def createSub(cell_rad, type, mass, rep):
     '''
     Creates a substrate object that can then be appended to a list.
     The substrate is placed in a random location inside a circle (cell).
@@ -97,7 +90,7 @@ def createSub(cell_rad, type, mass):
         y = cell_rad*random.random()
     vec = Vector2(x,y)
     ob = Obj(mass,vec)
-    return Substrate(ob,type)
+    return Substrate(ob,type,rep)
 
 def updatePos(part, ):
     pass
@@ -118,8 +111,10 @@ def main():
         print("The filename for settings was not specified! Shutting down...")
         return -1
     constants_container = fio.loadFile(const_filename)
+    '''
     for dct in constants_container:
         print(dct)
+    '''
     #Load general settings first
     a = 0
     for dct in constants_container:
@@ -133,12 +128,14 @@ def main():
     #creation of substrates
     substrates = []
     sub_cont = []
+    sub_rep_table = {}
     for dct in constants_container:
         if dct['MODULE_TYPE'] == 'substrate':
             sub_cont.append(dct)
     for dct in sub_cont:
         for i in range(0,dct['amount']):
-            substrates.append(createSub(cell_radius, dct['type'], dct['mass']))
+            substrates.append(createSub(cell_radius, dct['type'], dct['mass'],dct['replenish']))
+        sub_rep_table[dct['type']] = dct['replenish']
     
     
     #creation of enzymes, which is a bit trickier...
@@ -179,6 +176,20 @@ def main():
             #create enzymes
             for dct in group:
                 enzymes.append(createSupEnz(ob, dct))
+    
+    #figure out pathway endpoints, make product dicts, these will be used to "store" products that can't react anymore.
+    product_amounts = {}
+    sub_types = []
+    prod_types = []
+    for dct in enz_cont:
+        #find out the prod_types that have no sub_types to match
+        if dct['sub_type'] not in sub_types:
+            sub_types.append(dct['sub_type'])
+        if dct['prod_type'] not in prod_types:
+            prod_types.append(dct['prod_type'])
+    for prod in prod_types:
+        if prod not in sub_types:
+            product_amounts[prod] = 0  
     #create substrate mass table
     sub_mass = {}
     for dct in sub_cont:
@@ -198,35 +209,17 @@ def main():
     #T = temperature in kelvin, this is 37 C, or 310 K
     #eta = viscosity of water in SI units, this is approx. 0.7*10^-3
     #d = radius of the particles, this is (3/4pi*mass)^1/3*0.43nm
-    #we can calculate the radius from mass, if we assume every particle is approximately the same density (they are comprised from
-    #the same elements, so why not
-    #this means that we don't actually need a variable for delta 
-    #so:
-    #K_b = 
-    #dim = 2
-    #dt = dt
-    #d ~= (relativemasstopropane/(4/3*pi))^(1/3)*0.43 nm
-    #create radius, dalton, other shit here, and multiply the movement in the movement loop with it.
-    #create a list of k-values for both enzymes and substrates, so that we can just scale the movement based on
-    #the type of the enz/sub.
     sub_k_values = {}
     for key in sub_mass:
         rad = 0.066*sub_mass[key]**(1/3)*1e-9*2
-        print(rad)
         D = 310*1.38e-23/(3*0.7e-3*3.1415*rad)
-        print(D)
         sub_k_values[key] = (2*D*dt)**(1/2)
-        print(sub_k_values[key])
-    #print(sub_k_list)
-    
     enz_k_values = {}
     for key in enz_mass:
         rad = 0.066*enz_mass[key]**(1/3)*1e-9
-        print(rad)
         D = 1.38e-23*310/(3*3.1415*1.0e-3*rad)
-        print(D)
         enz_k_values[key] = (2*D*dt)**(1/2)
-        print(enz_k_values[key])
+    
     enz_movements = []
     sub_movements = []
     for i in range(0,len(enzymes)):
@@ -240,6 +233,7 @@ def main():
         movements_y = norm.rvs(size = spare_amount).tolist()
         mov = [movements_x,movements_y]
         sub_movements.append(mov)
+        
     mov_spare_x = norm.rvs(size = spare_amount).tolist()
     mov_spare_y = norm.rvs(size = spare_amount).tolist()
     spare_movements = [mov_spare_x,mov_spare_y]
@@ -252,14 +246,13 @@ def main():
         list = []
         sub_amounts.append(list)
     step = 0
-    #debugging, let's check out the movements of a few particles
+    #debugging, let's check out the movements of two particles
     if will_plot:
         sub_x_mov = []
         sub_y_mov = []
         
         enz_x_mov = []
         enz_y_mov = []
-    
     #begin main loop
     react_ams = 0
     while step < step_amount:
@@ -269,12 +262,6 @@ def main():
             en.updBusy()
         for sub in substrates:
             sub.updBusy()
-            
-        #move particles
-            #calculate movement
-            #check if applicable, if not, take from spare table
-            #make into a vector
-            #add
         k=0
         for sub in substrates:
             mass = sub.obj.mass
@@ -282,7 +269,7 @@ def main():
             dy = sub_movements[k][1][step%spare_amount]*sub_k_values[sub.type]
             x = sub.obj.position.x
             y = sub.obj.position.y
-            if step_amount == spare_amount:
+            if step == spare_amount:
                 del sub_movements
                 sub_movements = []
                 for i in range(0,len(substrates)): 
@@ -301,17 +288,16 @@ def main():
             sub.obj.setPosition( sub.obj.getPosition() + dpos)
             k += 1
         k=0
-        
         for enz in enzymes:
             mass = enz.obj.mass
             dx = enz_movements[k][0][step%spare_amount]*enz_k_values[enz.name]
             dy = enz_movements[k][1][step%spare_amount]*enz_k_values[enz.name]
             x = enz.obj.position.x
             y = enz.obj.position.y
-            if step_amount == spare_amount:
+            if step == spare_amount:
                 del enz_movements
                 enz_movements = []
-                for i in range(0,sub_amount):
+                for i in range(0,len(enzymes)):
                     movements_x = norm.rvs(size = spare_amount).tolist()
                     movements_y = norm.rvs(size = spare_amount).tolist()
                     mov = [movements_x,movements_y]
@@ -342,33 +328,37 @@ def main():
                     if sub.status == 0 and sub.type == enz.sub_type:
                         bonded = 0
                         dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.y-sub.obj.position.y)
-                        #if enz.obj.getDistance(sub.obj) < enz_range[enz.type] and enz.type == sub.type :
                         if dist < enz.react_range and enz.sub_type == sub.type :
-                            bonded = transformsub(sub,enz, enz.react_chance,sub_mass[enz.prod_type])
+                            bonded = transformsub(sub,enz, enz.react_chance,sub_mass[enz.prod_type],sub_rep_table[enz.prod_type])
                         if bonded > 0:
                             react_ams +=1
-                            #print("final sub for this enz:",substrates.index(sub ))
                             enz.status = enz.busy
                             sub.status = enz.busy
-                            '''
-                            if sub.type == SUB_T_FINAL:
-                                if replenish == 1:
-                                    products.append(copy.deepcopy(sub))
-                                    sub.transform(0,sub_mass[0])
-                                else:
-                                    products.append(sub)
-                                    substrates.remove(sub)
-                            '''
+                            #check if substrate
+                            if sub_rep_table[enz.sub_type] == 1:
+                                substrates.append(createSub(cell_radius, enz.sub_type, sub_mass[enz.sub_type],sub_rep_table[enz.sub_type]))
+                                #create movements for this substrate...
+                                movements_x = norm.rvs(size = spare_amount).tolist()
+                                movements_y = norm.rvs(size = spare_amount).tolist()
+                                mov = [movements_x,movements_y]
+                                sub_movements.append(mov)
+                            #check if substrate if of a type that needs not be simulated, then it can be removed from the
+                            #substrate list and moved to be a number.
+                            if sub.type in product_amounts:
+                                product_amounts[sub.type] +=1
+                                substrates.remove(sub)
                             break
         #collect data
         for i in range(0,len(sub_amounts)):
             a = 0
             for sub in substrates:
                 if i == sub.type-1:
-                    a += 1     
+                    a += 1    
+            if (i+1) in product_amounts:
+                a += product_amounts[i+1] 
             sub_amounts[i].append(a)
         step += 1
-        print(step)
+        
         #add values for graphs
         '''
         amounts = []
@@ -390,6 +380,10 @@ def main():
                 react_ams=0
                 print("number of simulated particles:", len(substrates) + len(enzymes))
         '''
+        if step % 100 == 0:
+            print("reactions/500 steps:",react_ams)
+            print("different enzyme types:")
+            print(sub_amounts[0][step-1],sub_amounts[1][step-1],sub_amounts[2][step-1],sub_amounts[3][step-1])
     cols = ['r','g','b','c','m','k','r']
     
     time2 = tm.localtime()
@@ -406,7 +400,6 @@ def main():
     strfile.close()
     outputfile.close
     
-    #print("sim over")
     #simulation over, start plotting
     if will_plot:
         cir = np.linspace(0, 2*3.1415, 100)
@@ -415,11 +408,6 @@ def main():
         plot.plot(sub_x_mov,sub_y_mov,'g')
         plot.plot(enz_x_mov,enz_y_mov,'r')
         #plot.show()
-    '''   
-    for val in sub_plot_values:
-        plot.plot(val,cols[sub_plot_values.index(val)])
-    plot.show()
-    '''
     #plotting over
 
 if __name__ == '__main__':
