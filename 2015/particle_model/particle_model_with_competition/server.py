@@ -347,6 +347,7 @@ def main():
                             if sub.type in product_amounts:
                                 product_amounts[sub.type] +=1
                                 substrates.remove(sub)
+                                sub_movements.pop()
                             break
         #collect data
         for i in range(0,len(sub_amounts)):
@@ -380,7 +381,7 @@ def main():
                 react_ams=0
                 print("number of simulated particles:", len(substrates) + len(enzymes))
         '''
-        if step % 500 == 0:
+        if step % 500 == 0 and step % 1000 != 0:
             print(step)
             if step % 1000 == 0:
                 print("Step",step,",reactions/1000 steps:",react_ams)
