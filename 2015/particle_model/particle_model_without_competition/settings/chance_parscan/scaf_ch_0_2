@@ -1,0 +1,37 @@
+#This is a settings file, comments are started with # on a new line.
+#The order of things is VITAL, and SHOULD NOT BE CHANGED
+#changing order will lead to either crashes, or worse, undefined behaviour.
+#If you don't know what you are doing, consult your seniors.
+#You have been warned.
+#cell radius
+4e-5
+#no. of enz_types, this time CAR and ADO
+2
+#enz_amount per type
+15
+#substrate amount
+750
+#timeframe, as simulation steps
+40000
+#dt
+0.05e-3
+#delta, determined from mass and temperature
+0.5
+#enzyme masses, separated by a semicolon. These masses are compared to the mass of propane.
+619,2904,1,1,1,1
+#substrate masses, there HAS TO BE one more than enzyme masses. Same mass comparison here
+2,1.6,1,1,1,1,1
+#enzyme busyness times, as simulation steps, integers. has to be as many as 
+#enzymes. separated by semicolon
+5,5,1,1,1,1
+#enz_probatilities, or kinetic efficiencies, CAR has a Km 0.362, Ado has (maybe) a Km of 0.036, let's put the probabilities as 0.36 and 0.362.
+#If we assume Kcat to be the same for both (not true but these are found nowhere),
+#we get that ADO is more efficient than CAR (?)
+#these are not real values, but (hopefully) give some sort of guidance.
+0.2,0.2,0.1,0.1,0.1,0.1,0.1,0.1,0.1
+#enz_range
+1e-7,1e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7,0.5e-7
+#is this a super enzyme setting or not, 1 is yes, 0 is no
+1
+#spare table amount, do not change if you don't know what it is
+5000
