@@ -7,18 +7,56 @@ concentrations = [0:0.000001:0.002];
 % Comparison of enzymes
 figure
 % hdb
-hdbvals = hdp(concentrations,10e-6,336.408402,5e-5,7e-05); %336.408402, 5e-5
-semilogy(concentrations,hdbvals,'b')%201.8450412
+hbdvals = hbd(concentrations,1e-6,336.408402,5e-5,7e-05); 
+semilogy(concentrations,hbdvals,'b')
 hold on
-% fadb2
-fadb2vals = fadb2(concentrations,10e-6,0.677,0.723,65.6,50,43.5,29.5); 
+% fadb2 approximated as better with irreversibility
+fadb2vals = ter(concentrations,1e-6,0.677,0.656,0.50,0.656);%fadb2(concentrations,10e-6,0.677,0.723,65.6,50,43.5,29.5); 
 semilogy(concentrations,fadb2vals,'c')
 hold on
 % Car
 carvals = car(concentrations,1e-6,150,1.3e-02,4.8e-05,0.000115,0.013);
 semilogy(concentrations,carvals,'r')
 % Ter
-tervals = ter(concentrations,10e-6,1881.62,2.7e-06,5.2e-06,1.98e-07);
+tervals = ter(concentrations,1e-6,1881.62,7e-05,5.2e-06,1.98e-07);
+semilogy(concentrations,tervals,'m')
+hold on
+% crt
+crtvals = crt_ycia(concentrations,1e-6,1310.812568,3e-05);
+semilogy(concentrations,crtvals,'y')
+% ycia
+yciavals = crt_ycia(concentrations,1e-6,1320,3.5e-06);
+semilogy(concentrations,yciavals,'g')
+% AtoB
+atobvals = atob(concentrations,1e-6,10653.02494,0.00047);
+semilogy(concentrations,atobvals,'k')
+% ADO
+adovals = crt_ycia(concentrations,1e-6,0.215,0.0101);
+semilogy(concentrations,adovals,'Color',[30/255,137/255,37/225])
+
+title('Michaelis-Menten plots of propane pathway')
+
+xlabel('Concentration of substrates, [mol/l] ([mmol/ml])') % x-axis label
+ylabel('Speed of the reaction, [mol/min] ') % y-axis label
+
+legend('Hbd','FadB2','CAR','Ter','Crt','YciA','AtoB','ADO')
+
+
+% Comparison of enzymes
+figure
+% hdb
+hbdvals = hbd(concentrations,10e-6,336.408402,5e-5,7e-05); %336.408402, 5e-5
+semilogy(concentrations,hbdvals,'b')%201.8450412
+hold on
+% fadb2 approximated as better with irreversibility
+fadb2vals = ter(concentrations,10e-6,0.677,0.0656,0.050,0.0656);%fadb2(concentrations,10e-6,0.677,0.723,65.6,50,43.5,29.5); 
+semilogy(concentrations,fadb2vals,'c')
+hold on
+% Car
+carvals = car(concentrations,1e-6,150,1.3e-02,4.8e-05,0.000115,0.013);
+semilogy(concentrations,carvals,'r')
+% Ter
+tervals = ter(concentrations,10e-6,1881.62,7e-05,5.2e-06,1.98e-07);
 semilogy(concentrations,tervals,'m')
 hold on
 % crt
@@ -34,7 +72,7 @@ semilogy(concentrations,atobvals,'k')
 adovals = crt_ycia(concentrations,10e-6,0.215,0.0101);
 semilogy(concentrations,adovals,'Color',[30/255,137/255,37/225])
 
-title('Michaelis-Menten plots of propane pathway')
+title('Michaelis-Menten plots of propane pathway (varying enzyme concentrations)')
 
 xlabel('Concentration of substrates, [mol/l] ([mmol/ml])') % x-axis label
 ylabel('Speed of the reaction, [mol/min] ') % y-axis label
@@ -42,7 +80,7 @@ ylabel('Speed of the reaction, [mol/min] ') % y-axis label
 legend('Hbd','FadB2','CAR','Ter','Crt','YciA','AtoB','ADO')
 
 
-save bottleneck concentrations hdbvals fadb2vals carvals tervals crtvals yciavals atobvals adovals
+% save bottleneck concentrations hdbvals fadb2vals carvals tervals crtvals yciavals atobvals adovals
 
 end
 
@@ -56,7 +94,7 @@ producta = 2.35473e-16; % this value is taken from time 100 min in Copasi time s
 productb = 2.1e-06; % this also rises all the time in the Copasi model, 
 % however since it it used also in other places in the cell the estimation
 % of normal value in the cell is more justified.
-Keq = 1;
+Keq = 0.3663;
 
 val = (substratea.*substrateb-(producta.*productb)./Keq)./ ...
     ((Kma.*Kmb)./(Kcat1.*enzyme)+(Kmb.*substratea)./(Kcat1.*enzyme)+...
@@ -73,7 +111,7 @@ val = Kcat.*enzyme.*(substratea.*substratea)./ ...
     (substratea.*substratea+Kma.*substratea+Kma.*substratea);
 end
 
-function [val] = hdp(A,enzyme,kcat,kma,kmb)
+function [val] = hbd(A,enzyme,kcat,kma,kmb)
 nadph = 0.00012;
 
 val = kcat.*enzyme.*A.*nadph./(A.*nadph+kmb.*A+kma.*nadph+kma.*kmb);

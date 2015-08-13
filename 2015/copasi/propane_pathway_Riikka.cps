@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-07-21 13:01:20 UTC -->
+<!-- generated with COPASI 4.15 (Build 95) (http://www.copasi.org) at 2015-08-12 12:10:12 UTC -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
 <COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="15" versionDevel="95" copasiSourcesModified="0">
   <ListOfFunctions>
@@ -295,9 +295,7 @@
     <ListOfReactions>
       <Reaction key="Reaction_0" name="AtoB" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_0">
     <dcterms:created>
       <rdf:Description>
@@ -306,7 +304,6 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_3" stoichiometry="2"/>
@@ -319,9 +316,9 @@
           <Modifier metabolite="Metabolite_33" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4388" name="Kmb" value="0.00047"/>
-          <Constant key="Parameter_4389" name="Kma" value="0.00047"/>
-          <Constant key="Parameter_4390" name="Kcat" value="10653"/>
+          <Constant key="Parameter_4391" name="Kmb" value="0.00047"/>
+          <Constant key="Parameter_4392" name="Kma" value="0.00047"/>
+          <Constant key="Parameter_4393" name="Kcat" value="10653"/>
         </ListOfConstants>
         <KineticLaw function="Function_41">
           <ListOfCallParameters>
@@ -332,13 +329,13 @@
               <SourceParameter reference="Metabolite_3"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_262">
-              <SourceParameter reference="Parameter_4388"/>
+              <SourceParameter reference="Parameter_4391"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_279">
-              <SourceParameter reference="Parameter_4389"/>
+              <SourceParameter reference="Parameter_4392"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_277">
-              <SourceParameter reference="Parameter_4390"/>
+              <SourceParameter reference="Parameter_4393"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_273">
               <SourceParameter reference="Metabolite_33"/>
@@ -348,9 +345,7 @@
       </Reaction>
       <Reaction key="Reaction_1" name="Hdb" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_1">
     <dcterms:created>
       <rdf:Description>
@@ -359,7 +354,6 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_1" stoichiometry="1"/>
@@ -373,10 +367,10 @@
           <Modifier metabolite="Metabolite_35" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4391" name="Kmb" value="7e-05"/>
-          <Constant key="Parameter_4392" name="Kma" value="5e-05"/>
-          <Constant key="Parameter_4393" name="Kia" value="5e-05"/>
-          <Constant key="Parameter_4394" name="Kcat" value="336.4"/>
+          <Constant key="Parameter_4394" name="Kmb" value="7e-05"/>
+          <Constant key="Parameter_4395" name="Kma" value="5e-05"/>
+          <Constant key="Parameter_4396" name="Kia" value="5e-05"/>
+          <Constant key="Parameter_4397" name="Kcat" value="336.4"/>
         </ListOfConstants>
         <KineticLaw function="Function_43">
           <ListOfCallParameters>
@@ -387,19 +381,19 @@
               <SourceParameter reference="Metabolite_11"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_287">
-              <SourceParameter reference="Parameter_4391"/>
+              <SourceParameter reference="Parameter_4394"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_289">
-              <SourceParameter reference="Parameter_4392"/>
+              <SourceParameter reference="Parameter_4395"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_282">
-              <SourceParameter reference="Parameter_4394"/>
+              <SourceParameter reference="Parameter_4397"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_267">
               <SourceParameter reference="Metabolite_35"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_291">
-              <SourceParameter reference="Parameter_4393"/>
+              <SourceParameter reference="Parameter_4396"/>
             </CallParameter>
           </ListOfCallParameters>
         </KineticLaw>
@@ -427,8 +421,8 @@
           <Modifier metabolite="Metabolite_39" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4395" name="Km" value="3e-05"/>
-          <Constant key="Parameter_4396" name="Kcat" value="1310.81"/>
+          <Constant key="Parameter_4398" name="Km" value="3e-05"/>
+          <Constant key="Parameter_4399" name="Kcat" value="1310.81"/>
         </ListOfConstants>
         <KineticLaw function="Function_42">
           <ListOfCallParameters>
@@ -436,10 +430,10 @@
               <SourceParameter reference="Metabolite_7"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_281">
-              <SourceParameter reference="Parameter_4395"/>
+              <SourceParameter reference="Parameter_4398"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_280">
-              <SourceParameter reference="Parameter_4396"/>
+              <SourceParameter reference="Parameter_4399"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_246">
               <SourceParameter reference="Metabolite_39"/>
@@ -449,9 +443,7 @@
       </Reaction>
       <Reaction key="Reaction_3" name="Ter" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_3">
     <dcterms:created>
       <rdf:Description>
@@ -460,7 +452,6 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_13" stoichiometry="1"/>
@@ -474,10 +465,10 @@
           <Modifier metabolite="Metabolite_41" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4397" name="Kmb" value="5.2e-06"/>
-          <Constant key="Parameter_4398" name="Kma" value="2.7e-06"/>
-          <Constant key="Parameter_4399" name="Kcat" value="1881.62"/>
-          <Constant key="Parameter_4400" name="Kia" value="1.98e-07"/>
+          <Constant key="Parameter_4400" name="Kmb" value="5.2e-06"/>
+          <Constant key="Parameter_4401" name="Kma" value="7e-05"/>
+          <Constant key="Parameter_4402" name="Kcat" value="1881.62"/>
+          <Constant key="Parameter_4403" name="Kia" value="1.98e-07"/>
         </ListOfConstants>
         <KineticLaw function="Function_43">
           <ListOfCallParameters>
@@ -488,28 +479,26 @@
               <SourceParameter reference="Metabolite_21"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_287">
-              <SourceParameter reference="Parameter_4397"/>
+              <SourceParameter reference="Parameter_4400"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_289">
-              <SourceParameter reference="Parameter_4398"/>
+              <SourceParameter reference="Parameter_4401"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_282">
-              <SourceParameter reference="Parameter_4399"/>
+              <SourceParameter reference="Parameter_4402"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_267">
               <SourceParameter reference="Metabolite_41"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_291">
-              <SourceParameter reference="Parameter_4400"/>
+              <SourceParameter reference="Parameter_4403"/>
             </CallParameter>
           </ListOfCallParameters>
         </KineticLaw>
       </Reaction>
       <Reaction key="Reaction_4" name="YciA" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_4">
     <dcterms:created>
       <rdf:Description>
@@ -518,7 +507,6 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_17" stoichiometry="1"/>
@@ -531,8 +519,8 @@
           <Modifier metabolite="Metabolite_43" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4401" name="Kcat" value="1320"/>
-          <Constant key="Parameter_4402" name="Km" value="3.5e-06"/>
+          <Constant key="Parameter_4404" name="Kcat" value="1320"/>
+          <Constant key="Parameter_4405" name="Km" value="3.5e-06"/>
         </ListOfConstants>
         <KineticLaw function="Function_42">
           <ListOfCallParameters>
@@ -540,10 +528,10 @@
               <SourceParameter reference="Metabolite_17"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_281">
-              <SourceParameter reference="Parameter_4402"/>
+              <SourceParameter reference="Parameter_4405"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_280">
-              <SourceParameter reference="Parameter_4401"/>
+              <SourceParameter reference="Parameter_4404"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_246">
               <SourceParameter reference="Metabolite_43"/>
@@ -553,9 +541,7 @@
       </Reaction>
       <Reaction key="Reaction_5" name="Car" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_5">
     <dcterms:created>
       <rdf:Description>
@@ -564,7 +550,6 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_23" stoichiometry="1"/>
@@ -581,11 +566,11 @@
           <Modifier metabolite="Metabolite_37" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4403" name="Kia" value="0.013"/>
-          <Constant key="Parameter_4404" name="Kmb" value="4.8e-05"/>
-          <Constant key="Parameter_4405" name="Kmc" value="0.000115"/>
-          <Constant key="Parameter_4406" name="Kma" value="0.013"/>
-          <Constant key="Parameter_4407" name="Kcat" value="150"/>
+          <Constant key="Parameter_4406" name="Kia" value="0.013"/>
+          <Constant key="Parameter_4407" name="Kmb" value="4.8e-05"/>
+          <Constant key="Parameter_4408" name="Kmc" value="0.000115"/>
+          <Constant key="Parameter_4409" name="Kma" value="0.013"/>
+          <Constant key="Parameter_4410" name="Kcat" value="150"/>
         </ListOfConstants>
         <KineticLaw function="Function_40">
           <ListOfCallParameters>
@@ -599,19 +584,19 @@
               <SourceParameter reference="Metabolite_29"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_270">
-              <SourceParameter reference="Parameter_4403"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_272">
-              <SourceParameter reference="Parameter_4404"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_274">
-              <SourceParameter reference="Parameter_4405"/>
-            </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_276">
               <SourceParameter reference="Parameter_4406"/>
             </CallParameter>
-            <CallParameter functionParameter="FunctionParameter_264">
+            <CallParameter functionParameter="FunctionParameter_272">
               <SourceParameter reference="Parameter_4407"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_274">
+              <SourceParameter reference="Parameter_4408"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_276">
+              <SourceParameter reference="Parameter_4409"/>
+            </CallParameter>
+            <CallParameter functionParameter="FunctionParameter_264">
+              <SourceParameter reference="Parameter_4410"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_254">
               <SourceParameter reference="Metabolite_37"/>
@@ -621,9 +606,7 @@
       </Reaction>
       <Reaction key="Reaction_6" name="ADO" reversible="false" fast="false">
         <MiriamAnnotation>
-<rdf:RDF
-   xmlns:dcterms="http://purl.org/dc/terms/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about="#Reaction_6">
     <dcterms:created>
       <rdf:Description>
@@ -632,7 +615,6 @@
     </dcterms:created>
   </rdf:Description>
 </rdf:RDF>
-
         </MiriamAnnotation>
         <ListOfSubstrates>
           <Substrate metabolite="Metabolite_31" stoichiometry="1"/>
@@ -644,8 +626,8 @@
           <Modifier metabolite="Metabolite_45" stoichiometry="1"/>
         </ListOfModifiers>
         <ListOfConstants>
-          <Constant key="Parameter_4408" name="Km" value="0.0101"/>
-          <Constant key="Parameter_4409" name="Kcat" value="0.215"/>
+          <Constant key="Parameter_4411" name="Km" value="0.0101"/>
+          <Constant key="Parameter_4412" name="Kcat" value="0.215"/>
         </ListOfConstants>
         <KineticLaw function="Function_42">
           <ListOfCallParameters>
@@ -653,10 +635,10 @@
               <SourceParameter reference="Metabolite_31"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_281">
-              <SourceParameter reference="Parameter_4408"/>
+              <SourceParameter reference="Parameter_4411"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_280">
-              <SourceParameter reference="Parameter_4409"/>
+              <SourceParameter reference="Parameter_4412"/>
             </CallParameter>
             <CallParameter functionParameter="FunctionParameter_246">
               <SourceParameter reference="Metabolite_45"/>
@@ -690,13 +672,13 @@
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[AMP]" value="168619.97012" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[ATP]" value="5781256.118399996" type="Species" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyraldehyde]" value="0" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:AtoB]" value="602.2141789999999" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Hbd]" value="602.2141789999999" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:AtoB]" value="3011.070895" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Hbd]" value="3011.070895" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Car]" value="602.2141789999999" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Crt]" value="602.2141789999999" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ter]" value="602.2141789999999" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Crt]" value="3011.070895" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ter]" value="3011.070895" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:YciA]" value="602.2141789999999" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ado]" value="602.2141789999999" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ado]" value="3011.070895" type="Species" simulationType="reactions"/>
           <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Propane]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
@@ -719,7 +701,7 @@
           </ModelParameterGroup>
           <ModelParameterGroup cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter]" type="Reaction">
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kmb" value="5.2e-06" type="ReactionParameter" simulationType="fixed"/>
-            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kma" value="2.7e-06" type="ReactionParameter" simulationType="fixed"/>
+            <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kma" value="6.999999999999999e-05" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kcat" value="1881.62" type="ReactionParameter" simulationType="fixed"/>
             <ModelParameter cn="CN=Root,Model=Propane pathway,Vector=Reactions[Ter],ParameterGroup=Parameters,Parameter=Kia" value="1.98e-07" type="ReactionParameter" simulationType="fixed"/>
           </ModelParameterGroup>
@@ -770,7 +752,7 @@
       <StateTemplateVariable objectReference="Compartment_1"/>
     </StateTemplate>
     <InitialState type="initialState">
-      0 13248.711938 0 0 0 0 84309.98505999999 0 1565756.8654 23396020854.15 0 168619.97012 1264.6497759 0 367350.6491900001 72265.70147999996 49983.776857 5781256.118399996 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 602.2141789999999 1e-12 
+      0 13248.711938 0 0 0 0 84309.98505999999 0 1565756.8654 23396020854.15 0 168619.97012 1264.6497759 0 367350.6491900001 72265.70147999996 49983.776857 5781256.118399996 3011.070895 3011.070895 602.2141789999999 3011.070895 3011.070895 602.2141789999999 3011.070895 1e-12 
     </InitialState>
   </Model>
   <ListOfTasks>
@@ -815,11 +797,11 @@
         <Parameter name="Subtask" type="unsignedInteger" value="1"/>
         <ParameterGroup name="ScanItems">
           <ParameterGroup name="ScanItem">
-            <Parameter name="Number of steps" type="unsignedInteger" value="10"/>
-            <Parameter name="Type" type="unsignedInteger" value="1"/>
-            <Parameter name="Object" type="cn" value="CN=Root,Model=Propane pathway,Vector=Reactions[ADO],ParameterGroup=Parameters,Parameter=Kcat,Reference=Value"/>
-            <Parameter name="Minimum" type="float" value="1"/>
             <Parameter name="Maximum" type="float" value="1.5"/>
+            <Parameter name="Minimum" type="float" value="1"/>
+            <Parameter name="Number of steps" type="unsignedInteger" value="10"/>
+            <Parameter name="Object" type="cn" value="CN=Root,Model=Propane pathway,Vector=Reactions[ADO],ParameterGroup=Parameters,Parameter=Kcat,Reference=Value"/>
+            <Parameter name="Type" type="unsignedInteger" value="1"/>
             <Parameter name="log" type="bool" value="0"/>
           </ParameterGroup>
         </ParameterGroup>
@@ -1120,240 +1102,240 @@
       <Parameter name="log Y" type="bool" value="0"/>
       <ListOfPlotItems>
         <PlotItem name="[Acetoacetyl-CoA]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Acetoacetyl-CoA],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[CoA]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[CoA],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[3-hydroxybutyryl-CoA]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[3-hydroxybutyryl-CoA],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[NADP+]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[NADP+],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Crotonyl-CoA]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Crotonyl-CoA],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[H2O]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[H2O],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Butyryl-CoA]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyryl-CoA],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[NAD+]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[NAD+],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Butyrate]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyrate],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[2Pi]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[2Pi],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[AMP]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[AMP],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Butyraldehyde]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Butyraldehyde],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Enzyme:AtoB]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:AtoB],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Enzyme:Hbd]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Hbd],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Enzyme:Car]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Car],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Enzyme:Crt]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Crt],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Enzyme:Ter]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ter],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Enzyme:YciA]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:YciA],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Enzyme:Ado]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Enzyme:Ado],Reference=Concentration"/>
           </ListOfChannels>
         </PlotItem>
         <PlotItem name="[Propane]" type="Curve2D">
-          <Parameter name="Line type" type="unsignedInteger" value="0"/>
-          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
-          <Parameter name="Line width" type="unsignedFloat" value="1"/>
-          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <Parameter name="Color" type="string" value="auto"/>
+          <Parameter name="Line subtype" type="unsignedInteger" value="0"/>
+          <Parameter name="Line type" type="unsignedInteger" value="0"/>
+          <Parameter name="Line width" type="unsignedFloat" value="1"/>
           <Parameter name="Recording Activity" type="string" value="during"/>
+          <Parameter name="Symbol subtype" type="unsignedInteger" value="0"/>
           <ListOfChannels>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Reference=Time"/>
             <ChannelSpec cn="CN=Root,Model=Propane pathway,Vector=Compartments[compartment],Vector=Metabolites[Propane],Reference=Concentration"/>
