@@ -1,25 +1,17 @@
 '''
 The main simulation file.
-Trying to implement comtetition..
 '''
 will_plot = 0
 
 #import objects
 from vector2 import *
-from fileio_alt import *
-from objects_revised import *
+from fileio import *
+from objects import *
 import math
 import copy
 import time as tm
 import numpy as np
-import scipy as sp
 from scipy.stats import norm
-try:
-    import matplotlib.pyplot as plot
-    print("Matplotlib detected, will plot...")
-    will_plot = 1
-except:
-    will_plot = 0
 import random
 from builtins import range
 import sys
@@ -36,8 +28,6 @@ def updateobj(obj, delta, dt):
         dy = norm.rvs(scale=delta**2*dt)
     dpos = Vector2(dx,dy)
     obj.setPosition( obj.getPosition() + dpos)
-    #calculate the movement
-    #apply the movement
 
 def transformsub(sub,enz,prob,new_mass,prod_rep):
     '''
@@ -76,6 +66,9 @@ def createEnz(cell_rad,dct):
     return Enzyme(dct['name'],ob,dct['sub_type'],dct['prod_type'],0,dct['reaction_chance'],dct['reaction_range'],dct['busy'])
 
 def createSupEnz(ob,dct):
+    '''
+    Creates an enzyme object that can then be appended to a list.
+    '''
     return Enzyme(dct['name'],ob,dct['sub_type'],dct['prod_type'],dct['group_id'],dct['reaction_chance'],dct['reaction_range'],dct['busy'])
 
 def createSub(cell_rad, type, mass, rep):
@@ -92,10 +85,10 @@ def createSub(cell_rad, type, mass, rep):
     ob = Obj(mass,vec)
     return Substrate(ob,type,rep)
 
-def updatePos(part, ):
-    pass
-
 def updateSpare(spare_list, spare_amount):
+    '''
+    Updates the spare list of gaussian distributed random variables when they are used.
+    '''
     del spare_list
     mov_spare_x = norm.rvs(size = spare_amount).tolist()
     mov_spare_y = norm.rvs(size = spare_amount).tolist()
@@ -137,8 +130,6 @@ def main():
             substrates.append(createSub(cell_radius, dct['type'], dct['mass'],dct['replenish']))
         sub_rep_table[dct['type']] = dct['replenish']
     
-    
-    #creation of enzymes, which is a bit trickier...
     enzymes = []
     enz_cont = []
     #separate the enzyme blocks for further processing
@@ -200,15 +191,7 @@ def main():
     for enz in enzymes:
         if enz.name not in enz_mass:
             enz_mass[enz.name] = enz.obj.mass
-    #create movement tables for each particle
-    #a way to calculate the displacement is to scale the standard normal distribution with the constant k, that is
-    # k = sqrt(dim*D*dt),
-    #where dim is the number of dimensions, D is the diffusion constant and dt is the time between each displacement
-    #D = K_b*T/(3*eta*pi*d), where
-    #K_b = botzmann constant, 1.38e-23
-    #T = temperature in kelvin, this is 37 C, or 310 K
-    #eta = viscosity of water in SI units, this is approx. 0.7*10^-3
-    #d = radius of the particles, this is (3/4pi*mass)^1/3*0.43nm
+    #create mobility tables for each particle
     sub_k_values = {}
     for key in sub_mass:
         rad = 0.066*sub_mass[key]**(1/3)*1e-9*2
@@ -237,8 +220,6 @@ def main():
     mov_spare_x = norm.rvs(size = spare_amount).tolist()
     mov_spare_y = norm.rvs(size = spare_amount).tolist()
     spare_movements = [mov_spare_x,mov_spare_y]
-    #variance of the force is D = myy*kb*T*4?.
-    #the movement is force*t/m
     
     #the lists for particle amounts
     sub_amounts = []
@@ -246,13 +227,6 @@ def main():
         list = []
         sub_amounts.append(list)
     step = 0
-    #debugging, let's check out the movements of two particles
-    if will_plot:
-        sub_x_mov = []
-        sub_y_mov = []
-        
-        enz_x_mov = []
-        enz_y_mov = []
     #begin main loop
     react_ams = 0
     while step < step_amount:
@@ -313,18 +287,10 @@ def main():
             
             enz.obj.setPosition( enz.obj.getPosition() + dpos)
             k +=1
-        
-        if will_plot:
-            sub_x_mov.append(substrates[0].obj.position.x)
-            sub_y_mov.append(substrates[0].obj.position.y)
-            enz_x_mov.append(enzymes[0].obj.position.x)
-            enz_y_mov.append(enzymes[0].obj.position.y)
-            
         #check and update bonding
         for enz in enzymes:
             if enz.status == 0:
                 for sub in substrates:
-                    #print("sub:",substrates.index(sub))
                     if sub.status == 0 and sub.type == enz.sub_type:
                         bonded = 0
                         dist = math.hypot(enz.obj.position.x-sub.obj.position.x,enz.obj.position.y-sub.obj.position.y)
@@ -343,7 +309,7 @@ def main():
                                 mov = [movements_x,movements_y]
                                 sub_movements.append(mov)
                             #check if substrate if of a type that needs not be simulated, then it can be removed from the
-                            #substrate list and moved to be a number.
+                            #substrate list and changed to just a number.
                             if sub.type in product_amounts:
                                 product_amounts[sub.type] +=1
                                 substrates.remove(sub)
@@ -359,36 +325,14 @@ def main():
                 a += product_amounts[i+1] 
             sub_amounts[i].append(a)
         step += 1
-        
-        #add values for graphs
-        '''
-        amounts = []
-        for i in range(0, sub_types):
-            amounts.append(0)
-        for sub in substrates:
-            amounts[sub.type] += 1
-        #print(amounts)
-        for prod in products:
-            amounts[sub_types-1] += 1
-        for i in range (0, sub_types):
-            sub_plot_values[i].append(amounts[i])
-            
-        step += 1
-        if step %500 == 0:
-            print(step)
-            if step %1000 == 0:
-                print("amount of reactions in 1000 steps:",react_ams)
-                react_ams=0
-                print("number of simulated particles:", len(substrates) + len(enzymes))
-        '''
-        if step % 500 == 0 and step % 1000 != 0:
-            print(step)
+        if step % 500 == 0 :
+            if step % 1000 != 0:
+                print("Step",step)
             if step % 1000 == 0:
                 print("Step",step,",reactions/1000 steps:",react_ams)
                 print("Different enzyme types:")
                 print(sub_amounts[0][step-1],sub_amounts[1][step-1],sub_amounts[2][step-1],sub_amounts[3][step-1])
-    cols = ['r','g','b','c','m','k','r']
-    
+    cols = ['r','g','b','c','m','k','r']   
     time2 = tm.localtime()
     print("simulation took", tm.time()-time1,"seconds")
     #write simulation results to a file
@@ -402,16 +346,6 @@ def main():
         outputfile.write(line)
     strfile.close()
     outputfile.close
-    
-    #simulation over, start plotting
-    if will_plot:
-        cir = np.linspace(0, 2*3.1415, 100)
-        plot.plot(cell_radius*np.cos(cir),cell_radius*np.sin(cir))
-        plot.plot(enzymes[0].react_range*np.cos(cir),enzymes[0].react_range*np.sin(cir))
-        plot.plot(sub_x_mov,sub_y_mov,'g')
-        plot.plot(enz_x_mov,enz_y_mov,'r')
-        #plot.show()
-    #plotting over
 
 if __name__ == '__main__':
     main()

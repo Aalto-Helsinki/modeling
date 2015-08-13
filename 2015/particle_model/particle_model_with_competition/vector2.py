@@ -1,7 +1,7 @@
 '''
 Created on Mar 20, 2015
 
-@author: lipastomies
+@author: Arto Lehisto
 '''
 import math
 
@@ -12,10 +12,6 @@ class Vector2(object):
     the vector has x,y components.
     You can scale vectors and sum them, as well as calculate their length
     '''
-    '''
-    
-    '''
-
 
     def __init__(self, x,y):
         '''
