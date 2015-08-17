@@ -1,6 +1,5 @@
 '''
 Created on Jul 14, 2015
-
 @author: Arto Lehisto
 '''
 from io import StringIO
@@ -148,12 +147,15 @@ class fileIO(object):
             linelist = current_line.strip("\n").split(":")
             values[linelist[0].strip()] = linelist[1].strip()
         #use that dictionary for loading the values in our enzyme dict
-        set_dict = {}
-        set_dict['cell_rad'] = float(values['cell_rad'])
-        set_dict['step_amount'] = int(values['step_amount'])
-        set_dict['dt'] = float(values['dt'])
-        set_dict['spare_table'] = int(values['spare_table'])
-        set_dict['MODULE_TYPE'] = 'settings'
+        try:
+            set_dict = {}
+            set_dict['cell_rad'] = float(values['cell_rad'])
+            set_dict['step_amount'] = int(values['step_amount'])
+            set_dict['dt'] = float(values['dt'])
+            set_dict['spare_table'] = int(values['spare_table'])
+            set_dict['MODULE_TYPE'] = 'settings'
+        except:
+            raise
         return set_dict
 
     def loadFile(self,filename):
@@ -161,20 +163,13 @@ class fileIO(object):
         This method returns a list of dictionaries
         containing the variables needed for the rettings
         and enzymes, as well as substrates.
-        Each dictionary is labeled with a 
-        #Module:modulename entry This makes it possible to correctly 
-        handle the dictionaries in the program.
         '''
         #if settings are loaded, how many substrates and enzymes are loaded
-        sett = 0
         f = open(filename,"r")
-        #all of the shit here
-        #read blocks until finished, return them
         current_line = readnewline(f)
         
         #the container for blocks, a list of dictionaries
         container = []
-        i=0
         while current_line != '':
             if current_line.startswith("#Module"):
                 listoflines = []
@@ -187,8 +182,6 @@ class fileIO(object):
                 module = self.chooseModule(listoflines)
                 container.append(module)
             current_line = readnewline(f)
-            
-            i = i+1
         f.close()
         return container
     
@@ -204,8 +197,7 @@ class fileIO(object):
             return self.loadEnzyme(listoflines)
         elif var == "Substrate":
             return self.loadSubstrate(listoflines)
-        
-
+    
     
     def writeOutput(self,results):
         '''
@@ -219,7 +211,6 @@ class fileIO(object):
                 file.write(str(value)+',')
             file.write('\n')
         return file
-    
     
 def readnewline(file):
     '''

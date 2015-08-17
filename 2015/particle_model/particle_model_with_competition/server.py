@@ -1,7 +1,6 @@
 '''
 The main simulation file.
 '''
-will_plot = 0
 
 #import objects
 from vector2 import *
@@ -116,12 +115,13 @@ def main():
             step_amount = dct['step_amount']
             dt = dct['dt']
             spare_amount = dct['spare_table']
-    #the  basic settings are now loaded, now to load enzymes and substrates
+    #the  basic settings are now loaded, nowfractal design define r4 black pearl to load enzymes and substrates
     spare_index = 0
     #creation of substrates
     substrates = []
     sub_cont = []
     sub_rep_table = {}
+    sub_transform_dct = {} #this houses substrate ob_id-time pairs
     for dct in constants_container:
         if dct['MODULE_TYPE'] == 'substrate':
             sub_cont.append(dct)
@@ -229,6 +229,8 @@ def main():
     step = 0
     #begin main loop
     react_ams = 0
+    #final time list
+    react_time_list = []
     while step < step_amount:
         #main loop goes here
         #update particle busynesses
@@ -263,7 +265,7 @@ def main():
             k += 1
         k=0
         for enz in enzymes:
-            mass = enz.obj.mass
+            mass = enz.obj.mass 
             dx = enz_movements[k][0][step%spare_amount]*enz_k_values[enz.name]
             dy = enz_movements[k][1][step%spare_amount]*enz_k_values[enz.name]
             x = enz.obj.position.x
@@ -300,7 +302,7 @@ def main():
                             react_ams +=1
                             enz.status = enz.busy
                             sub.status = enz.busy
-                            #check if substrate
+                            #check if substrate is of type
                             if sub_rep_table[enz.sub_type] == 1:
                                 substrates.append(createSub(cell_radius, enz.sub_type, sub_mass[enz.sub_type],sub_rep_table[enz.sub_type]))
                                 #create movements for this substrate...
@@ -310,6 +312,15 @@ def main():
                                 sub_movements.append(mov)
                             #check if substrate if of a type that needs not be simulated, then it can be removed from the
                             #substrate list and changed to just a number.
+                            if sub.type == 2:
+                                #create a new pair
+                                sub_transform_dct[str(id(sub))] = 0
+                            #if the substrate has transformed another time, make an entry to a list of times. Also delete this dict entry.
+                            if sub.type == 3:
+                                react_time_list.append(sub_transform_dct[str(id(sub))])
+                                sub_transform_dct.pop(str(id(sub)))
+                            if sub.type == 4:
+                                sub_transform_dct.pop(str(id(sub)))
                             if sub.type in product_amounts:
                                 product_amounts[sub.type] +=1
                                 substrates.remove(sub)
@@ -325,6 +336,7 @@ def main():
                 a += product_amounts[i+1] 
             sub_amounts[i].append(a)
         step += 1
+        #print(id(substrates[1]))
         if step % 500 == 0 :
             if step % 1000 != 0:
                 print("Step",step)
@@ -332,20 +344,33 @@ def main():
                 print("Step",step,",reactions/1000 steps:",react_ams)
                 print("Different enzyme types:")
                 print(sub_amounts[0][step-1],sub_amounts[1][step-1],sub_amounts[2][step-1],sub_amounts[3][step-1])
+        #add one to the times in substrate dict
+        for key in sub_transform_dct:
+            sub_transform_dct[key] += 1
     cols = ['r','g','b','c','m','k','r']   
     time2 = tm.localtime()
     print("simulation took", tm.time()-time1,"seconds")
+    print(react_time_list)
     #write simulation results to a file
+    t_file = StringIO()
+    for time in react_time_list:
+        t_file.write(str(time)+',')
+    t_file.seek(0,0)
     strfile = fio.writeOutput(sub_amounts)
     strfile.seek(0,0)
     filenlist = const_filename.split("/")
     filename = filenlist[len(filenlist)-2] + '-' +filenlist[len(filenlist)-1]
+    t_filename = 'times'+filenlist[len(filenlist)-2] + '-' +filenlist[len(filenlist)-1]
     dat =  datetime.datetime.now().strftime("%d-%m-%y_%H-%M-%S-%f")
     outputfile = open("data/"+filename+dat+".txt",'w')
     for line in strfile:
         outputfile.write(line)
+    t_outputfile = open("data/"+t_filename+dat+".txt",'w')
+    for line in t_file:
+        t_outputfile.write(line)
     strfile.close()
-    outputfile.close
+    outputfile.close()
+    t_outputfile.close()
 
 if __name__ == '__main__':
     main()
