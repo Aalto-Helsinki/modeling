@@ -22,8 +22,8 @@ semilogy(concentrations,carvals,'r')
 tervals = randombibiInhibition(concentrations,1e-6,5460,7e-05,5.2e-06,1.98e-07,8.3e-05);
 semilogy(concentrations,tervals,'m')
 hold on
-% crt                                  enzyme Kcat        K_M
-crtvals = michaelisMenten(concentrations,1e-6,1310.812568,3e-05);
+% crt                                  enzyme Kcat    K_M
+crtvals = michaelisMenten(concentrations,1e-6,1279.8,3e-05);
 semilogy(concentrations,crtvals,'y')
 % ycia                                  enzyme Kcat K_M
 yciavals = michaelisMenten(concentrations,1e-6,1320,3.5e-06);
@@ -63,8 +63,8 @@ semilogy(concentrations,carvals,'r')
 tervals = randombibiInhibition(concentrations,1.5e-6,5460,7e-05,5.2e-06,1.98e-07,8.3e-05);
 semilogy(concentrations,tervals,'m')
 hold on
-% crt                                   enzyme Kcat        K_M
-crtvals = michaelisMenten(concentrations,1.5e-6,1310.812568,3e-05);
+% crt                                   enzyme  Kcat    K_M
+crtvals = michaelisMenten(concentrations,1.5e-6,1279.8,3e-05);
 semilogy(concentrations,crtvals,'y')
 % ycia                                   enzyme Kcat   K_M
 yciavals = michaelisMenten(concentrations,1e-6,1320,3.5e-06);
