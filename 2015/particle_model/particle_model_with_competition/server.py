@@ -15,18 +15,14 @@ import random
 from builtins import range
 import sys
 import datetime
-from numpy import linspace
 
-def updateobj(obj, delta, dt):
-    x = obj.position.x
-    y = obj.position.y
-    dx = norm.rvs(scale=delta**2*dt)
-    dy = norm.rvs(scale=delta**2*dt)
-    while (x+dx)*(x+dx) + (y+dy)*(y+dy) > 100:
-        dx = norm.rvs(scale=delta**2*dt)
-        dy = norm.rvs(scale=delta**2*dt)
-    dpos = Vector2(dx,dy)
-    obj.setPosition( obj.getPosition() + dpos)
+def sub_types_to_str(sub_amounts, idx):
+    ststr = ''
+    for am in sub_amounts:
+        ststr = ststr + str(am[idx])
+        if sub_amounts.index(am) < len(sub_amounts)-1:
+            ststr = ststr + " : "
+    return ststr
 
 def transformsub(sub,enz,prob,new_mass,prod_rep):
     '''
@@ -35,7 +31,7 @@ def transformsub(sub,enz,prob,new_mass,prod_rep):
     a = prob
     if a > 1:
         a = 0.5
-    if random.random() < a:
+    if random.random() <= a:
         sub.transform(enz.prod_type,new_mass,prod_rep)
         return 1
     return 0
@@ -70,7 +66,7 @@ def createSupEnz(ob,dct):
     '''
     return Enzyme(dct['name'],ob,dct['sub_type'],dct['prod_type'],dct['group_id'],dct['reaction_chance'],dct['reaction_range'],dct['busy'])
 
-def createSub(cell_rad, type, mass, rep):
+def createSub(cell_rad, typ, mass, rep):
     '''
     Creates a substrate object that can then be appended to a list.
     The substrate is placed in a random location inside a circle (cell).
@@ -82,7 +78,7 @@ def createSub(cell_rad, type, mass, rep):
         y = cell_rad*random.random()
     vec = Vector2(x,y)
     ob = Obj(mass,vec)
-    return Substrate(ob,type,rep)
+    return Substrate(ob,typ,rep)
 
 def updateSpare(spare_list, spare_amount):
     '''
@@ -337,20 +333,14 @@ def main():
             sub_amounts[i].append(a)
         step += 1
         #print(id(substrates[1]))
-        if step % 500 == 0 :
-            if step % 1000 != 0:
-                print("Step",step)
-            if step % 1000 == 0:
-                print("Step",step,",reactions/1000 steps:",react_ams)
-                print("Different enzyme types:")
-                print(sub_amounts[0][step-1],sub_amounts[1][step-1],sub_amounts[2][step-1],sub_amounts[3][step-1])
+        if step % 1000 == 0:
+            print("Step",step,",reactions/1000 steps:",react_ams,"Different substrate types:" ,sub_types_to_str(sub_amounts, step-1))
         #add one to the times in substrate dict
         for key in sub_transform_dct:
             sub_transform_dct[key] += 1
     cols = ['r','g','b','c','m','k','r']   
     time2 = tm.localtime()
     print("simulation took", tm.time()-time1,"seconds")
-    print(react_time_list)
     #write simulation results to a file
     t_file = StringIO()
     for time in react_time_list:
