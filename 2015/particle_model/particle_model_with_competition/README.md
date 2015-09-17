@@ -1,6 +1,6 @@
-------
+
 README
-------
+
 The synergy model is constructed from vector2.py, objects.py, fileio.py and finally simulate.py, the main simulation file for the model.
 The model runs on python version 3, tested with python 3.4.3.
 The model is a command line tool, meaning that it has no real UI.
@@ -13,5 +13,5 @@ python3 simulate.py name_of_settings_file
 
 After this, the model simulates the scenario and in the end spews the data files in the data folder.
 The data file contains the amounts of different substrates at different points of time.
-This can be changed if one is adept in python. 
+Another type of data extracted from the simulation is the times each substrate spends between the first and second reaction. This can be changed if one is adept in python. 
 The results folder contains a few ready-made scripts for making sense of the data.
