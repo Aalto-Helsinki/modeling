@@ -41,7 +41,7 @@ def main():
 			average = 0
 			for lst in all_of_the_relevant_curves:
 				average += lst[index]
-			average = average / curvenum
+			average = average / len(all_of_the_relevant_curves)
 			curve.append(average)
 		averages.append(curve)
 	colmap = ['g','b','r','y','c','m','k']

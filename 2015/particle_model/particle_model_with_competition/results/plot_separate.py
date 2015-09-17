@@ -9,7 +9,7 @@ def main():
 	
 	'''
 	print("number of files to plot:",len(sys.argv[2:]))
-	colours = int(sys.argv[1])
+	#colours = int(sys.argv[1])
 	filenames = sys.argv[2:]
 	#print(filenames)
 	#filename =  sys.argv[1]
@@ -23,12 +23,11 @@ def main():
 		f.close()
 	#for line in file:
 		#substrate.append(line.strip().split(",")) 	
-	colmap = ['g','b','r','y','c','m','k']	
+	colmap = ['g','b','r','y','c','m','k']
 	for i in range(0, len(substrate)):
 		substrate[i] = list(filter(None, substrate[i]))
-		substrate[i] = list(map(int, substrate[i]))
+		substrate[i] = list(map(float, substrate[i]))
 		col = colmap[0]		
-		col = colmap[6%len(colmap)]
 		f = plot.figure()
 		plot.plot(substrate[i],col)	
 		f.show()

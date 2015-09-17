@@ -1,14 +1,14 @@
 #Module:Settings
 cell_rad: 2e-6
-step_amount: 5000
-dt: 1e-4
+step_amount: 2000
+dt: 1e-5
 spare_table: 5000
 #Module:End
 
 #Module:Substrate
 type: 1
 mass: 80
-amount: 100
+amount: 50
 replenish: 1
 #Module:End
 
@@ -39,9 +39,9 @@ mass: 200000
 amount: 20
 sub_type: 1
 prod_type: 2
-reaction_chance: 0.9
-reaction_range: 4e-8
-group_id: 1
+reaction_chance: 0.2
+reaction_range: 1.2e-8
+group_id: 0
 busy: 5
 #Module:End
 
@@ -51,19 +51,19 @@ mass: 120000
 amount:20
 sub_type: 2
 prod_type: 3
-reaction_chance: 0.2
+reaction_chance: 0.15
 reaction_range: 1.5e-8
-group_id: 1
+group_id: 0
 busy: 5
 #Module:End
 
 #Module:Enzyme
 name: BUT_EATER
 mass: 150000
-amount: 20
+amount: 40
 sub_type: 2
 prod_type: 4
-reaction_chance: 0.2
+reaction_chance: 0.3
 reaction_range: 2e-8
 group_id: 0 
 busy: 5

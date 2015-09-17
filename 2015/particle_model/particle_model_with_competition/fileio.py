@@ -205,12 +205,12 @@ class fileIO(object):
         file, so that it can be loaded with matlab/matplotlib/other applications
         returns a stringIO object.
         '''
-        file = StringIO()
+        f = StringIO()
         for sub in results:
             for value in sub:
-                file.write(str(value)+',')
-            file.write('\n')
-        return file
+                f.write(str(value)+',')
+            f.write('\n')
+        return f
     
 def readnewline(file):
     '''

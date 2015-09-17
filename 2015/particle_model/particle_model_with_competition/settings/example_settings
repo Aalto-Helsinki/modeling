@@ -1,6 +1,6 @@
 #Module:Settings
 cell_rad: 2e-6
-step_amount: 500
+step_amount: 100
 dt: 1e-4
 spare_table: 5000
 #Module:End
