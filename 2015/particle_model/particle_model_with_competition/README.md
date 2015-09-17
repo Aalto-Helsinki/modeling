@@ -1,6 +1,6 @@
-------
+
 README
-------
+
 The synergy model is constructed from vector2.py, objects.py, fileio.py and finally simulate.py, the main simulation file for the model.
 The model runs on python version 3, tested with python 3.4.3.
 The model is a command line tool, meaning that it has no real UI.
